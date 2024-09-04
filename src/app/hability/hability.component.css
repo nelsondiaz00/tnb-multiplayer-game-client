@@ -1,0 +1,37 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: auto;
+  cursor: pointer;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-style: solid;
+  border-width: 4px;
+  transition: filter 0.3s ease;
+}
+
+.grid-item img:hover {
+  filter: brightness(80%);
+}
+
+.product-name {
+  margin-top: 8px;
+  font-size: 18px;
+}
