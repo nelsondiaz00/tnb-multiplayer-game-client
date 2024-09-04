@@ -4,6 +4,7 @@ import { fromEvent, Observable } from 'rxjs';
 import { IMatch } from '../_models/interfaces/match.interfaces';
 import { IProduct } from '../_models/interfaces/product.interfaces';
 import { IHero } from '../_models/interfaces/hero.interfaces';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class WebSocketService {
   public habilityUsed$: Observable<IMatch>;
   public actualMatch$: Observable<IMatch>;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.socket = io('ws://your-websocket-url');
     this.newUser$ = fromEvent<IHero>(this.socket, 'newUser');
     this.turnInfo$ = fromEvent<any>(this.socket, 'turnInfo');
@@ -29,8 +30,8 @@ export class WebSocketService {
       .then((response) => response.json())
       .then((data) => {
         if (data && data.idUser) {
-          localStorage.setItem('idUser', data.idUser);
-          localStorage.setItem('teamSide', data.teamSide);
+          this.userService.setIdUser(data.idUser);
+          this.userService.setTeamSide(data.teamSide);
         }
         this.socket.on('connect', () => {
           this.socket.emit('bindInfo', data);

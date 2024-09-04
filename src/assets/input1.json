@@ -56,6 +56,7 @@
       "heroType": "warrior",
       "subHeroType": "tank",
       "dropChance": "10%",
+      "powerCost": "2",
       "effects": [
         {
           "attributeName": "defense",
@@ -84,6 +85,7 @@
       "heroType": "warrior",
       "subHeroType": "tank",
       "dropChance": "10%",
+      "powerCost": "3",
       "effects": [
         {
           "attributeName": "defense",
@@ -112,6 +114,7 @@
       "heroType": "warrior",
       "subHeroType": "tank",
       "dropChance": "10%",
+      "powerCost": "2",
       "effects": [
         {
           "attributeName": "defense",
@@ -140,6 +143,7 @@
       "heroType": "warrior",
       "subHeroType": "tank",
       "dropChance": "10%",
+      "powerCost": "3",
       "effects": [
         {
           "attributeName": "defense",

@@ -31,7 +31,16 @@
   filter: brightness(80%);
 }
 
-.product-name {
+.product-properties {
+  display: flex;
+  flex-direction: column;
   margin-top: 8px;
   font-size: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.hability-cost {
+  margin-top: 5px;
+  color: #e84d1a;
 }
