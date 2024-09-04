@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Valor</th>
+      <th>Min</th>
+      <th>Max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let attribute of attributes">
+      <td>{{ attribute.name }}</td>
+      <td>{{ attribute.value }}</td>
+      <td>{{ attribute.valueMin }}</td>
+      <td>{{ attribute.valueMax }}</td>
+    </tr>
+  </tbody>
+</table>
