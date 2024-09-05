@@ -1,1 +1,12 @@
-<p>hero works!</p>
+<div class="health-bar-container">
+  <div class="health-bar" [style.width.%]="getHealthPercentage()"></div>
+</div>
+<div class="power-bar-container">
+  <div class="power-bar" [style.width.%]="getPowerPercentage()"></div>
+</div>
+<img
+  [ngClass]="{ 'mirror-image': ismirrored }"
+  [src]="'assets/game-images/heroes/' + hero.subtype + '.' + hero.type + '.png'"
+  class="hero-image"
+/>
+<h1>{{ hero.idUser }}</h1>

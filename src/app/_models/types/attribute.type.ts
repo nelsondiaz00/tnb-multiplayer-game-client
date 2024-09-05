@@ -6,4 +6,5 @@ export type attributeName =
   | 'critical'
   | 'defense'
   | 'level'
-  | 'experience';
+  | 'experience'
+  | 'blood';

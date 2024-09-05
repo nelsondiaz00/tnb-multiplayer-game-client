@@ -4,21 +4,21 @@
   "type": "warrior",
   "subtype": "weapon",
   "attributes": {
-    "level": {
-      "name": "level",
-      "value": 1,
+    "health": {
+      "name": "health",
+      "value": 44,
+      "valueMin": 0,
+      "valueMax": 0
+    },
+    "blood": {
+      "name": "blood",
+      "value": 44,
       "valueMin": 0,
       "valueMax": 0
     },
     "power": {
       "name": "power",
       "value": 10,
-      "valueMin": 0,
-      "valueMax": 0
-    },
-    "health": {
-      "name": "health",
-      "value": 44,
       "valueMin": 0,
       "valueMax": 0
     },
@@ -43,6 +43,12 @@
     "critical": {
       "name": "critical",
       "value": 0,
+      "valueMin": 0,
+      "valueMax": 0
+    },
+    "level": {
+      "name": "level",
+      "value": 1,
       "valueMin": 0,
       "valueMax": 0
     }
