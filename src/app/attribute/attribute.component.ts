@@ -15,6 +15,18 @@ import { CommonModule } from '@angular/common';
 export class AttributeComponent implements OnInit {
   attributes: IAttribute[] = [];
 
+  translationDictionary: { [key: string]: string } = {
+    power: 'poder',
+    health: 'vida',
+    attack: 'ataque',
+    damage: 'daño',
+    critical: 'crítico',
+    defense: 'defensa',
+    level: 'nivel',
+    experience: 'experiencia',
+    blood: 'sangre',
+  };
+
   constructor(
     private attributeService: AttributeService,
     private webSocketService: WebSocketService
@@ -32,5 +44,9 @@ export class AttributeComponent implements OnInit {
 
   setAttributes(attributes: IAttribute[]): void {
     this.attributes = attributes;
+  }
+
+  translateAttributeName(name: string): string {
+    return this.translationDictionary[name] || name;
   }
 }

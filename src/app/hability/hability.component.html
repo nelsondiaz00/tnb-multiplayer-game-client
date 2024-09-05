@@ -1,6 +1,9 @@
 <div class="grid-container">
   <div *ngFor="let hability of habilities" class="grid-item">
     <img [src]="'assets/game-images/spells/' + hability.imagePath" />
-    <div class="product-name">{{ hability.productName }}</div>
+    <div class="product-properties">
+      <span class="hability-name">{{ hability.productName }}</span>
+      <span class="hability-cost">[{{ hability.powerCost }}]</span>
+    </div>
   </div>
 </div>

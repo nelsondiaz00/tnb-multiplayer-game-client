@@ -1,4 +1,15 @@
-<div class="main-container">
-  <app-team></app-team>
-  <app-team></app-team>
+<div class="indicators">
+  <div class="turn-container">
+    <h1 class="name-turn">{{ "El turno es de:" + " User9" }}</h1>
+  </div>
+  <div class="counter-container">
+    <div class="counter-cell">
+      <h1 class="counter-number">{{ counter }}</h1>
+    </div>
+  </div>
+</div>
+<div class="match-container">
+  <div *ngFor="let teamKey of getTeamKeys()" class="team-container">
+    <app-team [teamreceived]="match.teams.get(teamKey)"></app-team>
+  </div>
 </div>
