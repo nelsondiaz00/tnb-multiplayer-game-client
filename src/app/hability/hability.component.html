@@ -1,5 +1,9 @@
 <div class="grid-container">
-  <div *ngFor="let hability of habilities" class="grid-item">
+  <div
+    *ngFor="let hability of habilities"
+    class="grid-item"
+    (click)="useHability(hability.idProduct)"
+  >
     <img [src]="'assets/game-images/spells/' + hability.imagePath" />
     <div class="product-properties">
       <span class="hability-name">{{ hability.productName }}</span>

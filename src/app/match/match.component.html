@@ -1,6 +1,13 @@
 <div class="indicators">
   <div class="turn-container">
-    <h1 class="name-turn">{{ "El turno es de:" + " User9" }}</h1>
+    <h1 class="name-turn">
+      {{
+        "El turno es de: " +
+          (userService.getCurrentIdUser() !== null
+            ? userService.getCurrentIdUser()
+            : "Nadie")
+      }}
+    </h1>
   </div>
   <div class="counter-container">
     <div class="counter-cell">

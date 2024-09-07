@@ -1,22 +1,15 @@
 <div class="main-container">
   <h1 class="team-name">{{ team.teamSide + " team" }}</h1>
   <div class="grid-container">
-    <div *ngFor="let player of team.players" class="grid-item">
+    <div
+      *ngFor="let player of team.players; trackBy: trackByHeroId"
+      class="grid-item"
+    >
       <app-hero
         [heroreceived]="player"
         [ismirrored]="team.teamSide === 'blue'"
+        [teamside]="team.teamSide"
       ></app-hero>
     </div>
   </div>
 </div>
-<!-- <img
-      [ngClass]="{ 'mirror-image': team.teamSide === 'blue' }"
-      [src]="
-        'assets/game-images/heroes/' +
-        player.subtype +
-        '.' +
-        player.type +
-        '.png'
-      "
-    />
-    <h1>{{ player.idUser }}</h1> -->

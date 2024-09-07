@@ -1,0 +1,27 @@
+<div *ngIf="isVisible" class="modal-container">
+  <div class="modal-content">
+    <button
+      class="start-battle-button"
+      id="blue-team-button"
+      (click)="joinTeam('blue', input1.value)"
+    >
+      Quiero ser azul
+    </button>
+    <button
+      class="start-battle-button"
+      id="red-team-button"
+      (click)="joinTeam('red', input1.value)"
+    >
+      Quiero ser rojo
+    </button>
+    <button
+      class="start-battle-button"
+      id="socket-team-button"
+      (click)="connectSocket(input2.value)"
+    >
+      PORT
+    </button>
+    <input type="text" class="input" #input1 placeholder="idUser" />
+    <input type="text" class="input" #input2 placeholder="port" />
+  </div>
+</div>
