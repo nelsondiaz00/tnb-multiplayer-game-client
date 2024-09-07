@@ -1,12 +1,37 @@
-<div class="health-bar-container">
-  <div class="health-bar" [style.width.%]="getHealthPercentage()"></div>
+<div class="health-bar-main-container">
+  <div class="health-bar-container">
+    <div
+      class="health-bar"
+      [ngClass]="getHealthBarClass()"
+      [style.width.%]="getHealthPercentage()"
+    ></div>
+  </div>
 </div>
 <div class="power-bar-container">
   <div class="power-bar" [style.width.%]="getPowerPercentage()"></div>
 </div>
-<img
-  [ngClass]="{ 'mirror-image': ismirrored }"
-  [src]="'assets/game-images/heroes/' + hero.subtype + '.' + hero.type + '.png'"
-  class="hero-image"
-/>
-<h1>{{ hero.idUser }}</h1>
+
+<div [ngClass]="{ 'mirror-image': ismirrored }" class="image-container">
+  <img
+    [ngClass]="{
+      targeted: isTargeted(),
+      clickable: teamside !== userService.getTeamSide(),
+      shake: isShaking
+    }"
+    [src]="
+      'assets/game-images/heroes/' + hero.subtype + '.' + hero.type + '.png'
+    "
+    class="hero-image"
+    (click)="setTargetEnemy()"
+  />
+</div>
+<h1>
+  {{
+    hero.idUser === userService.getIdUser()
+      ? hero.idUser + "(you)"
+      : hero.idUser
+  }}
+</h1>
+<div *ngIf="isCurrentUser()" class="arrow-up">
+  <img class="arrow-img" src="assets/game-images/game-icons/arrow.png" />
+</div>

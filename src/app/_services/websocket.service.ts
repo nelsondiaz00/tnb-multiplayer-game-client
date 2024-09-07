@@ -1,59 +1,128 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
-import { fromEvent, Observable } from 'rxjs';
+import { fromEvent, Observable, BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { IMatch } from '../_models/interfaces/match.interfaces';
-import { IProduct } from '../_models/interfaces/product.interfaces';
-import { IHero } from '../_models/interfaces/hero.interfaces';
+import { IBindInfo } from '../_models/interfaces/bind.info.interface';
 import { UserService } from './user.service';
+import { teamSide } from '../_models/types/team.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
-  private socket: Socket;
-  public newUser$: Observable<IHero>;
+  private socket$: BehaviorSubject<Socket>;
+  public newUser$: Observable<IMatch>;
   public turnInfo$: Observable<any>; // Define a specific type if available
   public habilityUsed$: Observable<IMatch>;
   public actualMatch$: Observable<IMatch>;
+  private matchDetails$: Observable<IMatch>;
 
   constructor(private userService: UserService) {
-    this.socket = io('ws://your-websocket-url');
-    this.newUser$ = fromEvent<IHero>(this.socket, 'newUser');
-    this.turnInfo$ = fromEvent<any>(this.socket, 'turnInfo');
-    this.habilityUsed$ = fromEvent<IMatch>(this.socket, 'habilityUsed');
-    this.actualMatch$ = fromEvent<IMatch>(this.socket, 'actualMatch');
-    this.initSocket();
+    const initialSocket = io('http://localhost:3000');
+    this.socket$ = new BehaviorSubject<Socket>(initialSocket);
+
+    this.newUser$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<IMatch>(socket, 'newUser'))
+    );
+    this.turnInfo$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'turnInfo'))
+    );
+    this.habilityUsed$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<IMatch>(socket, 'habilityUsed'))
+    );
+    this.actualMatch$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<IMatch>(socket, 'actualMatch'))
+    );
+    this.matchDetails$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails'))
+    );
+
+    this.initMatch();
   }
 
-  private initSocket(): void {
+  private connectToSocket(url: string): void {
+    const newSocket = io(url);
+    this.socket$.next(newSocket);
+    console.log('Connected to match socket on url ' + url + '!');
+  }
+
+  public initMatch() {
+    this.socket$.getValue().on('connect', () => {
+      console.log('Connected to general socket!');
+    });
+    this.createMatchSocket();
+    this.connectNewSocket();
+  }
+
+  private createMatchSocket() {
+    const dataMatch = {
+      amountRed: 2,
+      amountBlue: 2,
+    };
+
+    this.socket$.getValue().emit('createMatch', dataMatch);
+  }
+
+  private connectNewSocket() {
+    this.socket$
+      .pipe(switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails')))
+      .subscribe((matchReceived: any) => {
+        const newPort = matchReceived.port;
+        const newUrl = `http://localhost:${newPort}`;
+        this.connectToSocket(newUrl);
+      });
+  }
+
+  public connectCreatedSocket(port: any) {
+    const newUrl = `http://localhost:${port}`;
+    this.connectToSocket(newUrl);
+  }
+
+  private initSocket() {
+    // Initialize general socket connection
+  }
+
+  public selectSideTeam(teamSide: teamSide, idTemp: string): void {
     fetch('./assets/input1.json')
       .then((response) => response.json())
       .then((data) => {
-        if (data && data.idUser) {
-          this.userService.setIdUser(data.idUser);
-          this.userService.setTeamSide(data.teamSide);
-        }
-        this.socket.on('connect', () => {
-          this.socket.emit('bindInfo', data);
-        });
-      })
-      .catch((error) => console.error('Error al cargar el archivo:', error));
+        this.userService.setIdUser(idTemp);
+        this.userService.setTeamSide(teamSide);
+        const hero = {
+          idUser: idTemp,
+          type: data.type,
+          subtype: data.subtype,
+          attributes: data.attributes,
+          products: data.products,
+          alive: data.alive,
+          teamSide: teamSide,
+        };
+        this.socket$.getValue().emit('bindInfo', hero);
+      });
   }
 
   public getMatch(): void {
-    this.socket.emit('getMatch');
+    this.socket$.getValue().emit('getMatch');
   }
 
-  public useHability(jsonProductPath: any): void {
-    this.socket.emit('useHability', jsonProductPath);
+  public useHability(
+    perpetratorId: string,
+    productId: string,
+    victimId: string
+  ): void {
+    console.log(perpetratorId, ' - ', productId, ' - ', victimId);
+    this.socket$
+      .getValue()
+      .emit('useHability', perpetratorId, productId, victimId);
     this.passTurn();
   }
 
   public startBattle(): void {
-    this.socket.emit('startBattle');
+    this.socket$.getValue().emit('startBattle');
   }
 
   public passTurn(): void {
-    this.socket.emit('passTurn');
+    this.socket$.getValue().emit('passTurn');
   }
 }

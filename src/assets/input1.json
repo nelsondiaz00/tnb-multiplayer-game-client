@@ -1,8 +1,8 @@
 {
-  "teamSide": "blue",
-  "idUser": "user8",
+  "teamSide": "red",
+  "idUser": "user9",
   "type": "warrior",
-  "subtype": "weapon",
+  "subtype": "tank",
   "attributes": {
     "health": {
       "name": "health",
@@ -12,7 +12,7 @@
     },
     "blood": {
       "name": "blood",
-      "value": 44,
+      "value": 20,
       "valueMin": 0,
       "valueMax": 0
     },
@@ -24,13 +24,13 @@
     },
     "defense": {
       "name": "defense",
-      "value": 11,
+      "value": 0,
       "valueMin": 0,
       "valueMax": 0
     },
     "attack": {
       "name": "attack",
-      "value": 10,
+      "value": 5,
       "valueMin": 1,
       "valueMax": 6
     },
@@ -65,22 +65,17 @@
       "powerCost": "2",
       "effects": [
         {
-          "attributeName": "defense",
+          "attribute": {
+            "name": "critical"
+          },
           "mathOperator": "+",
           "turns": 0,
           "target": "ally",
           "value": 25,
           "valueCaused": 20
-        },
-        {
-          "attributeName": "attack",
-          "mathOperator": "+",
-          "turns": 0,
-          "target": "enemy",
-          "value": 10,
-          "valueCaused": 15
         }
       ],
+      "conditions": [],
       "imagePath": "magic.sword.png"
     },
     {
@@ -94,22 +89,17 @@
       "powerCost": "3",
       "effects": [
         {
-          "attributeName": "defense",
+          "attribute": {
+            "name": "critical"
+          },
           "mathOperator": "+",
           "turns": 0,
           "target": "ally",
           "value": 25,
           "valueCaused": 20
-        },
-        {
-          "attributeName": "attack",
-          "mathOperator": "+",
-          "turns": 0,
-          "target": "enemy",
-          "value": 10,
-          "valueCaused": 15
         }
       ],
+      "conditions": [],
       "imagePath": "punch.png"
     },
     {
@@ -123,7 +113,9 @@
       "powerCost": "2",
       "effects": [
         {
-          "attributeName": "defense",
+          "attribute": {
+            "name": "defense"
+          },
           "mathOperator": "+",
           "turns": 0,
           "target": "ally",
@@ -131,7 +123,9 @@
           "valueCaused": 20
         },
         {
-          "attributeName": "attack",
+          "attribute": {
+            "name": "attack"
+          },
           "mathOperator": "+",
           "turns": 0,
           "target": "enemy",
@@ -152,7 +146,9 @@
       "powerCost": "3",
       "effects": [
         {
-          "attributeName": "defense",
+          "attribute": {
+            "name": "defense"
+          },
           "mathOperator": "+",
           "turns": 0,
           "target": "ally",
@@ -160,7 +156,9 @@
           "valueCaused": 20
         },
         {
-          "attributeName": "attack",
+          "attribute": {
+            "name": "attack"
+          },
           "mathOperator": "+",
           "turns": 0,
           "target": "enemy",
