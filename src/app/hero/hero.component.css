@@ -3,10 +3,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .image-container {
-  display: inline-block;
+  /* display: inline-block; */
+  margin-top: 3%;
+  height: 35%;
+  width: 60%;
 }
 
 .mirror-image {
@@ -15,9 +21,10 @@
 
 .hero-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
   transition: filter 0.3s ease, box-shadow 0.3s ease;
+  animation: breathing 0.8s infinite alternate;
 }
 
 @keyframes shake {
@@ -42,39 +49,28 @@
   animation: shake 0.5s;
 }
 
-@keyframes pulse {
-  0% {
-    filter: drop-shadow(0 0 0 red);
-  }
-  50% {
-    filter: drop-shadow(6px 3px 3px red);
-  }
-  100% {
-    filter: drop-shadow(0 0 0 red);
-  }
-}
-
 .hero-image.clickable {
   cursor: pointer;
 }
 
 .hero-image.clickable:hover {
-  animation: pulse 1s infinite;
+  animation: pulse 1s infinite, breathing 0.8s infinite alternate;
 }
 
 .targeted {
-  animation: pulse 1s infinite;
+  animation: pulse 1s infinite, breathing 0.8s infinite alternate;
 }
 
 h1 {
-  font-size: 20px;
+  font-size: clamp(0.1rem, 3vw, 0.7rem);
   color: black;
+  box-sizing: border-box;
 }
 
 .health-bar-main-container {
-  position: relative; /* Asegúrate de que el contenedor tenga posición relativa para que el ::before se posicione correctamente */
-  width: 100%;
-  height: 20px;
+  position: relative;
+  width: 40%;
+  height: 3%;
   background-color: #d1d0d1;
   overflow: hidden;
   margin: 0;
@@ -83,7 +79,6 @@ h1 {
 }
 
 .health-bar-main-container::before {
-  /* Nota el uso de ::before sin espacio */
   content: "";
   position: absolute;
   top: 0;
@@ -126,34 +121,83 @@ h1 {
 
 .power-bar-container {
   margin: 0;
-  width: 100%;
-  height: 6px;
+  width: 40%;
+  height: 1%;
   background-color: #d1d0d1;
   overflow: hidden;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   border-style: solid;
   border-width: 0 4px 4px 4px;
 }
-
+/* #ffd700 
+#ff4800*/
 .power-bar {
   height: 100%;
-  background-color: #ffd700;
+  background-color: #ff6600;
   transition: width 0.3s ease;
 }
 
+.space-arrow {
+  width: 20%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 .arrow-up {
-  width: 40%;
-  height: 40%;
-  /* border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid black; */
-  margin: 0 auto;
-  animation: moveUpDown 1s infinite alternate;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  animation: moveUpDown 0.5s infinite alternate;
+  position: absolute;
 }
 
 .arrow-img {
-  width: 100%;
-  height: 100%;
+  justify-self: center;
+  width: 180%;
+  max-width: 50px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 0 red);
+  }
+  50% {
+    filter: drop-shadow(5px 2px 0px red);
+  }
+  100% {
+    filter: drop-shadow(0 0 0 red);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    transform: translate(2px, 0px) scaleY(1);
+    transform-origin: center bottom;
+  }
+  25% {
+    transform: translate(0px, 0px) scaleY(1.03);
+    transform-origin: center bottom;
+  }
+  50% {
+    transform: translate(0, 0px) scaleY(1.04);
+    transform-origin: center bottom;
+  }
+  75% {
+    transform: translate(0px, 0px) scaleY(1.04);
+    transform-origin: center bottom;
+  }
+  100% {
+    transform: translate(-2px, 0px) scaleY(1);
+    transform-origin: center bottom;
+  }
 }
 
 @keyframes moveUpDown {
@@ -161,7 +205,7 @@ h1 {
     transform: rotate(0deg) translateY(0);
   }
   100% {
-    transform: rotate(0deg) translateY(-10px);
+    transform: rotate(0deg) translateY(-45%);
   }
 }
 

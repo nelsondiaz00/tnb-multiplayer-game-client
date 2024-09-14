@@ -1,11 +1,45 @@
-table {
-  margin: 20px;
-  font-size: 15px;
-  border-right: 2px solid black;
-  padding-right: 20px;
-  border-width: 5px;
+:host {
+  width: 30%;
 }
 
-td {
-  padding-right: 40px;
+table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  /* font-size: 3px; */
+  /* margin: 20px; */
+  font-size: clamp(0.1rem, 1vw, 0.7rem);
+  /* padding-right: 20px; */
+  /* border-width: 5px;
+  border-right: 2px solid black; */
+  /* border-collapse: collapse; */
 }
+
+table thead th,
+table tbody td {
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+/* Ancho para las columnas específicas */
+table thead th:first-child,
+table tbody td:first-child {
+  width: 30%; /* Ajusta este valor según tus necesidades */
+}
+
+table thead th:nth-child(2),
+table tbody td:nth-child(2) {
+  width: 20%; /* Ajusta según lo necesites */
+}
+
+/* Ancho para las columnas restantes */
+table thead th:not(:first-child):not(:nth-child(2)),
+table tbody td:not(:first-child):not(:nth-child(2)) {
+  width: 15%; /* Ajusta según lo necesites */
+}
+
+/* td {
+  padding-right: 40px;
+} */

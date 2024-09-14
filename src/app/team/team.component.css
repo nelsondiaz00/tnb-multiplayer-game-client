@@ -1,4 +1,8 @@
-.main-container {
+:host {
+  height: 100%;
+}
+
+.main-container-team {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,9 +17,8 @@
   gap: 10px;
   justify-items: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: 100%;
-  /* background-color: green; */
 }
 
 .grid-item {
@@ -23,8 +26,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /* align-self: flex-start; */
 }
 
 .mirror-image {
@@ -32,6 +37,38 @@
 }
 
 .team-name {
-  margin-bottom: 50px;
   color: black;
+  font-size: clamp(0.1rem, 5vw, 1.5rem);
+}
+
+.hero-empty-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-empty-img {
+  justify-self: center;
+  width: 50%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  animation: rotate 8s linear infinite;
+}
+
+.empty-name {
+  margin-bottom: 10%;
+  font-size: clamp(0.1rem, 1vw, 0.7rem);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

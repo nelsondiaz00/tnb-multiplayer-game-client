@@ -8,12 +8,12 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 9999;
 }
 
 .modal-content {
   margin-top: 60px;
-  width: 30%;
+  width: 50%;
   height: 20%;
   background-color: white;
   padding: 20px;
@@ -21,19 +21,19 @@
 }
 
 .start-battle-button {
-  height: 30%;
-  width: 25%;
+  height: 60%;
+  width: 60%;
   font-family: "VT323";
-  font-size: clamp(0.1rem, 3vw, 3rem);
+  font-size: clamp(0.1rem, 2vw, 3rem);
   padding: 20px;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: #ff1100;
   color: white;
   border: solid 5px black;
   cursor: pointer;
   /* overflow: hidden;
-  text-overflow: ellipsis; */
+    text-overflow: ellipsis; */
 }
 
 .start-battle-button:hover {
-  background-color: red;
+  background-color: green;
 }

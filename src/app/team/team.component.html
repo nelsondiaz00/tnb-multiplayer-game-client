@@ -1,15 +1,27 @@
-<div class="main-container">
+<div class="main-container-team">
   <h1 class="team-name">{{ team.teamSide + " team" }}</h1>
   <div class="grid-container">
     <div
-      *ngFor="let player of team.players; trackBy: trackByHeroId"
+      *ngFor="let player of players; trackBy: trackByHeroId"
       class="grid-item"
     >
-      <app-hero
-        [heroreceived]="player"
-        [ismirrored]="team.teamSide === 'blue'"
-        [teamside]="team.teamSide"
-      ></app-hero>
+      <ng-container *ngIf="player; else emptyHero">
+        <app-hero
+          [heroreceived]="player"
+          [ismirrored]="team.teamSide === 'blue'"
+          [teamside]="team.teamSide"
+        ></app-hero>
+      </ng-container>
+      <ng-template #emptyHero>
+        <div class="hero-empty-container">
+          <img
+            src="assets/game-images/game-icons/hero-empty.png"
+            class="hero-empty-img"
+            alt="Empty Hero"
+          />
+          <p class="empty-name">empty hero</p>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>

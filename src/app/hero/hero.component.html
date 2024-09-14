@@ -10,8 +10,14 @@
 <div class="power-bar-container">
   <div class="power-bar" [style.width.%]="getPowerPercentage()"></div>
 </div>
-
+<!--  -->
 <div [ngClass]="{ 'mirror-image': ismirrored }" class="image-container">
+  <!-- <img
+    [src]="
+      'assets/game-images/heroes/' + hero.subtype + '.' + hero.type + '.png'
+    "
+    class="hero-image"
+  /> -->
   <img
     [ngClass]="{
       targeted: isTargeted(),
@@ -32,6 +38,8 @@
       : hero.idUser
   }}
 </h1>
-<div *ngIf="isCurrentUser()" class="arrow-up">
-  <img class="arrow-img" src="assets/game-images/game-icons/arrow.png" />
+<div class="space-arrow">
+  <div *ngIf="isCurrentUser()" class="arrow-up">
+    <img class="arrow-img" src="assets/game-images/game-icons/arrow.png" />
+  </div>
 </div>

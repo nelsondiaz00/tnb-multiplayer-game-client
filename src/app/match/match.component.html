@@ -1,22 +1,27 @@
-<div class="indicators">
-  <div class="turn-container">
-    <h1 class="name-turn">
-      {{
-        "El turno es de: " +
-          (userService.getCurrentIdUser() !== null
-            ? userService.getCurrentIdUser()
-            : "Nadie")
-      }}
-    </h1>
-  </div>
-  <div class="counter-container">
-    <div class="counter-cell">
-      <h1 class="counter-number">{{ counter }}</h1>
+<div class="main-container-match">
+  <div class="indicators">
+    <div class="turn-container">
+      <h1 class="name-turn">
+        {{
+          "El turno es de: " +
+            (userService.getCurrentIdUser() !== null
+              ? userService.getCurrentIdUser()
+              : "Nadie")
+        }}
+      </h1>
+    </div>
+    <div class="counter-container">
+      <div class="counter-cell">
+        <h1 class="counter-number">{{ counter }}</h1>
+      </div>
     </div>
   </div>
-</div>
-<div class="match-container">
-  <div *ngFor="let teamKey of getTeamKeys()" class="team-container">
-    <app-team [teamreceived]="match.teams.get(teamKey)"></app-team>
+  <div class="teams-container">
+    <div *ngFor="let teamKey of getTeamKeys()" class="team-container">
+      <app-team
+        [teamreceived]="match.teams.get(teamKey)"
+        [amountPlayers]="getAmountPlayersForTeam()"
+      ></app-team>
+    </div>
   </div>
 </div>

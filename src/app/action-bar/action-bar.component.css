@@ -1,13 +1,14 @@
 :host {
   background-color: #d8d4d4;
   width: 60%;
-  margin-top: auto;
+  /* margin-top: auto; */
   margin-bottom: 1%;
   border-style: solid;
   border-color: black;
   border-width: 5px;
   display: flex;
   flex-direction: row;
-  overflow: auto;
-  max-height: 30vh;
+  /* overflow: auto; */
+  height: 25%;
+  padding: 1% 0% 1% 1%;
 }

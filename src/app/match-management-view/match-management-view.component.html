@@ -1,0 +1,6 @@
+<div *ngIf="!showGameView">
+  <app-match-list (matchSelected)="onMatchSelected($event)"></app-match-list>
+</div>
+<div *ngIf="showGameView">
+  <app-game-view [matchConfig]="selectedMatchConfig"></app-game-view>
+</div>
