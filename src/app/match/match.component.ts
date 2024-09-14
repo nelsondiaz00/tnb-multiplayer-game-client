@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TeamComponent } from '../team/team.component';
 import { IMatch } from '../_models/interfaces/match.interfaces';
 import { MatchService } from '../_services/match.service';
@@ -16,14 +16,17 @@ import { UserService } from '../_services/user.service';
   styleUrl: './match.component.css',
 })
 export class MatchComponent {
+  @Input() matchConfig: any;
+
   match: IMatch = {
     idMatch: '',
     teams: new Map<teamSide, ITeam>(),
     size: 0,
   };
   // sec of turn time left
-  counter: number = 15;
+  counter: number = 180;
   intervalId: any;
+  private isFirstTeamAssigned = false;
 
   constructor(
     private matchService: MatchService,
@@ -32,22 +35,7 @@ export class MatchComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.matchService.getMatch().subscribe((data: IMatch) => {
-    //   // Ensure that teams is a Map with correct key type
-    //   if (data.teams instanceof Map) {
-    //     this.match = data;
-    //   } else {
-    //     this.match.teams = new Map<teamSide, ITeam>(
-    //       Object.entries(data.teams).map(([key, value]) => [
-    //         key as teamSide,
-    //         value as ITeam,
-    //       ])
-    //     );
-    //   }
-    //   // console.log(this.match);
-    //   this.startCounter();
-    // });
-
+    console.log(this.matchConfig, ' esto desde match');
     this.webSocketService.newUser$.subscribe((matchReceived: IMatch) => {
       console.log('??? llegó o no');
       this.match = this.matchService.reconstructMatch(matchReceived);
@@ -64,11 +52,22 @@ export class MatchComponent {
     });
   }
 
+  getAmountPlayersForTeam(): number {
+    if (!this.isFirstTeamAssigned) {
+      this.isFirstTeamAssigned = true;
+      console.log('Assigning amountBlue:', this.matchConfig.amountBlue);
+      return this.matchConfig.amountBlue;
+    } else {
+      console.log('Assigning amountRed:', this.matchConfig.amountRed);
+      return this.matchConfig.amountRed;
+    }
+  }
+
   startCounter() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
-    this.counter = 15;
+    this.counter = 180;
     this.intervalId = setInterval(() => {
       if (this.counter > 0) {
         this.counter--;
@@ -85,6 +84,7 @@ export class MatchComponent {
   }
 
   getTeamKeys(): teamSide[] {
+    console.log(Array.from(this.match.teams.keys()), ' keys');
     return Array.from(this.match.teams.keys());
   }
 }

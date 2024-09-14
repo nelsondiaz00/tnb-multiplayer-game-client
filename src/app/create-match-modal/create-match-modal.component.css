@@ -1,0 +1,189 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+/* 
+fieldset {
+  width: 100%;
+} */
+
+.game-room {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+  color: white;
+}
+
+header h1 {
+  font-size: clamp(0.1rem, 1.5vw, 2rem);
+}
+
+header a {
+  font-size: clamp(0.1rem, 1.5vw, 2rem);
+}
+
+header a:hover {
+  color: black;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+}
+
+h1 {
+  font-size: clamp(0.1rem, 3vw, 2rem);
+  text-decoration: none;
+}
+
+.back-button {
+  font-size: clamp(0.1rem, 3vw, 2rem);
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.game-settings {
+  height: 50%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  box-shadow: 12px 12px 0px 0px #3f3f3f;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 40px;
+  justify-items: left;
+}
+
+/* Estilo del formulario */
+form {
+  display: grid;
+  grid-template-columns: 40% 60%; /* Columnas para legend y botones */
+  gap: 20px;
+}
+
+/* Estilo para cada fieldset */
+fieldset {
+  display: contents; /* Usamos 'contents' para que no afecte la disposición del grid */
+}
+
+legend {
+  font-size: clamp(0.1rem, 1vw, 2rem);
+  color: #333;
+  grid-column: 1; /* Posiciona el legend en la primera columna */
+}
+
+/* Contenedor para los botones */
+fieldset div {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  grid-column: 2;
+}
+
+/* Estilo para los botones tipo radio y sus etiquetas */
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  padding: 2% 5%;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 6px 6px 0px 0px #583b67;
+  background-color: #809db9;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #ff88cc; /* Cambia el color del botón cuando está seleccionado */
+  transform: translateY(-2px);
+}
+
+/* Estilo del botón de creación */
+button.create-button {
+  font-family: "VT323";
+  background-color: #b172c0;
+  font-size: 1.5rem;
+  color: #fff;
+  width: 40%; /* Reduce el ancho del botón */
+  border: none;
+  box-shadow: 6px 6px 0px 0px #583b67;
+  margin-top: 20px;
+  padding: 10px 20px;
+  grid-column: 1 / span 2; /* Abarca ambas columnas */
+  justify-self: center; /* Centra el botón en la cuadrícula */
+  align-self: center; /* Asegura que el botón esté centrado verticalmente */
+}
+
+button.create-button:hover {
+  transform: translateY(-2px);
+}
+
+button.create-button:active {
+  transform: translateY(0);
+}
+/* 
+.game-mode {
+    font-size: 1.5rem;
+    color: #333;
+} */
+
+#password {
+  font-family: "VT323";
+  height: 100%;
+  width: 80%;
+  border: none;
+  box-shadow: 6px 6px 0px 0px #583b67;
+  font-size: clamp(0.1rem, 1vw, 2rem);
+}
+
+/* Responsividad para pantallas más grandes */
+/* @media (min-width: 768px) {
+    label {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .game-settings {
+        padding: 50px;
+        grid-template-columns: 30% 70%;
+    }
+} */
+/* 
+@media (min-width: 1024px) {
+    .game-settings {
+        width: 60%;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    label {
+        font-size: 1.2rem;
+    }
+} */

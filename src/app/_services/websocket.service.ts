@@ -17,6 +17,9 @@ export class WebSocketService {
   public habilityUsed$: Observable<IMatch>;
   public actualMatch$: Observable<IMatch>;
   private matchDetails$: Observable<IMatch>;
+  public activeMatches$: Observable<any>;
+  public endMatch$: Observable<any>;
+  public matchUsersCount$: Observable<number>;
 
   constructor(private userService: UserService) {
     const initialSocket = io('http://localhost:3000');
@@ -37,8 +40,15 @@ export class WebSocketService {
     this.matchDetails$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails'))
     );
-
-    this.initMatch();
+    this.activeMatches$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'activeMatches'))
+    );
+    this.endMatch$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'endMatch'))
+    );
+    this.matchUsersCount$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'matchUsersCount'))
+    );
   }
 
   private connectToSocket(url: string): void {
@@ -47,21 +57,20 @@ export class WebSocketService {
     console.log('Connected to match socket on url ' + url + '!');
   }
 
-  public initMatch() {
+  private initMatch() {
     this.socket$.getValue().on('connect', () => {
       console.log('Connected to general socket!');
     });
-    this.createMatchSocket();
-    this.connectNewSocket();
   }
 
-  private createMatchSocket() {
-    const dataMatch = {
-      amountRed: 2,
-      amountBlue: 2,
-    };
-
+  public createMatchSocket(dataMatch: any): void {
+    // const dataMatch = {
+    //   amountRed: 2,
+    //   amountBlue: 2,
+    // };
     this.socket$.getValue().emit('createMatch', dataMatch);
+    this.connectNewSocket();
+    console.log('Match created!');
   }
 
   private connectNewSocket() {
@@ -69,18 +78,18 @@ export class WebSocketService {
       .pipe(switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails')))
       .subscribe((matchReceived: any) => {
         const newPort = matchReceived.port;
+        // newPort = 3001; // quitarrrr!!!
         const newUrl = `http://localhost:${newPort}`;
         this.connectToSocket(newUrl);
       });
   }
 
   public connectCreatedSocket(port: any) {
-    const newUrl = `http://localhost:${port}`;
-    this.connectToSocket(newUrl);
-  }
-
-  private initSocket() {
-    // Initialize general socket connection
+    if (port !== '') {
+      // port = 3001; // quitar!!!
+      const newUrl = `http://localhost:${port}`;
+      this.connectToSocket(newUrl);
+    }
   }
 
   public selectSideTeam(teamSide: teamSide, idTemp: string): void {
@@ -104,6 +113,14 @@ export class WebSocketService {
 
   public getMatch(): void {
     this.socket$.getValue().emit('getMatch');
+  }
+
+  public getMatchList(): void {
+    this.socket$.getValue().emit('getActiveMatches');
+  }
+
+  public getMatchUsers(port: any): void {
+    this.socket$.getValue().emit('getMatchUsers', port);
   }
 
   public useHability(

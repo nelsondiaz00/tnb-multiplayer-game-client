@@ -86,8 +86,11 @@ export class HeroComponent implements OnChanges {
 
   getPowerPercentage(): number {
     const powerAttribute = this.hero.attributes['power'];
-    if (powerAttribute && this.maxPower) {
-      return (powerAttribute.value / this.maxPower) * 100;
+    if (powerAttribute) {
+      return (
+        (powerAttribute.value / this.hero.attributes['power'].valueConstant) *
+        100
+      );
     }
     return 0;
   }

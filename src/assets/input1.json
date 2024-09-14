@@ -20,7 +20,8 @@
       "name": "power",
       "value": 10,
       "valueMin": 0,
-      "valueMax": 0
+      "valueMax": 0,
+      "valueConstant": 10
     },
     "defense": {
       "name": "defense",
