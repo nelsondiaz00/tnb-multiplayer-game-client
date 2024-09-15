@@ -55,10 +55,10 @@ export class MatchComponent {
   getAmountPlayersForTeam(): number {
     if (!this.isFirstTeamAssigned) {
       this.isFirstTeamAssigned = true;
-      console.log('Assigning amountBlue:', this.matchConfig.amountBlue);
+      // console.log('Assigning amountBlue:', this.matchConfig.amountBlue);
       return this.matchConfig.amountBlue;
     } else {
-      console.log('Assigning amountRed:', this.matchConfig.amountRed);
+      // console.log('Assigning amountRed:', this.matchConfig.amountRed);
       return this.matchConfig.amountRed;
     }
   }
@@ -84,7 +84,7 @@ export class MatchComponent {
   }
 
   getTeamKeys(): teamSide[] {
-    console.log(Array.from(this.match.teams.keys()), ' keys');
+    // console.log(Array.from(this.match.teams.keys()), ' keys');
     return Array.from(this.match.teams.keys());
   }
 }

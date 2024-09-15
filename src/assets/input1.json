@@ -12,7 +12,7 @@
     },
     "blood": {
       "name": "blood",
-      "value": 20,
+      "value": 44,
       "valueMin": 0,
       "valueMax": 0
     },
@@ -67,7 +67,7 @@
       "effects": [
         {
           "attribute": {
-            "name": "critical"
+            "name": "level"
           },
           "mathOperator": "+",
           "turns": 0,

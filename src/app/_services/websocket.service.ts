@@ -20,6 +20,7 @@ export class WebSocketService {
   public activeMatches$: Observable<any>;
   public endMatch$: Observable<any>;
   public matchUsersCount$: Observable<number>;
+  public lastPerpetratorName$: Observable<number>;
 
   constructor(private userService: UserService) {
     const initialSocket = io('http://localhost:3000');
@@ -48,6 +49,9 @@ export class WebSocketService {
     );
     this.matchUsersCount$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'matchUsersCount'))
+    );
+    this.lastPerpetratorName$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'lastPerpetratorName'))
     );
   }
 

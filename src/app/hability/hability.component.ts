@@ -59,7 +59,6 @@ export class HabilityComponent implements OnInit {
       if (heroComponent) {
         console.log('activating hability');
         heroComponent.activateHability();
-        // Introduce a delay to ensure the animation runs before the WebSocket call
         setTimeout(() => {
           this.webSocketService.useHability(idUser, idHability, targetEnemy);
         }, 500); // Ajusta el tiempo según la duración de la animación

@@ -18,6 +18,7 @@ export class HeroComponent implements OnChanges {
   hero!: IHero;
   maxPower!: number;
   isShaking: boolean = false;
+  healthDifference: number | null = null;
 
   constructor(
     public userService: UserService,
@@ -33,38 +34,67 @@ export class HeroComponent implements OnChanges {
         previousHero.attributes['blood'].value !==
           currentHero.attributes['blood'].value
       ) {
-        this.triggerHealthBarAnimation();
-      }
+        const previousBlood = previousHero.attributes['blood'].value;
+        const currentBlood = currentHero.attributes['blood'].value;
+        this.healthDifference = previousBlood - currentBlood;
+        this.healthDifference = parseFloat(this.healthDifference.toFixed(1));
+        console.log(this.healthDifference, ' diferencia de vida');
+        this.triggerHeroBeatenAnimation();
 
+        setTimeout(() => {
+          this.healthDifference = null;
+        }, 1000);
+      }
       this.hero = { ...this.heroreceived };
       this.maxPower = this.hero.attributes['power'].value;
     }
   }
 
-  triggerHealthBarAnimation() {
-    const healthElement = document.querySelector('.health-bar');
-    if (healthElement) {
-      healthElement.classList.add('health-change-animation');
-      setTimeout(() => {
-        healthElement.classList.remove('health-change-animation');
-      }, 1000); // Duración de la animación
+  getHealthDifferenceClass(): string {
+    if (this.healthDifference !== null) {
+      if (this.healthDifference < 3) {
+        return 'health-difference-green';
+      } else if (this.healthDifference >= 3 && this.healthDifference < 5) {
+        return 'health-difference-yellow';
+      } else {
+        return 'health-difference-orange';
+      }
     }
+
+    return '';
   }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['heroreceived']) {
-  //     this.hero = { ...this.heroreceived };
-  //   }
-  // }
+  triggerHeroBeatenAnimation() {
+    const healthContainer = document.querySelector(
+      `.health-bar-main-container[data-id-user="${this.hero.idUser}"]`
+    );
+
+    const heroElement = document.querySelector(
+      `.hero-image[data-id-user="${this.hero.idUser}"]`
+    );
+
+    if (healthContainer) {
+      const healthElement = healthContainer.querySelector('.health-bar');
+      if (healthElement) {
+        healthElement.classList.add('health-change-animation');
+        setTimeout(() => {
+          healthElement.classList.remove('health-change-animation');
+        }, 1000);
+      }
+    }
+    if (heroElement) {
+      heroElement.classList.add('hero-move-back-animation');
+      setTimeout(() => {
+        heroElement.classList.remove('hero-move-back-animation');
+      }, 800);
+    }
+  }
 
   ngOnInit(): void {
     this.webSocketService.turnInfo$.subscribe(() => {
       this.userService.setHeroComponent(this);
       this.resetTargeted();
     });
-    //console.log(this.userService.getIdUser(), ' iduser');
-    //console.log(this, ' NOMAAAAAAAAAAAAAAAAAAAAAAAAAAAS');
-    // this.userService.setHeroComponent(this);
   }
 
   activateHability(): void {
@@ -132,20 +162,4 @@ export class HeroComponent implements OnChanges {
   isCurrentUser(): boolean {
     return this.hero.idUser === this.userService.getCurrentIdUser();
   }
-
-  // canInteract(): boolean {
-  //   const idUser = this.userService.getIdUser();
-  //   const currentIdUser = this.userService.getCurrentIdUser();
-  //   console.log(
-  //     'canInteract',
-  //     idUser,
-  //     ' --- ',
-  //     currentIdUser,
-  //     ' -- ',
-  //     this.userService.getTeamSide()
-  //   );
-  //   return (
-  //     idUser !== null && currentIdUser !== null && idUser === currentIdUser
-  //   );
-  // }
 }
