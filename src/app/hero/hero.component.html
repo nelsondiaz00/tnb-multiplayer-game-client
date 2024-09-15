@@ -10,14 +10,22 @@
 <div class="power-bar-container">
   <div class="power-bar" [style.width.%]="getPowerPercentage()"></div>
 </div>
-<!--  -->
+
 <div [ngClass]="{ 'mirror-image': ismirrored }" class="image-container">
-  <!-- <img
-    [src]="
-      'assets/game-images/heroes/' + hero.subtype + '.' + hero.type + '.png'
-    "
-    class="hero-image"
-  /> -->
+  <!-- <div class="health-difference" [ngClass]="getHealthDifferenceClass()"> -->
+  <div
+    class="health-difference-container"
+    [ngClass]="{ 'no-mirror': ismirrored }"
+  >
+    <div
+      class="health-difference"
+      [ngClass]="getHealthDifferenceClass()"
+      *ngIf="healthDifference !== null"
+    >
+      <!-- <div class="health-difference" [ngClass]="getHealthDifferenceClass()"> -->
+      {{ healthDifference === 0 ? "Golpe fallado" : "-" + healthDifference }}
+    </div>
+  </div>
   <img
     [ngClass]="{
       targeted: isTargeted(),
@@ -29,6 +37,7 @@
     "
     class="hero-image"
     (click)="setTargetEnemy()"
+    [attr.data-id-user]="hero.idUser"
   />
 </div>
 <h1>

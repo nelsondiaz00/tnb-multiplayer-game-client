@@ -63,7 +63,7 @@ export class AttributeComponent implements OnInit {
 
     this.webSocketService.actualMatch$.subscribe((matchReceived: IMatch) => {
       let match: IMatch = this.matchService.reconstructMatch(matchReceived);
-      console.log(match, ' match ', this.userService.getIdUser());
+      //console.log(match, ' match ', this.userService.getIdUser());
       let heroAttributes: IAttribute[] = [];
 
       for (const team of match.teams.values()) {
