@@ -11,7 +11,7 @@ import { teamSide } from '../_models/types/team.type';
   providedIn: 'root',
 })
 export class WebSocketService {
-  private socket$: BehaviorSubject<Socket>;
+  public socket$: BehaviorSubject<Socket>;
   public newUser$: Observable<IMatch>;
   public turnInfo$: Observable<any>; // Define a specific type if available
   public habilityUsed$: Observable<IMatch>;
@@ -19,11 +19,13 @@ export class WebSocketService {
   private matchDetails$: Observable<IMatch>;
   public activeMatches$: Observable<any>;
   public endMatch$: Observable<any>;
-  public matchUsersCount$: Observable<number>;
-  public lastPerpetratorName$: Observable<number>;
+  public amountPlayers$: Observable<any>;
+  public lastPerpetratorName$: Observable<string>;
+  private HOST = 'localhost';
+  private PORT = '3000';
 
   constructor(private userService: UserService) {
-    const initialSocket = io('http://localhost:3000');
+    const initialSocket = io(`http://${this.HOST}:${this.PORT}`);
     this.socket$ = new BehaviorSubject<Socket>(initialSocket);
 
     this.newUser$ = this.socket$.pipe(
@@ -47,52 +49,42 @@ export class WebSocketService {
     this.endMatch$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'endMatch'))
     );
-    this.matchUsersCount$ = this.socket$.pipe(
-      switchMap((socket) => fromEvent<any>(socket, 'matchUsersCount'))
+    this.amountPlayers$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'playersAmount'))
     );
     this.lastPerpetratorName$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'lastPerpetratorName'))
     );
   }
-
-  private connectToSocket(url: string): void {
-    const newSocket = io(url);
-    this.socket$.next(newSocket);
-    console.log('Connected to match socket on url ' + url + '!');
-  }
-
-  private initMatch() {
-    this.socket$.getValue().on('connect', () => {
-      console.log('Connected to general socket!');
-    });
-  }
+  // private initMatch() {
+  //   this.socket$.getValue().on('connect', () => {
+  //     console.log('Connected to general socket!');
+  //   });
+  // }
 
   public createMatchSocket(dataMatch: any): void {
-    // const dataMatch = {
-    //   amountRed: 2,
-    //   amountBlue: 2,
-    // };
+    // this.connectToSocket('3000');
+    // this.connectNewSocket();
     this.socket$.getValue().emit('createMatch', dataMatch);
-    this.connectNewSocket();
     console.log('Match created!');
   }
 
-  private connectNewSocket() {
-    this.socket$
-      .pipe(switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails')))
-      .subscribe((matchReceived: any) => {
-        const newPort = matchReceived.port;
-        // newPort = 3001; // quitarrrr!!!
-        const newUrl = `http://localhost:${newPort}`;
-        this.connectToSocket(newUrl);
-      });
-  }
+  // private connectNewSocket() {
+  //   this.socket$
+  //     .pipe(switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails')))
+  //     .subscribe((matchReceived: any) => {
+  //       const newPort = matchReceived.port;
+  //       // newPort = 3001; // quitarrrr!!!
+  //       this.connectToSocket(newPort);
+  //     });
+  // }
 
-  public connectCreatedSocket(port: any) {
+  public connectToSocket(port: string): void {
     if (port !== '') {
-      // port = 3001; // quitar!!!
-      const newUrl = `http://localhost:${port}`;
-      this.connectToSocket(newUrl);
+      const url = `http://${this.HOST}:${port}`;
+      const newSocket = io(url);
+      this.socket$.next(newSocket);
+      console.log('Connected to match socket on url ' + url + '!');
     }
   }
 
@@ -123,8 +115,8 @@ export class WebSocketService {
     this.socket$.getValue().emit('getActiveMatches');
   }
 
-  public getMatchUsers(port: any): void {
-    this.socket$.getValue().emit('getMatchUsers', port);
+  public getPlayersAmount(port: any): void {
+    this.socket$.getValue().emit('getPlayersAmount', port);
   }
 
   public useHability(
@@ -140,7 +132,7 @@ export class WebSocketService {
   }
 
   public startBattle(): void {
-    this.socket$.getValue().emit('startBattle');
+    this.socket$.getValue().emit('startBattle', this.userService.getIdUser());
   }
 
   public passTurn(): void {

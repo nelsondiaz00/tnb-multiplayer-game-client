@@ -3,20 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TNB-III</title>
   </head>
   <body>
     <div class="main-container">
-      <!-- <app-create-match-modal></app-create-match-modal>
-      <app-team-selection-modal></app-team-selection-modal> -->
-      <!-- <app-start-battle-modal></app-start-battle-modal>
-      <app-match></app-match>
-      <app-action-bar></app-action-bar> -->
-      <!-- <app-end-match-modal></app-end-match-modal> -->
-      <!-- <app-match-management-view></app-match-management-view> -->
-      <!-- <app-end-match-modal></app-end-match-modal> -->
-      <app-match-management-view></app-match-management-view>
-      <!-- <app-game-view></app-game-view> -->
+      <header class="header-main" *ngIf="!showGameView">
+        <h1>The Nexus Battles III</h1>
+        <nav>
+          <ul>
+            <li><a href="#">Jugar online</a></li>
+            <li><a href="#">Misiones</a></li>
+            <li><a href="#">Torneo</a></li>
+            <li><a href="#">Mi inventario</a></li>
+            <li><a href="#">Subasta</a></li>
+            <li><a href="#" (click)="showInfoUserComponent()">Mi cuenta</a></li>
+          </ul>
+        </nav>
+      </header>
+      <app-match-management-view
+        (toggleGameView)="toggleGameView($event)"
+        *ngIf="!showInfoUser"
+      ></app-match-management-view>
+      <app-info-user *ngIf="showInfoUser"></app-info-user>
     </div>
   </body>
 </html>

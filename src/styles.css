@@ -12,9 +12,12 @@ body {
 }
 
 body {
-  background-image: url("../public/game-arena.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   font-family: "VT323";
+}
+
+.module-profile {
+  background-image: url("/assets/game-images/background/profile-background.jpg");
 }

@@ -1,32 +1,29 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeroComponent } from './hero/hero.component';
-import { ActionBarComponent } from './action-bar/action-bar.component';
-import { MatchComponent } from './match/match.component';
-import { StartBattleModalComponent } from './start-battle-modal/start-battle-modal.component';
-import { TeamSelectionModalComponent } from './team-selection-modal/team-selection-modal.component';
-import { CreateMatchModalComponent } from './create-match-modal/create-match-modal.component';
-import { GameViewComponent } from "./game-view/game-view.component";
-import { MatchManagementViewComponent } from "./match-management-view/match-management-view.component";
-import { EndMatchModalComponent } from "./end-match-modal/end-match-modal.component";
+import { MatchManagementViewComponent } from './match-management/match-management-view/match-management-view.component';
+import { CommonModule } from '@angular/common';
+import { InfoUserComponent } from "./profile/info-user/info-user.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    HeroComponent,
-    ActionBarComponent,
-    MatchComponent,
-    StartBattleModalComponent,
-    TeamSelectionModalComponent,
-    CreateMatchModalComponent,
-    GameViewComponent,
-    MatchManagementViewComponent,
-    EndMatchModalComponent
-],
+  imports: [RouterOutlet, MatchManagementViewComponent, CommonModule, InfoUserComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'tnb-multiplayer-client';
+  showGameView = false;
+  showInfoUser = false;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  toggleGameView(show: boolean) {
+    this.showGameView = show;
+    this.cdr.detectChanges();
+  }
+
+  showInfoUserComponent() {
+    this.showInfoUser = true;
+    this.cdr.detectChanges();
+  }
 }
