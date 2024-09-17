@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HeroComponent } from '../hero/hero.component';
+import { HeroComponent } from '../game/hero/hero.component';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +10,15 @@ export class UserService {
   private targetEnemy: string | null = null;
   private currentIdUser: string | null = null;
   private heroComponent: HeroComponent | null = null;
+  private ownerIdUser: string | null = null;
+
+  setOwnerIdUser(ownerIdUser: string): void {
+    this.ownerIdUser = ownerIdUser;
+  }
+
+  getOwnerIdUser(): string | null {
+    return this.ownerIdUser;
+  }
 
   setHeroComponent(heroComponent: HeroComponent): void {
     if (heroComponent.hero.idUser === this.currentIdUser) {

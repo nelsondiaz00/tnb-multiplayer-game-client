@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { GameViewComponent } from './game-view/game-view.component';
-import { MatchListComponent } from './match-list/match-list.component';
+import { GameViewComponent } from './game/game-view/game-view.component';
+import { MatchListComponent } from './match-management/match-list/match-list.component';
 
 export const routes: Routes = [
   { path: 'match-list', component: MatchListComponent },
