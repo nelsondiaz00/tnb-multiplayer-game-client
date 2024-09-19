@@ -19,8 +19,10 @@ export class HeroComponent implements OnChanges {
   maxPower!: number;
   isShaking: boolean = false;
   healthDifference: number | null = null;
+  failedReason: string = '';
   perpetratorId?: string;
-
+  victimId?: string;
+  reasonFailed: string = 'Golpe fallado';
   constructor(
     public userService: UserService,
     private webSocketService: WebSocketService
@@ -31,15 +33,30 @@ export class HeroComponent implements OnChanges {
       this.userService.setHeroComponent(this);
       this.resetTargeted();
     });
-    this.webSocketService.lastPerpetratorName$.subscribe(
-      (perpetratorId: string) => {
-        this.perpetratorId = perpetratorId;
-        console.log(this.perpetratorId, ' PREPETRADOR!!');
-        if (this.perpetratorId && !this.isCurrentUser()) {
-          this.triggerUseHabilityAnimation();
-        }
+    this.webSocketService.lastAttackName$.subscribe((lastAttackName: any) => {
+      this.perpetratorId = lastAttackName.perpetratorId;
+      this.victimId = lastAttackName.victimId;
+      console.log(
+        this.hero.idUser,
+        ' PRUEBA PES!! ' + this.userService.getIdUser()
+      );
+      if (
+        this.perpetratorId &&
+        this.userService.getCurrentIdUser() !== this.userService.getIdUser()
+      ) {
+        console.log('entró o qué???');
+        this.triggerUseHabilityAnimation();
       }
-    );
+    });
+    this.webSocketService.failedReason$.subscribe((reason: string) => {
+      if (this.victimId === this.hero.idUser) {
+        this.reasonFailed = reason;
+        this.healthDifference = 0;
+        setTimeout(() => {
+          this.healthDifference = null;
+        }, 1000);
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -70,7 +87,9 @@ export class HeroComponent implements OnChanges {
 
   getHealthDifferenceClass(): string {
     if (this.healthDifference !== null) {
-      if (this.healthDifference < 3) {
+      if (this.healthDifference === 0) {
+        return 'health-difference-white';
+      } else if (this.healthDifference < 3) {
         return 'health-difference-green';
       } else if (this.healthDifference >= 3 && this.healthDifference < 5) {
         return 'health-difference-yellow';

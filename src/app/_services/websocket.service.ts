@@ -21,7 +21,8 @@ export class WebSocketService {
   public activeMatches$: Observable<any>;
   public endMatch$: Observable<any>;
   public amountPlayers$: Observable<any>;
-  public lastPerpetratorName$: Observable<string>;
+  public lastAttackName$: Observable<string>;
+  public failedReason$: Observable<string>;
   private HOST = environment.host;
   private PORT = environment.port;
 
@@ -54,8 +55,11 @@ export class WebSocketService {
     this.amountPlayers$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'playersAmount'))
     );
-    this.lastPerpetratorName$ = this.socket$.pipe(
-      switchMap((socket) => fromEvent<any>(socket, 'lastPerpetratorName'))
+    this.lastAttackName$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'lastAttackName'))
+    );
+    this.failedReason$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'failedReason'))
     );
   }
   // private initMatch() {

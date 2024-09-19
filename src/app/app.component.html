@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="main-container">
-      <header class="header-main" *ngIf="!showGameView">
+      <header class="header-main" *ngIf="showHeader">
         <h1>The Nexus Battles III</h1>
         <nav>
           <ul>
@@ -31,9 +31,8 @@
         </nav>
       </header>
       <app-match-management-view
-        (toggleGameView)="toggleGameView($event)"
-        (click)="showManagementMatchComponent()"
         *ngIf="showManagementMatch"
+        (toggleGameView)="toggleGameView($event)"
       ></app-match-management-view>
       <app-info-user *ngIf="showInfoUser"></app-info-user>
       <app-product-creation *ngIf="showInventary"></app-product-creation>

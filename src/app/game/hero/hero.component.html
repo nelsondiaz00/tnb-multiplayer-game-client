@@ -23,7 +23,7 @@
       *ngIf="healthDifference !== null"
     >
       <!-- <div class="health-difference" [ngClass]="getHealthDifferenceClass()"> -->
-      {{ healthDifference === 0 ? "Golpe fallado" : "-" + healthDifference }}
+      {{ healthDifference === 0 ? reasonFailed : "-" + healthDifference }}
     </div>
   </div>
   <img

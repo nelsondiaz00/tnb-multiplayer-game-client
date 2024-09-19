@@ -23,10 +23,11 @@ export class AppComponent {
   showInfoUser = false;
   showInventary = false;
   showManagementMatch = true;
+  showHeader = true;
   constructor(private cdr: ChangeDetectorRef) {}
 
   toggleGameView(show: boolean) {
-    this.hideViews();
+    this.showHeader = false;
     this.showGameView = show;
     this.cdr.detectChanges();
   }
@@ -42,6 +43,12 @@ export class AppComponent {
     this.showInventary = true;
     this.cdr.detectChanges();
   }
+
+  // showHeaderComponent() {
+  //   this.hideViews();
+  //   this.showHeader = true;
+  //   this.cdr.detectChanges();
+  // }
 
   showManagementMatchComponent() {
     this.hideViews();
