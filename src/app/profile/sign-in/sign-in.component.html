@@ -1,0 +1,60 @@
+<body>
+    <div class="inicio" id="page1">
+        <div class="cont2">
+            <h1 id="title">Bienvenido de vuelta!</h1>
+            <div class="cont">
+                <div class="mini-cont">
+                    <label class="form-label">Username</label>
+                    <div class="mini-mini-cont">
+                        <input type="text" id="username" class="form-input" (change)="changeUsername($event.target)">
+                        <span id="username-valid-icon" class="validity-icon empty"></span>
+                    </div>
+                </div>
+                <div class="mini-cont">
+                    <label class="form-label">Contraseña</label>
+                    <div class="mini-mini-cont">
+                        <input type="password" id="password" class="form-input" (change)="changePassword($event.target)">
+                        <span class="toggle-password">
+                            <img src="../css/images/openeye_white.png" id="toggle-icon">
+                        </span>
+                        <span id="password-valid-icon" class="validity-icon empty"></span>
+                    </div>
+                </div>
+            </div>
+
+            <a class="link" id="forgot">Olvidé mi contraseña :C</a>
+            <button id="next" class="boton" (click)="login()">Iniciar Sesion</button>
+        </div>
+        <div class="cont1">
+            <!-- <img id="flecha" src="../css/images/atras.png"> -->
+            <nav>
+                <ul class="list">
+                    <li>
+                        <a class="a" href="#registro" (click)="emitRegistro()"><label id="atras" >*Crear cuenta*</label></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="inicio" id="page2">
+        <div class="cont1" id="contAtras">
+            <img id="flecha" src="../css/images/atras.png">
+            <label id="atras">Atrás</label>
+        </div>
+        <div class="cont2">
+            <h1 id="title">Ya casi terminamos...</h1>
+            <div class="cont">
+                <div class="mini-cont">
+                    <label class="form-label">Por favor, ingresa el código que te enviamos a:</label>
+                    <div class="mini-mini-cont">
+                        <input type="text" id="code" class="form-input">
+                        <span id="code-valid-icon" class="validity-icon empty"></span>
+                    </div>
+                </div>
+            </div>
+
+            <a class="link" id="nocode">No recibí ningún código :C</a>
+            <button id="play" class="boton">A jugar!</button>
+        </div>
+    </div>
+</body>
