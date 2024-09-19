@@ -95,7 +95,7 @@ export class WebSocketService {
   }
 
   public selectSideTeam(teamSide: teamSide, idTemp: string): void {
-    fetch('./assets/input1.json')
+    fetch('./assets/input-weapon.json')
       .then((response) => response.json())
       .then((data) => {
         this.userService.setIdUser(idTemp);
