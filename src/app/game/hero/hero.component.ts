@@ -54,7 +54,7 @@ export class HeroComponent implements OnChanges {
         this.healthDifference = 0;
         setTimeout(() => {
           this.healthDifference = null;
-        }, 1000);
+        }, 2000);
       }
     });
   }

@@ -162,7 +162,7 @@ h1 {
 }
 
 .health-difference {
-  animation: slideFade 1s ease-out;
+  animation: slideFade 2s ease-out;
   z-index: 5;
   /* font-size: clamp(0.1rem, 1vw, 1rem); */
   text-shadow: 1px 1px 0px black, -1px -1px 0px black, 1px -1px 0px black,
@@ -206,28 +206,28 @@ h1 {
     transform: translateX(0) rotate(0deg);
   }
   15% {
-    transform: translateX(-40px) rotate(-10deg); /* Se mueve más a la izquierda con rotación */
+    transform: translateX(-40px) rotate(-10deg);
   }
   30% {
-    transform: translateX(40px) rotate(10deg); /* Se mueve más a la derecha con rotación */
+    transform: translateX(40px) rotate(10deg);
   }
   45% {
-    transform: translateX(-30px) rotate(-5deg); /* Movimiento de regreso parcial a la izquierda */
+    transform: translateX(-30px) rotate(-5deg);
   }
   60% {
-    transform: translateX(30px) rotate(5deg); /* Movimiento de regreso parcial a la derecha */
+    transform: translateX(30px) rotate(5deg);
   }
   75% {
-    transform: translateX(-20px) rotate(-2deg); /* Movimiento y rotación menores hacia la izquierda */
+    transform: translateX(-20px) rotate(-2deg);
   }
   85% {
-    transform: translateX(20px) rotate(2deg); /* Movimiento y rotación menores hacia la derecha */
+    transform: translateX(20px) rotate(2deg);
   }
   95% {
-    transform: translateX(-10px) rotate(-1deg); /* Movimiento muy pequeño hacia la izquierda */
+    transform: translateX(-10px) rotate(-1deg);
   }
   100% {
-    transform: translateX(0) rotate(0deg); /* Regresa a la posición inicial */
+    transform: translateX(0) rotate(0deg);
   }
 }
 

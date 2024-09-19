@@ -2,7 +2,7 @@
   "teamSide": "red",
   "idUser": "user9",
   "type": "warrior",
-  "subtype": "tank",
+  "subtype": "weapon",
   "attributes": {
     "health": {
       "name": "health",
@@ -57,11 +57,11 @@
   "products": [
     {
       "idProduct": "19",
-      "productName": "Golpe con escudo",
+      "productName": "Embate sangriento",
       "productDescription": "Golpe con escudo fuerte",
       "productType": "hability",
       "heroType": "warrior",
-      "subHeroType": "tank",
+      "subHeroType": "weapon",
       "dropChance": "10%",
       "powerCost": "2",
       "effects": [
@@ -74,100 +74,77 @@
           "target": "ally",
           "value": 2,
           "valueCaused": 0
+        },
+        {
+          "attribute": {
+            "name": "damage"
+          },
+          "mathOperator": "+",
+          "turns": 0,
+          "target": "ally",
+          "value": 1,
+          "valueCaused": 0
         }
       ],
       "conditions": [],
-      "imagePath": "golpe-escudo.png"
+      "imagePath": "embate-sangriento.png"
     },
     {
       "idProduct": "20",
-      "productName": "Mano de piedra",
+      "productName": "Lanza de los dioses",
       "productDescription": "Ataque con una mano de piedra",
       "productType": "hability",
       "heroType": "warrior",
-      "subHeroType": "tank",
+      "subHeroType": "weapon",
       "dropChance": "10%",
       "powerCost": "4",
       "effects": [
         {
           "attribute": {
-            "name": "defense"
+            "name": "damage"
           },
           "mathOperator": "+",
           "turns": 0,
           "target": "ally",
-          "value": 12,
+          "value": 2,
           "valueCaused": 0
         }
       ],
       "conditions": [],
-      "imagePath": "mano-piedra.png"
+      "imagePath": "lanza-dioses.png"
     },
     {
       "idProduct": "21",
-      "productName": "Defensa feroz",
+      "productName": "Golpe de tormenta",
       "productDescription": "A powerful sword with magical properties.",
       "productType": "hability",
       "heroType": "warrior",
-      "subHeroType": "tank",
+      "subHeroType": "weapon",
       "dropChance": "10%",
       "powerCost": "2",
       "effects": [
         {
           "attribute": {
-            "name": "defense"
-          },
-          "mathOperator": "+",
-          "turns": 0,
-          "target": "ally",
-          "value": 25,
-          "valueCaused": 20
-        },
-        {
-          "attribute": {
             "name": "attack"
           },
           "mathOperator": "+",
           "turns": 0,
-          "target": "enemy",
-          "value": 10,
-          "valueCaused": 15
-        }
-      ],
-      "imagePath": "sword.fire.png"
-    },
-    {
-      "idProduct": "21",
-      "productName": "Fire Sword",
-      "productDescription": "A powerful sword with magical properties.",
-      "productType": "hability",
-      "heroType": "warrior",
-      "subHeroType": "tank",
-      "dropChance": "10%",
-      "powerCost": "3",
-      "effects": [
+          "target": "ally",
+          "value": 3,
+          "valueCaused": 0
+        },
         {
           "attribute": {
-            "name": "defense"
+            "name": "damage"
           },
           "mathOperator": "+",
           "turns": 0,
           "target": "ally",
-          "value": 25,
-          "valueCaused": 20
-        },
-        {
-          "attribute": {
-            "name": "attack"
-          },
-          "mathOperator": "+",
-          "turns": 0,
-          "target": "enemy",
-          "value": 10,
-          "valueCaused": 15
+          "value": 2,
+          "valueCaused": 0
         }
       ],
-      "imagePath": "sword.fire.png"
+      "imagePath": "golpe-tormenta.png"
     }
   ],
   "alive": true

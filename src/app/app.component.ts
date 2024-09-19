@@ -4,6 +4,7 @@ import { MatchManagementViewComponent } from './match-management/match-managemen
 import { CommonModule } from '@angular/common';
 import { InfoUserComponent } from './profile/info-user/info-user.component';
 import { ProductCreationComponent } from './inventary/product-creation/product-creation.component';
+import { HeroInventoryComponent } from "./inventary/hero-inventory/hero-inventory.component";
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,7 +14,8 @@ import { ProductCreationComponent } from './inventary/product-creation/product-c
     CommonModule,
     InfoUserComponent,
     ProductCreationComponent,
-  ],
+    HeroInventoryComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
