@@ -48,6 +48,7 @@ export class SignUpComponent {
         if(users){
           const usersArray = JSON.parse(users);
           usersArray.push({ user: this.username, password: this.password2 });
+          localStorage.setItem('users', JSON.stringify(usersArray));
           this.registered.emit();
         }
       }
