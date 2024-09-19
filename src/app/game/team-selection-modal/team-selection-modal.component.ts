@@ -18,9 +18,10 @@ export class TeamSelectionModalComponent {
 
   isVisible: boolean = true;
 
-  joinTeam(teamSide: teamSide, name: string): void {
+  joinTeam(teamSide: teamSide): void {
     // console.log('SDKJFHDSAK,DSHKDJFHAKHFSH ', this.userService.getIdUser());
-    this.webSocketService.selectSideTeam(teamSide, name);
+    const loggedUser = JSON.parse(localStorage.getItem('loggedUser') || '{}');
+    this.webSocketService.selectSideTeam(teamSide, loggedUser.user);
     // console.log('teamSide', teamSide);
     this.isVisible = false;
     // this.webSocketService.connectCreatedSocket(port);
