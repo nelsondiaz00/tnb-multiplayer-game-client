@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
+  @Output() registered = new EventEmitter<void>();
+
   username = '';
   password = '';
   password2 = '';
@@ -46,6 +48,7 @@ export class SignUpComponent {
         if(users){
           const usersArray = JSON.parse(users);
           usersArray.push({ user: this.username, password: this.password2 });
+          this.registered.emit();
         }
       }
     }
