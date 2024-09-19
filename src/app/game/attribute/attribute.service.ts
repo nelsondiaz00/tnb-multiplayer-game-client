@@ -8,7 +8,7 @@ import { IAttribute } from '../../_models/interfaces/attribute.interfaces';
   providedIn: 'root',
 })
 export class AttributeService {
-  private jsonUrl = 'assets/input1.json';
+  private jsonUrl = 'assets/input-weapon.json';
 
   constructor(private http: HttpClient) {}
 

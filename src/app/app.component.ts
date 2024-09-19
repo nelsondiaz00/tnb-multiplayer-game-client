@@ -6,6 +6,8 @@ import { InfoUserComponent } from './profile/info-user/info-user.component';
 import { ProductCreationComponent } from './inventary/product-creation/product-creation.component';
 import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
+import { HeroInventoryComponent } from "./inventary/hero-inventory/hero-inventory.component";
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,7 +19,8 @@ import { SignUpComponent } from './profile/sign-up/sign-up.component';
     ProductCreationComponent,
     SignInComponent,
     SignUpComponent,
-  ],
+    HeroInventoryComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
