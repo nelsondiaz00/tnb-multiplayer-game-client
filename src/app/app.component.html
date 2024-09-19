@@ -36,6 +36,8 @@
       ></app-match-management-view>
       <app-info-user *ngIf="showInfoUser"></app-info-user>
       <app-product-creation *ngIf="showInventary"></app-product-creation>
+      <app-sign-in *ngIf="showSignIn" (registro)="showRegisterComponent()" (inicioSesion)="showManagementMatchComponent()"></app-sign-in>
+      <app-sign-up *ngIf="showRegister"></app-sign-up>
     </div>
   </body>
 </html>

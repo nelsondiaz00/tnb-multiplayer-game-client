@@ -4,6 +4,8 @@ import { MatchManagementViewComponent } from './match-management/match-managemen
 import { CommonModule } from '@angular/common';
 import { InfoUserComponent } from './profile/info-user/info-user.component';
 import { ProductCreationComponent } from './inventary/product-creation/product-creation.component';
+import { SignInComponent } from './profile/sign-in/sign-in.component';
+import { SignUpComponent } from './profile/sign-up/sign-up.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -13,6 +15,8 @@ import { ProductCreationComponent } from './inventary/product-creation/product-c
     CommonModule,
     InfoUserComponent,
     ProductCreationComponent,
+    SignInComponent,
+    SignUpComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -22,8 +26,10 @@ export class AppComponent {
   showGameView = false;
   showInfoUser = false;
   showInventary = false;
-  showManagementMatch = true;
+  showManagementMatch = false;
   showHeader = true;
+  showSignIn = true;
+  showRegister = false;
   constructor(private cdr: ChangeDetectorRef) {}
 
   toggleGameView(show: boolean) {
@@ -56,11 +62,27 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
+  showSignInComponent() {
+    this.hideViews();
+    this.showSignIn = true;
+    this.cdr.detectChanges();
+  }
+
+  showRegisterComponent() {
+    console.log('showRegisterComponent');
+    
+    this.hideViews();
+    this.showRegister = true;
+    this.cdr.detectChanges();
+  }
+
   hideViews() {
     this.showGameView = false;
     this.showInfoUser = false;
     this.showInventary = false;
     this.showManagementMatch = false;
+    this.showSignIn = false;
+    this.showRegister = false;
     this.cdr.detectChanges();
   }
 }
