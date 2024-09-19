@@ -48,7 +48,7 @@ export class MatchListComponent implements OnInit {
         usersAmount !== undefined &&
         usersAmount < match.amountBlue + match.amountRed
       ) {
-        console.log('SISODSIDOSIDS, ' + usersAmount);
+        // console.log('SISODSIDOSIDS, ' + usersAmount);
         this.matchSelected.emit(match);
       }
     });

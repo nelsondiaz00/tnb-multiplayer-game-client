@@ -35,7 +35,7 @@ export class HeroComponent implements OnChanges {
       (perpetratorId: string) => {
         this.perpetratorId = perpetratorId;
         console.log(this.perpetratorId, ' PREPETRADOR!!');
-        if (this.perpetratorId) {
+        if (this.perpetratorId && !this.isCurrentUser()) {
           this.triggerUseHabilityAnimation();
         }
       }

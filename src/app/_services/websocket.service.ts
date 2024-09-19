@@ -6,6 +6,7 @@ import { IMatch } from '../_models/interfaces/match.interfaces';
 import { IBindInfo } from '../_models/interfaces/bind.info.interface';
 import { UserService } from './user.service';
 import { teamSide } from '../_models/types/team.type';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +22,11 @@ export class WebSocketService {
   public endMatch$: Observable<any>;
   public amountPlayers$: Observable<any>;
   public lastPerpetratorName$: Observable<string>;
-  private HOST = 'localhost';
-  private PORT = '3000';
+  private HOST = environment.host;
+  private PORT = environment.port;
 
   constructor(private userService: UserService) {
+    console.log(environment.production, ' !!!!!!!!!!!!!');
     const initialSocket = io(`http://${this.HOST}:${this.PORT}`);
     this.socket$ = new BehaviorSubject<Socket>(initialSocket);
 

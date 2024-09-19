@@ -1,0 +1,85 @@
+<main>
+    <div class="header-options">
+        <h2 class="goback">- Atrás</h2>
+        <h2 class="title"> Creación del Heroe</h2>
+    </div>
+    <div id="container">
+        <div class="content">
+            <div class="select-container">
+                <select class="select" (change)="onProductTypeSelect($event.target)" >
+                    <option *ngFor="let option of productOptions" [value]="option.value">{{option.label}}</option>
+                </select>
+                <select class="select" (change)="onHeroTypeSelect($event.target)">
+                    <option *ngFor="let option of typeOptions" [value]="option.value">{{option.label}}</option>
+                </select>
+            </div>
+            <div class="select-container">
+                <select class="select" (change)="onHeroSubtypeSelect($event.target)" >
+                    <option *ngFor="let option of subtypeOptions" [value]="option.value">{{option.label}}</option>
+                </select>
+                <select class="select" (change)="onLevelSelect($event.target)" >
+                    <option *ngFor="let option of levelOptions" [value]="option.value">{{option.label}}</option>
+                </select>
+            </div>
+            <div class="name-container">
+                <label for="product-name">Nombre del producto</label>
+                <input type="text" name="name" id="product-name" (change)="onNameInput($event.target)" >
+            </div>
+            <div class="description-container">
+                <label class="description-label" for="product-description">Descripción del producto</label>
+                <textarea name="description" id="product-description" (change)="onDescriptionInput($event.target)" ></textarea>
+            </div>
+            <div class="bottom-left-container" >
+                <div class="drop-cost-big-container">
+                    <div class="drop-cost-small-container">
+                        <label for="drop">% Caída</label>
+                        <input type="number" name="drop" id="drop" (change)="onDropInput($event.target)" >
+                    </div>
+                    <div class="drop-cost-small-container">
+                        <label for="power">Costo poder</label>
+                        <input type="number" name="power" id="power" (change)="onPowerInput($event.target)" >
+                    </div>
+                </div>
+                <div class="cooldown-container">
+                    <label for="cooldown" id="cooldown-label">Turnos de enfriamiento</label>
+                    <input type="number" name="cooldown" id="cooldown" (change)="onCooldownInput($event.target)" >
+                </div>
+            </div>
+        </div>
+        <div class="content2">
+            <div class="right-container">
+                <div class="right-small-container" >
+                    <button class="button" (click)="addEffect()"> Agregar </button>
+                    <label class="title-label"> Efectos del producto </label>
+                </div>
+                <div class="right-small-container2" >
+                    <app-product-effect 
+                        *ngFor="let effect of effects; let i = index" 
+                        [effect]="effect" 
+                        [index]="i" 
+                        (effectChange)="handleEffectChange($event)" 
+                        (effectDelete)="handleEffectDelete($event)" >
+                    </app-product-effect>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="right-small-container" >
+                    <button class="button" (click)="addCondition()" > Agregar </button>
+                    <label class="title-label"> Condiciones </label>
+                </div>
+                <div class="right-small-container2" >
+                    <app-product-condition
+                        *ngFor="let condition of conditions; let i = index" 
+                        [condition]="condition" 
+                        [index]="i" 
+                        (conditionChange)="handleConditionChange($event)" 
+                        (conditionDelete)="handleConditionDelete($event)" >
+                    </app-product-condition>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button class="button crear-button" (click)="handleSubmmit()" > Crear producto </button>
+    </div>
+</main>

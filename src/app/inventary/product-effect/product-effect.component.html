@@ -1,0 +1,34 @@
+<div class="effect-container" >
+    <button class="x-button" (click)="delete()" > x </button>
+    <div class="small-container" >
+        <div class="horizontal-container" >
+            <select class="fields attribute-select" (change)="onAttributeSelect($event.target)" >
+                <option *ngFor="let option of attributeOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <select class="fields operator-select" (change)="onOperatorSelect($event.target)" >
+                <option *ngFor="let option of operatorOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <label> de </label>
+            <input class="fields value-input" type="number" [value]="effect.value" (change)="onValueChange($event.target)" >
+            <label> hasta </label>
+            <input class="fields maxvalue-input" type="number" [value]="effect.valueMax" (change)="onValueMaxChange($event.target)" >
+        </div>
+        <div class="horizontal-container" >
+            <label> Durante </label>
+            <input class="fields turns-input" type="number" [value]="effect.turns" (change)="onTurnsChange($event.target)" >
+            <label> turnos. Para </label>
+            <select class="fields target-select" (change)="onTargetSelect($event.target)" >
+                <option *ngFor="let option of targetOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+        </div>
+        <div class="horizontal-container" >
+            <label> De tipo </label>
+            <select class="fields type-select" (change)="onTypeSelect($event.target)" >
+                <option *ngFor="let option of typeOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <select class="fields subtype-select" (change)="onSubtypeSelect($event.target)" >
+                <option *ngFor="let option of subtypeOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+        </div>
+    </div>
+</div>

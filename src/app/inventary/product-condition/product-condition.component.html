@@ -1,0 +1,22 @@
+<div class="effect-container" >
+    <button class="x-button" (click)="delete()" > x </button>
+    <div class="small-container" >
+        <div class="horizontal-container" >
+            <select class="fields attribute-select" (change)="onAttributeSelect($event.target)" >
+                <option *ngFor="let option of attributeOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <select class="fields target-select" (change)="onTargetSelect($event.target)" >
+                <option *ngFor="let option of targetOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <select class="fields operator-select" (change)="onOperatorSelect($event.target)" >
+                <option *ngFor="let option of operatorOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <select class="fields attribute-select" (change)="onAttribute2Select($event.target)" >
+                <option *ngFor="let option of attributeOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+            <select class="fields target-select" (change)="onTarget2Select($event.target)" >
+                <option *ngFor="let option of targetOptions" [value]="option.value">{{option.label}}</option>
+            </select>
+        </div>
+    </div>
+</div>
