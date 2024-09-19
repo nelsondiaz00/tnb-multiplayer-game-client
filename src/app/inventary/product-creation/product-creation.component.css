@@ -1,0 +1,256 @@
+/* @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+:host {
+  height: 100%;
+  width: 100%;
+} */
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  /* font-family: "Arial", sans-serif; */
+  background-color: #1f1b33;
+  color: #fff;
+  margin: 0px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  background-image: url("/assets/game-images/background/inventary-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #4518a6;
+  font-family: "VT323", monospace;
+  font-style: normal;
+  font-size: clamp(0.1rem, 1vw, 0.5rem);
+}
+
+input {
+  font-family: "VT323";
+}
+
+button {
+  font-family: "VT323";
+}
+
+select {
+  font-family: "VT323";
+}
+/* label {
+  font-size: 10px;
+}
+
+input {
+  font-size: 10px;
+} */
+
+#go-back {
+  color: #fff;
+  text-decoration: none;
+  /* font-size: 10px; */
+}
+
+#container {
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 50px;
+  border-radius: 10px;
+  display: flex;
+  gap: 50px;
+}
+
+.button {
+  background-color: #e856c3;
+  border: 0px solid;
+  padding: 1% 2% 1% 2%;
+  width: 120px;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+  color: white;
+  /* font-family: "VT323", monospace; */
+  /* font-size: 1.5rem; */
+}
+
+.button:hover {
+  background-color: #f391da;
+}
+
+.button-container {
+  padding: 1rem;
+}
+
+.crear-button {
+  width: 200px;
+  padding: 0.5rem;
+}
+
+.input {
+  height: 25px;
+  background: #bbd7f8;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px #4518a6 solid;
+  /* font-family: inherit; */
+}
+
+.input:hover {
+  height: 25px;
+  background: #d5e8fd;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px #4518a6 solid;
+}
+
+.content2 {
+  border-left: 2px solid white;
+  padding-left: 50px;
+}
+
+.goback,
+.title {
+  text-shadow: -1px -1px 0 white,
+    /* Sombra en la esquina superior izquierda */ 1px -1px 0 white,
+    /* Sombra en la esquina superior derecha */ -1px 1px 0 white,
+    /* Sombra en la esquina inferior izquierda */ 1px 1px 0 white; /* Sombra en la esquina inferior derecha */
+  margin: 20px;
+  /* font-size: 30px; */
+}
+
+.header-options {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* .goback {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  right: 0;
+} */
+
+.select-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4%;
+}
+
+.select {
+  width: 45%;
+  /* font-family: "VT323", monospace; */
+  color: #4518a6;
+  /* font-size: 1.1rem; */
+  padding: 0.2rem;
+}
+
+.name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4%;
+}
+
+#product-name {
+  width: 65%;
+}
+
+.description-label {
+  padding-bottom: 0.7rem;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding-bottom: 4%;
+}
+
+#product-description {
+  height: 6rem;
+  resize: none;
+}
+
+.bottom-left-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drop-cost-big-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+
+.drop-cost-small-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+
+#drop,
+#power {
+  width: 45%;
+}
+
+.cooldown-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4%;
+  padding-inline: 5%;
+}
+
+#cooldown {
+  width: 100%;
+}
+
+#cooldown-label {
+  padding: 1.2rem 0;
+}
+
+.content {
+  width: 55%;
+}
+
+.content2 {
+  width: 45%;
+}
+
+.right-container {
+  height: 50%;
+}
+
+.right-small-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-small-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 10rem;
+  overflow: auto;
+}
+
+/* .title-label {
+  font-size: 1.5rem;
+} */

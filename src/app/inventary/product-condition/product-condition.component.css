@@ -1,0 +1,49 @@
+.effect-container {
+  display: flex;
+  padding-right: 0.3rem;
+  align-items: center;
+}
+
+.small-container {
+  background-color: white;
+  width: 100%;
+  background-color: #ffffffac;
+  border-radius: 0.3rem;
+  padding: 0.2rem;
+  font-size: 1.3rem;
+}
+
+.x-button {
+  background-color: #e856c400;
+  border: none;
+  font-family: "VT323", monospace;
+  font-size: 3rem;
+  padding-right: 1rem;
+}
+
+.horizontal-container {
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  padding: 0.2rem;
+}
+
+.value-input {
+  width: 10%;
+}
+
+.maxvalue-input {
+  width: 10%;
+}
+
+.turns-input {
+  width: 10%;
+}
+
+.fields {
+  font-size: 0.9rem;
+}
+
+.operator-select {
+  font-size: 1.3rem;
+}

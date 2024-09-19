@@ -7,24 +7,35 @@
   </head>
   <body>
     <div class="main-container">
-      <header class="header-main" *ngIf="!showGameView">
+      <header class="header-main" *ngIf="showHeader">
         <h1>The Nexus Battles III</h1>
         <nav>
           <ul>
-            <li><a href="#">Jugar online</a></li>
+            <li>
+              <a href="#" (click)="showManagementMatchComponent()"
+                >Jugar online</a
+              >
+            </li>
             <li><a href="#">Misiones</a></li>
             <li><a href="#">Torneo</a></li>
-            <li><a href="#">Mi inventario</a></li>
+            <li>
+              <a href="#inventary" (click)="showInventaryComponent()"
+                >Mi inventario</a
+              >
+            </li>
             <li><a href="#">Subasta</a></li>
-            <li><a href="#" (click)="showInfoUserComponent()">Mi cuenta</a></li>
+            <li>
+              <a href="#profile" (click)="showInfoUserComponent()">Mi cuenta</a>
+            </li>
           </ul>
         </nav>
       </header>
       <app-match-management-view
+        *ngIf="showManagementMatch"
         (toggleGameView)="toggleGameView($event)"
-        *ngIf="!showInfoUser"
       ></app-match-management-view>
       <app-info-user *ngIf="showInfoUser"></app-info-user>
+      <app-product-creation *ngIf="showInventary"></app-product-creation>
     </div>
   </body>
 </html>

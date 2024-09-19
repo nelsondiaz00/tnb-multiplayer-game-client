@@ -18,10 +18,16 @@ header {
 
 h1 {
   margin: 0;
-  font-size: clamp(0.1rem, 2vw, 3rem);
+  font-size: clamp(0.1rem, 1vw, 1rem);
   color: #fcf5ff;
   text-shadow: -2px -2px 0 #4518a6, 2px -2px 0 #4518a6, -2px 2px 0 #4518a6,
     2px 2px 0 #4518a6;
+  align-self: center;
+  padding-left: 2%;
+}
+
+nav {
+  padding-right: 2%;
 }
 
 nav ul {
@@ -42,7 +48,7 @@ nav a {
   text-decoration: none;
   color: #4518a6;
   font-weight: bold;
-  font-size: clamp(0.1rem, 1vw, 1rem);
+  font-size: clamp(0.1rem, 1vw, 0.5rem);
 }
 
 nav a:hover {

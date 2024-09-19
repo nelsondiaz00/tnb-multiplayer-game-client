@@ -42,17 +42,23 @@ export class MatchListComponent implements OnInit {
     console.log('wtf hermanito wtf - ', match.port);
     //this.webSocketService.connectToSocket(match.port);
 
-    this.webSocketService.amountPlayers$.subscribe((usersAmount) => {
-      // Una vez que se recibe el valor de `usersAmount`, puedes emitir el `match`
-      if (
-        usersAmount !== undefined &&
-        usersAmount < match.amountBlue + match.amountRed
-      ) {
-        console.log('SISODSIDOSIDS, ' + usersAmount);
-        this.matchSelected.emit(match);
-      }
-    });
-
+    // this.webSocketService.amountPlayers$.subscribe((usersAmount) => {
+    //   console.log(
+    //     'SISODSIDOSIDS, ' +
+    //       usersAmount +
+    //       ' -- ' +
+    //       match.amountBlue +
+    //       match.amountRed
+    //   );
+    //   if (
+    //     usersAmount !== undefined &&
+    //     usersAmount < match.amountBlue + match.amountRed
+    //   ) {
+    //     // console.log('SISODSIDOSIDS, ' + usersAmount);
+    //     this.matchSelected.emit(match);
+    //   }
+    // });
+    this.matchSelected.emit(match);
     // Llama a la función para obtener la cantidad de jugadores
     this.webSocketService.getPlayersAmount(match.port);
 

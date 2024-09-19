@@ -6,6 +6,7 @@ import { IMatch } from '../_models/interfaces/match.interfaces';
 import { IBindInfo } from '../_models/interfaces/bind.info.interface';
 import { UserService } from './user.service';
 import { teamSide } from '../_models/types/team.type';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +21,13 @@ export class WebSocketService {
   public activeMatches$: Observable<any>;
   public endMatch$: Observable<any>;
   public amountPlayers$: Observable<any>;
-  public lastPerpetratorName$: Observable<string>;
-  private HOST = 'localhost';
-  private PORT = '3000';
+  public lastAttackName$: Observable<string>;
+  public failedReason$: Observable<string>;
+  private HOST = environment.host;
+  private PORT = environment.port;
 
   constructor(private userService: UserService) {
+    console.log(environment.production, ' !!!!!!!!!!!!!');
     const initialSocket = io(`http://${this.HOST}:${this.PORT}`);
     this.socket$ = new BehaviorSubject<Socket>(initialSocket);
 
@@ -52,8 +55,11 @@ export class WebSocketService {
     this.amountPlayers$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'playersAmount'))
     );
-    this.lastPerpetratorName$ = this.socket$.pipe(
-      switchMap((socket) => fromEvent<any>(socket, 'lastPerpetratorName'))
+    this.lastAttackName$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'lastAttackName'))
+    );
+    this.failedReason$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'failedReason'))
     );
   }
   // private initMatch() {
