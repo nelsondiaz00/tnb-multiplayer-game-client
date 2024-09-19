@@ -6,7 +6,7 @@ import { InfoUserComponent } from './profile/info-user/info-user.component';
 import { ProductCreationComponent } from './inventary/product-creation/product-creation.component';
 import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
-import { HeroInventoryComponent } from "./inventary/hero-inventory/hero-inventory.component";
+import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventory.component';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,8 @@ import { HeroInventoryComponent } from "./inventary/hero-inventory/hero-inventor
     ProductCreationComponent,
     SignInComponent,
     SignUpComponent,
-    HeroInventoryComponent
-],
+    HeroInventoryComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -30,7 +30,7 @@ export class AppComponent {
   showInfoUser = false;
   showInventary = false;
   showManagementMatch = false;
-  showHeader = true;
+  showHeader = false;
   showSignIn = true;
   showRegister = false;
   constructor(private cdr: ChangeDetectorRef) {}
@@ -61,6 +61,7 @@ export class AppComponent {
 
   showManagementMatchComponent() {
     this.hideViews();
+    this.showHeader = true;
     this.showManagementMatch = true;
     this.cdr.detectChanges();
   }
@@ -73,7 +74,6 @@ export class AppComponent {
 
   showRegisterComponent() {
     console.log('showRegisterComponent');
-    
     this.hideViews();
     this.showRegister = true;
     this.cdr.detectChanges();
