@@ -1,4 +1,4 @@
-body { 
+body {
     min-height: 100vh;
     overflow: hidden;
 }
@@ -6,12 +6,19 @@ body {
 .registro1{
     font-family: "Cascadia Code";
     margin: 0px;
-    background-image: url("../images/fondo_registro.jpg"); 
+    background-image: url("../images/fondo_registro.jpg");
     background-size: cover;
-    flex-direction: column; 
-    justify-content:center; 
-    align-items: center; 
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
     display: "inline-flex";
+}
+
+.cont1{
+  width: 100% ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav{
@@ -28,68 +35,71 @@ body {
     text-align: center;
     height: fit-content;
     margin: 0px;
-    color: white; 
-    font-size: 48px;; 
-    font-weight: 400; 
+    color: white;
+    font-size: 48px;;
+    font-weight: 400;
     word-wrap: break-word;
     text-shadow: -2px 2px 0 #2F1575,2px 2px 0 #2F1575,2px -2px 0 #2F1575,-2px -2px 0 #2F1575;
 }
 
 .links{
-    justify-content: flex-start; 
-    align-items: center; 
-    gap: 35px; 
+    justify-content: flex-start;
+    align-items: center;
+    gap: 35px;
     display: flex;
     height: fit-content;
 }
 
 .links a{
-    text-align: center; 
-    color: #2F1575; 
-    font-weight: 500; 
+    text-align: center;
+    color: #2F1575;
+    font-weight: 500;
     word-wrap: break-word;
     text-decoration: none;
 }
 
 
 .main{
-    padding: 3% 10% 5% 10%;
-    flex-direction: column; 
-    justify-content: flex-start; 
-    align-items: center; 
-    gap: 20px; 
+    padding: 0% 10% 0% 10%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+    height: 100vh;
+    gap: 20px;
     display: flex
 }
 
 .signup{
-    align-self: stretch; 
-    text-align: right; 
-    color: #4335AF; 
-    font-size: 48px; 
-    font-weight: 500; 
+    align-self: stretch;
+    text-align: right;
+    color: #4335AF;
+    font-size: 48px;
+    font-weight: 500;
     word-wrap: break-word;
     margin: 0px;
     text-shadow: -2px 2px 0 white, 2px 2px 0 white,2px -2px 0 white,-2px -2px 0 white;
 }
 
 .content{
-    align-self: stretch; 
-    height: fit-content; 
-    padding: 30px; 
-    background: #F4F3FF; 
-    box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.25); 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
+    align-self: stretch;
+    height: fit-content;
+    padding: 30px;
+    background: #F4F3FF;
+    box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.25);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     display: flex;
 }
 
 .content2{
-    align-self: stretch; 
-    padding: 10px; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 5%; 
+    align-self: stretch;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
     display: inline-flex;
 }
 
@@ -98,85 +108,85 @@ body {
 }
 
 .left{
-    align-self: stretch; 
-    padding-top: 10px; 
-    padding-bottom: 10px; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px; 
+    align-self: stretch;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     width: 100%;
 }
 
 .subtitle{
-    align-self: stretch; 
-    height: 32px; 
-    color: #2B707F; 
+    align-self: stretch;
+    height: 32px;
+    color: #2B707F;
     font-size: 32px;
-    font-weight: 500; 
+    font-weight: 500;
     word-wrap: break-word;
     margin: 0px;
 }
 
 .form{
-    align-self: stretch; 
+    align-self: stretch;
     padding-top: 15px;
-    justify-content: center; 
-    align-items: center; 
-    gap: 5%; 
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
     display: inline-flex;
     width: 100%;
 }
 
 .form1{
-    flex: 1 1 0; 
-    padding-top: 10px; 
+    flex: 1 1 0;
+    padding-top: 10px;
     padding-bottom: 10px;
     width: fit-content;
-    flex-direction: column; 
-    justify-content: left; 
-    align-items: left; 
-    gap: 10px; 
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    gap: 10px;
     display: inline-flex;
 }
 
 .form_label{
-    height: 20px; 
-    color: #2F1575; 
+    height: 20px;
+    color: #2F1575;
     text-align: left;
-    font-weight: 400; 
+    font-weight: 400;
     word-wrap: break-word;
 
 }
 
 .input{
-    height: 32px; 
-    background: #BBD7F8; 
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    height: 32px;
+    background: #BBD7F8;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     border: 1px #2F1575 solid;
     font-family: inherit;
 }
 
 .input:hover{
-    height: 32px; 
-    background: #d5e8fd; 
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    height: 32px;
+    background: #d5e8fd;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     border: 1px #2F1575 solid;
 }
 
 .input:focus{
-    height: 32px; 
-    background: #d5e8fd; 
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    height: 32px;
+    background: #d5e8fd;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     border: 1px #2F1575 solid;
     border-radius: 0px;
 }
 
 .right{
-    align-self: stretch; 
+    align-self: stretch;
     padding-top: 20px;
-    flex-direction: column; 
-    justify-content: center; 
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     display: inline-flex;
     height: fit-content;
@@ -186,51 +196,51 @@ body {
 }
 
 .profilepic{
-    width: 158px; 
-    height: 158px; 
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    width: 158px;
+    height: 158px;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .options{
     margin-top: 10%;
     align-self: stretch;
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     display: inline-flex
 }
 
 .profilepic_option{
-    width: 56px; 
-    height: 56px; 
+    width: 56px;
+    height: 56px;
     /*border: 1px #2F1575 solid;*/
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.pagination{ 
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px; 
+.pagination{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     display: inline-flex;
     height:auto;
     width: 100%;
 }
 
 .pagenumber{
-    text-align: center; 
-    color: #2C6F7F; 
+    text-align: center;
+    color: #2C6F7F;
     font-size: 32px;
-    font-weight: 400; 
+    font-weight: 400;
     word-wrap: break-word;
     text-decoration: none;
 }
 
 .pagenumber2{
-    text-align: center; 
-    color: rgba(44, 111, 127, 0.43); 
+    text-align: center;
+    color: rgba(44, 111, 127, 0.43);
     cursor: pointer;
     font-size: 32px;
-    font-weight: 400; 
+    font-weight: 400;
     word-wrap: break-word;
     text-decoration: none;
 }
@@ -241,15 +251,21 @@ body {
 
 .toggle-password {
     position: absolute;
+    width: 20px;
+    height: 20px;
     bottom: 0;
     right: 0;
-    margin: 0% 8% 0.5% 0%;
+    margin: 0% 7% 1.5% 0%;
+    background-size: contain;
     cursor: pointer;
 }
 
-.toggle-password img {
-    width: 24px;
-    height: 24px;
+.off{
+  background-image: url('../images/closeeye.png');
+}
+
+.on{
+  background-image: url('../images/openeye.png');
 }
 
 .validity-icon {
@@ -310,10 +326,10 @@ body {
 }
 
 .input2{
-    height: 28px; 
+    height: 28px;
     width: 90%;
-    background: #BBD7F8; 
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    background: #BBD7F8;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     border: 1px #2F1575 solid;
     font-family: inherit;
 }
@@ -321,8 +337,8 @@ body {
 .select{
     height: 30px;
     margin: 0px;
-    background: #94BAE7; 
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    background: #94BAE7;
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     border: 1px #2F1575 solid;
     color: white;
     font-family: inherit;
@@ -342,7 +358,7 @@ body {
     border: 0px solid;
     padding: 1% 2% 1% 2%;
     width: 120px;
-    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25); 
+    box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
     font-size: 18px;
     color: white;
 }
@@ -360,11 +376,11 @@ body {
 }
 
 .subtitle2{
-    align-self: stretch; 
-    height: 32px; 
-    color: #2B707F; 
+    align-self: stretch;
+    height: 32px;
+    color: #2B707F;
     font-size: 32px;
-    font-weight: 500; 
+    font-weight: 500;
     text-align: right;
     margin: 0px;
     width: 70%;
@@ -378,44 +394,59 @@ body {
 }
 
 .form-2{
-    align-self: stretch; 
-    padding-top: 15px; 
-    padding-bottom: 15px; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 5%; 
+    align-self: stretch;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
     display: inline-flex;
     width: 100%;
 }
 
 .form1-2{
-    flex: 1 1 0; 
-    padding-top: 10px; 
+    flex: 1 1 0;
+    padding-top: 10px;
     padding-bottom: 10px;
     width: fit-content;
-    flex-direction: column; 
-    justify-content: left; 
-    align-items: left; 
-    gap: 15.5px; 
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    gap: 15.5px;
     display: inline-flex;
 }
 
 .form_label2{
-    height: 20px; 
+    height: 20px;
     font-weight: 600;
-    color: #2F1575; 
+    color: #2F1575;
     text-align: left;
     width: 25%;
 
 }
 
 .form_label3{
-    height: 20px; 
+    height: 20px;
     font-weight: 400;
-    color: #2F1575; 
+    color: #2F1575;
     text-align: left;
     width: 25%;
 
+}
+
+.boton3{
+  width: fit-content;
+  height: auto;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-family: inherit;
+}
+
+.boton3:hover{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 :host{
