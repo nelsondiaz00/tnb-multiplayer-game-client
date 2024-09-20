@@ -56,27 +56,70 @@ export class SignInComponent {
     return true;
   }
 
-  toogleIcon(password: HTMLInputElement) {
-    if (password.type === 'password') {
-      return true;
+  toggleIcon(passwordElement: HTMLInputElement) {
+    const togglePasswordIcon = document.getElementById('toggle-icon');
+    if (passwordElement.type === 'password') {
+      passwordElement.type = 'text';
+      if (togglePasswordIcon != null) {
+        togglePasswordIcon.classList.add('on');
+        togglePasswordIcon.classList.remove('off');
+      }
     } else {
-      return false;
+      passwordElement.type = 'password';
+      if (togglePasswordIcon != null) {
+        togglePasswordIcon.classList.remove('on');
+        togglePasswordIcon.classList.add('off');
+      }
     }
   }
 
-  validateUsername(username: string) {
-    if (username === '') {
-      return false;
+  validateUsername(target: any) {
+    const validUserIcon = document.getElementById('username-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
     } else {
-      return true;
+      if (validUserIcon != null) {
+        if (/^[a-zA-Z]+$/.test(target.value)) {
+          validUserIcon.classList.add('valid');
+          validUserIcon.classList.remove('invalid');
+          validUserIcon.classList.remove('empty');
+        } else {
+          validUserIcon.classList.add('invalid');
+          validUserIcon.classList.remove('valid');
+          validUserIcon.classList.remove('empty');
+        }
+      }
     }
   }
 
-  validatePassword(password: string) {
-    if (password === '') {
-      return false;
+  validatePassword(target: any) {
+    const validPassIcon = document.getElementById('password-valid-icon');
+    if (target.value === '') {
+      if (validPassIcon != null) {
+        validPassIcon.classList.add('empty');
+        validPassIcon.classList.remove('valid');
+        validPassIcon.classList.remove('invalid');
+      }
     } else {
-      return true;
+      if (validPassIcon != null) {
+        const password = target.value;
+        const hasNumber = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasCapitalLetter = /[A-Z]/.test(password);
+        if (password.length >= 8 && hasNumber && hasSpecialChar && hasCapitalLetter) {
+          validPassIcon.classList.add('valid');
+          validPassIcon.classList.remove('invalid');
+          validPassIcon.classList.remove('empty');
+        } else {
+          validPassIcon.classList.add('invalid');
+          validPassIcon.classList.remove('valid');
+          validPassIcon.classList.remove('empty');
+        }
+      }
     }
   }
 
