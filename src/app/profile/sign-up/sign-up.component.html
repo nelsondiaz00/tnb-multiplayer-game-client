@@ -1,6 +1,9 @@
 <body class="registro1">
     <div class="main">
+      <div class="cont1">
+        <button href="#inicio" class="boton3">← Atrás</button>
         <h3 class="signup">Registro</h3>
+      </div>
         <div class="content">
             <div id="parte1" class="content2">
                 <div class="left">
@@ -9,37 +12,35 @@
                         <div class="form1">
                             <div class="cont">
                                 <label class="form_label" for="name" id="label_nombre">Nombres</label>
-                                <input id="name" type="text" class="input">
+                                <input id="name" type="text" class="input" (input)="validateName($event.target)">
                                 <span id="name-valid-icon" class="validity-icon empty"></span>
                             </div>
                             <div class="cont">
                                 <label class="form_label">Apellidos</label>
-                                <input id="lastname" type="text" class="input">
+                                <input id="lastname" type="text" class="input" (input)="validateLastname($event.target)">
                                 <span id="lastname-valid-icon" class="validity-icon empty"></span>
                             </div>
                             <div class="cont">
                                 <label class="form_label">Email</label>
-                                <input id="email" type="mail" class="input">
+                                <input id="email" type="mail" class="input" (input)="validateEmail($event.target)">
                                 <span id="email-valid-icon" class="validity-icon empty"></span>
                             </div>
                         </div>
                         <div class="form1">
                             <div class="cont">
                                 <label class="form_label" for="" id="label_nombre">Contraseña</label>
-                                <input id="password" type="password" class="input" (change)="changePassword($event.target)">
-                                <span class="toggle-password">
-                                    <img src="../images/openeye.png" id="toggle-icon">
-                                </span>
+                                <input #CONTRA id="password" type="password" class="input" (change)="changePassword($event.target)" (input)="validatePassword($event.target)">
+                                <i class="toggle-password off" id="toggle-icon" (click)="toggleIcon(CONTRA)"></i>
                                 <span id="password-valid-icon" class="validity-icon empty"></span>
                             </div>
                             <div class="cont">
                                 <label class="form_label">Contraseña (Otra vez)</label>
-                                <input id="password2" type="password" class="input" (change)="changePassword2($event.target)">
+                                <input id="password2" type="password" class="input" (change)="changePassword2($event.target)" (input)="validatePasswordsMatch($event.target)">
                                 <span id="password2-valid-icon" class="validity-icon empty"></span>
                             </div>
                             <div class="cont">
                                 <label class="form_label">Yo soy... (Nombre de usuario)</label>
-                                <input id="username" class="input" (change)="changeUsername($event.target)">
+                                <input id="username" class="input" (change)="changeUsername($event.target)" (input)="validateUsername($event.target)">
                                 <span id="username-valid-icon" class="validity-icon empty"></span>
                             </div>
                         </div>
@@ -56,8 +57,7 @@
             </div>
             <div class="content2" id="parte2">
                 <div class="div-texto">
-                    <p class="little-info">Selecciona 4 preguntas de seguridad diferentes con sus respuestas. Esto te
-                        ayudará a recuperar tu cuenta.</p>
+                    <p class="little-info">Selecciona 4 preguntas de seguridad diferentes con sus respuestas. Esto te ayudará a recuperar tu cuenta.</p>
                     <h3 class="subtitle2">Preguntas de seguridad</h3>
                 </div>
                 <div>
