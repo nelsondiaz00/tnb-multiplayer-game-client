@@ -1,4 +1,6 @@
 <div *ngIf="isVisible" class="modal-container">
   <!-- <div class="modal-content"></div> -->
-  <button class="start-battle-button">¡Batalla finalizada!</button>
+  <button class="start-battle-button" (click)="onEndMatchClick()">
+    ¡Batalla finalizada!
+  </button>
 </div>

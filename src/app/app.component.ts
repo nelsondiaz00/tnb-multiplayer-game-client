@@ -7,6 +7,7 @@ import { ProductCreationComponent } from './inventary/product-creation/product-c
 import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventory.component';
+import { ChatBotViewComponent } from './chatbot/chat-bot-view/chat-bot-view.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventor
     SignInComponent,
     SignUpComponent,
     HeroInventoryComponent,
+    ChatBotViewComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -76,6 +78,11 @@ export class AppComponent {
     console.log('showRegisterComponent');
     this.hideViews();
     this.showRegister = true;
+    this.cdr.detectChanges();
+  }
+
+  showHeaderComponent() {
+    this.showHeader = true;
     this.cdr.detectChanges();
   }
 

@@ -25,20 +25,10 @@ export class CreateMatchModalComponent {
     const betOption = document.querySelector(
       'input[name="bet-option"]:checked'
     ) as HTMLInputElement;
-    const privacyOption = document.querySelector(
-      'input[name="privacy-option"]:checked'
-    ) as HTMLInputElement;
 
-    if (!gameMode || !betOption || !privacyOption) {
+    if (!gameMode || !betOption) {
       this.showAlert(
         'Por favor, selecciona todas las opciones antes de crear la partida.'
-      );
-      return;
-    }
-
-    if (privacyOption.id === 'private' && !this.password) {
-      this.showAlert(
-        'Por favor, ingresa una contraseña para partidas privadas.'
       );
       return;
     }
@@ -47,10 +37,9 @@ export class CreateMatchModalComponent {
       id: this.generateRandomId(),
       mode: gameMode ? gameMode.value : '0',
       bet: betOption ? betOption.value : null,
-      privacy: privacyOption ? privacyOption.value : null,
-      password: privacyOption.value === 'private' ? this.password : null,
     };
     console.log(gameConfig, ' game config');
+    this.closeModal();
     this.createMatch(parseInt(gameConfig.mode), parseInt(gameConfig.mode));
   }
 

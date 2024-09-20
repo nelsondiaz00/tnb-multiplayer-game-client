@@ -1,6 +1,7 @@
 :host {
   height: 100%;
-  width: 55%;
+  width: 40%;
+  padding-left: 5%;
 }
 
 header {
@@ -45,7 +46,7 @@ main {
   background-color: #9b7cdf;
   padding: 0px;
   text-align: center;
-  width: 60%;
+  width: 100%;
   height: 80%;
 }
 

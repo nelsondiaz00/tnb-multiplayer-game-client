@@ -31,6 +31,9 @@ header {
   align-items: center;
   margin-bottom: 0px;
   color: white;
+  background-color: violet;
+  padding: 0 2% 0 5%;
+  box-sizing: border-box;
 }
 
 header h1 {
@@ -63,6 +66,7 @@ h1 {
   height: 50%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.95);
+  box-sizing: border-box;
   padding: 40px;
   box-shadow: 12px 12px 0px 0px #3f3f3f;
   align-items: center;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { WebSocketService } from '../../_services/websocket.service';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -9,12 +9,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './end-match-modal.component.css',
 })
 export class EndMatchModalComponent {
+  @Output() matchEnded = new EventEmitter<void>();
   isVisible: boolean = false;
   constructor(private webSocketService: WebSocketService) {}
   ngOnInit(): void {
     this.webSocketService.endMatch$.subscribe(() => {
       this.isVisible = true;
     });
+  }
+
+  onEndMatchClick() {
+    this.matchEnded.emit();
   }
   // endBattle() {
   //   this.webSocketService.startBattle();

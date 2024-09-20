@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './sign-in.component.html',
-  styleUrl: './sign-in.component.css'
+  styleUrl: './sign-in.component.css',
 })
 export class SignInComponent {
   @Output() registro = new EventEmitter<void>();
@@ -20,9 +20,13 @@ export class SignInComponent {
 
   ngOnInit() {
     if (!localStorage.getItem('users')) {
-      const users = [{ user: 'Javier', password: '123' },{ user: 'Nelson', password: '123' }];
+      const users = [
+        { user: 'Javier', password: 'Javier123*' },
+        { user: 'Nelson', password: 'Nelson123*' },
+      ];
       localStorage.setItem('users', JSON.stringify(users));
     }
+    // localStorage.setItem('users', '');
   }
 
   changeUsername(target: any) {
@@ -34,14 +38,16 @@ export class SignInComponent {
   }
 
   login() {
-    if(this.username != '' && this.password != ''){
-      const users = localStorage.getItem('users')
+    if (this.username != '' && this.password != '') {
+      const users = localStorage.getItem('users');
       if (users) {
         const usersArray = JSON.parse(users);
-        const user = usersArray.find((user: { user: string }) => user.user === this.username);
-        if(user){
-          if(user.password === this.password){
-            const user = { user: this.username, password: this.password }
+        const user = usersArray.find(
+          (user: { user: string }) => user.user === this.username
+        );
+        if (user) {
+          if (user.password === this.password) {
+            const user = { user: this.username, password: this.password };
             localStorage.setItem('loggedUser', JSON.stringify(user));
             this.inicioSesion.emit();
           }
@@ -87,7 +93,6 @@ export class SignInComponent {
       return false;
     }
   }
-
 
   //  ︵‿︵‿୨♡୧ PAGINA DOS (2FA) ୨♡୧‿︵‿︵
 

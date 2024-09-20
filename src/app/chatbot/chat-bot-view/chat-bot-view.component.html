@@ -1,0 +1,16 @@
+<div class="chat-main-container">
+  <div class="chat-bot-container" *ngIf="showChatBot">
+    <h1>Nexus Battles III Chatbot</h1>
+    <div id="chat-container" #chatContainer></div>
+    <input
+      type="text"
+      id="user-input"
+      placeholder="Escribe tu mensaje aquí..."
+      #userInput
+    />
+    <button id="send-button" (click)="sendMessage()">Enviar</button>
+  </div>
+  <div class="activate-button">
+    <button id="activate-button" (click)="showChatBotWindow()">Chatbot</button>
+  </div>
+</div>

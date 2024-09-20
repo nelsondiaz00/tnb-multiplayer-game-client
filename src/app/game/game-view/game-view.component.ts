@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TeamSelectionModalComponent } from '../team-selection-modal/team-selection-modal.component';
 import { StartBattleModalComponent } from '../start-battle-modal/start-battle-modal.component';
 import { MatchComponent } from '../match/match.component';
@@ -28,6 +28,7 @@ export class GameViewComponent implements OnInit {
   ) {}
 
   @Input() matchConfig: any;
+  @Output() matchEnded = new EventEmitter<void>();
 
   ngOnInit(): void {
     console.log('está acá primero bro');
@@ -35,5 +36,8 @@ export class GameViewComponent implements OnInit {
       this.userService.setOwnerIdUser(matchReceived.owner);
       console.log('está acá primero bro');
     });
+  }
+  onMatchEnded() {
+    this.matchEnded.emit();
   }
 }
