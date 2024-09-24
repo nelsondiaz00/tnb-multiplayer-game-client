@@ -12,4 +12,5 @@ export interface IHero {
   products: IProduct[];
   alive: boolean;
   teamSide: teamSide;
+  credits: number;//Contador de créditos dentro de heroe
 }
