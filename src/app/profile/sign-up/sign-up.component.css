@@ -6,7 +6,7 @@ body {
 .registro1{
     font-family: "Cascadia Code";
     margin: 0px;
-    background-image: url("../images/fondo_registro.jpg");
+    background-image: url("../../../assets/sign-in-images/images/fondo_registro.jpg");
     background-size: cover;
     flex-direction: column;
     justify-content:center;
@@ -261,23 +261,23 @@ body {
 }
 
 .off{
-  background-image: url('../images/closeeye.png');
+  background-image: url('../../../assets/sign-in-images/images/closeeye.png');
 }
 
 .on{
-  background-image: url('../images/openeye.png');
+  background-image: url('../../../assets/sign-in-images/images/openeye.png');
 }
 
 .validity-icon {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 0% 1.5% 2% 0%;
-  width: 20px;
-  height: 20px;
-  display: inline_block; /* Oculto por defecto */
-  background-image: url("../images/sad.png");
-  background-size: contain;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0% 1.5% 2% 0%;
+    width: 20px;
+    height: 20px;
+    display: inline_block; /* Oculto por defecto */
+    background-image: url('../../../assets/sign-in-images/images/sad.png');
+    background-size: contain;
 }
 
 .validity-icon-2 {
@@ -292,20 +292,20 @@ body {
 }
 
 .valid {
-  display: inline-block;
-  background-image: url("../images/happy.png"); /* Ícono de check (válido) */
-  background-size: contain;
+    display: inline-block;
+    background-image: url('../../../assets/sign-in-images/images/happy.png'); /* Ícono de check (válido) */
+    background-size: contain;
 }
 
 .invalid {
-  display: inline-block;
-  background-image: url("../images/sad.png"); /* Ícono de cruz (inválido) */
-  background-size: contain;
+    display: inline-block;
+    background-image: url('../../../assets/sign-in-images/images/sad.png'); /* Ícono de cruz (inválido) */
+    background-size: contain;
 }
 
 .empty {
     display: inline-block;
-    background-image: url('../images/sad.png'); /* Ícono de cruz (inválido) */
+    background-image: url('../../../assets/sign-in-images/images/sad.png'); /* Ícono de cruz (inválido) */
     background-size: contain;
 }
 
