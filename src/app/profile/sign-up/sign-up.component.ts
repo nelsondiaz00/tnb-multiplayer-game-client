@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
-import prohibitedNames from './prohibited-names.json';
+import prohibitedNames from '../../../assets/json/prohibited-names.json'
 
 @Component({
   selector: 'app-sign-up',

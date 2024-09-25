@@ -7,6 +7,7 @@ import { ProductCreationComponent } from './inventary/product-creation/product-c
 import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventory.component';
+import { LandingComponent } from './landing/landing.component'
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventor
     SignInComponent,
     SignUpComponent,
     HeroInventoryComponent,
+    LandingComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -31,8 +33,10 @@ export class AppComponent {
   showInventary = false;
   showManagementMatch = false;
   showHeader = false;
-  showSignIn = true;
+  showSignIn = false;
   showRegister = false;
+  showLanding = true;
+
   constructor(private cdr: ChangeDetectorRef) {}
 
   toggleGameView(show: boolean) {
@@ -79,6 +83,12 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
+  showLandingComponent(){
+    this.hideViews();
+    this.showLanding = true;
+    this.cdr.detectChanges();
+  }
+
   hideViews() {
     this.showGameView = false;
     this.showInfoUser = false;
@@ -86,6 +96,7 @@ export class AppComponent {
     this.showManagementMatch = false;
     this.showSignIn = false;
     this.showRegister = false;
+    this.showLanding = false;
     this.cdr.detectChanges();
   }
 }
