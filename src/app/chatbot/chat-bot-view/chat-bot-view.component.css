@@ -1,0 +1,173 @@
+/* cyrillic-ext */
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nYivN04w.woff2)
+    format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nRivN04w.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nWivN04w.woff2)
+    format("woff2");
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+    U+03A3-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nbivN04w.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:host {
+  font-family: "Press Start 2P", cursive;
+  font-size: medium;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  color: #eae0f1;
+  height: auto;
+  width: auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  padding: 0 0 1% 1%;
+}
+
+.chat-main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.activate-button {
+  margin-top: auto;
+}
+
+#activate-button {
+  width: 200px;
+  height: 40px;
+  padding: 2% 10% 2% 10%;
+  background: #e856c3;
+  border: 0px solid;
+  box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  color: white;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.chat-bot-container {
+  /* flex-direction: row;
+  align-items: center;
+  justify-content: center; */
+  min-width: 500px;
+  min-height: 400px;
+  background-color: #2e004f;
+  height: 30%;
+  width: 40%;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: #cda5db;
+  font-size: 30px;
+  margin: 0px;
+  padding: 20px;
+}
+
+#chat-container {
+  border: 1px solid #5b2a86;
+  background-color: #3b005e;
+  min-height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#chat-container p {
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 10px;
+}
+
+#chat-container p strong {
+  color: #cda5db;
+}
+
+#chat-container p:nth-child(odd) {
+  background-color: #5b2a86;
+}
+
+#chat-container p:nth-child(even) {
+  background-color: #7a3bb7;
+}
+
+#user-input {
+  font-family: "Press Start 2P";
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #5b2a86;
+  border-radius: 5px;
+  background-color: #4d006c;
+  color: #eae0f1;
+}
+
+#send-button {
+  font-family: "Press Start 2P";
+  width: 25%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #cda5db;
+  color: #2e004f;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#send-button:hover {
+  background-color: #b385c4;
+}

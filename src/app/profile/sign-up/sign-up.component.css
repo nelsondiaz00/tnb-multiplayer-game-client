@@ -245,8 +245,8 @@ body {
     text-decoration: none;
 }
 
-.pagenumber2:hover{
-    text-decoration: underline;
+.pagenumber2:hover {
+  text-decoration: underline;
 }
 
 .toggle-password {
@@ -281,14 +281,14 @@ body {
 }
 
 .validity-icon-2 {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0% 1.5% 1.2% 0%;
-    width: 20px;
-    height: 20px;
-    display: inline_block; /* Oculto por defecto */
-    background-size: contain;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0% 1.5% 1.2% 0%;
+  width: 20px;
+  height: 20px;
+  display: inline_block; /* Oculto por defecto */
+  background-size: contain;
 }
 
 .valid {

@@ -94,23 +94,38 @@ export class WebSocketService {
     }
   }
 
+  public connectMainSocket(): void {
+    if (this.HOST !== '' && this.PORT !== 0) {
+      const url = `http://${this.HOST}:${this.PORT}`;
+      const newSocket = io(url);
+      this.socket$.next(newSocket);
+      console.log('Connected to match socket on url ' + url + '!');
+    }
+  }
+
   public selectSideTeam(teamSide: teamSide, idTemp: string): void {
-    fetch('./assets/input-weapon.json')
-      .then((response) => response.json())
-      .then((data) => {
-        this.userService.setIdUser(idTemp);
-        this.userService.setTeamSide(teamSide);
-        const hero = {
-          idUser: idTemp,
-          type: data.type,
-          subtype: data.subtype,
-          attributes: data.attributes,
-          products: data.products,
-          alive: data.alive,
-          teamSide: teamSide,
-        };
-        this.socket$.getValue().emit('bindInfo', hero);
-      });
+    const heroData = localStorage.getItem('currentHeroSelected');
+    if (heroData) {
+      const extraDataHero = JSON.parse(heroData);
+      // console.log(this.extraDataHero, ' extra data hero');
+
+      fetch('./assets/input-weapon.json')
+        .then((response) => response.json())
+        .then((data) => {
+          this.userService.setIdUser(idTemp);
+          this.userService.setTeamSide(teamSide);
+          const hero = {
+            idUser: idTemp,
+            type: extraDataHero.type,
+            subtype: extraDataHero.subtype,
+            attributes: data.attributes,
+            products: data.products,
+            alive: data.alive,
+            teamSide: teamSide,
+          };
+          this.socket$.getValue().emit('bindInfo', hero);
+        });
+    }
   }
 
   public getMatch(): void {

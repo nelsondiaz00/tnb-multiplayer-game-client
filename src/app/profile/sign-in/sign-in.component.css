@@ -1,3 +1,4 @@
+
 body{
     background-image: url("../images/fondo_login.jpg");
     min-height: 100vh;
@@ -221,38 +222,38 @@ body{
 
 
 .validity-icon {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0% 1.5% 1.8% 0%;
-    width: 18px;
-    height: 18px;
-    display: inline_block; /* Oculto por defecto */
-    background-image: url('../images/bad.png');
-    background-size: contain;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0% 1.5% 1.8% 0%;
+  width: 18px;
+  height: 18px;
+  display: inline_block; /* Oculto por defecto */
+  background-image: url("../images/bad.png");
+  background-size: contain;
 }
 
 .valid {
-    display: inline-block;
-    background-image: url('../images/good.png'); /* Ícono de check (válido) */
-    background-size: contain;
+  display: inline-block;
+  background-image: url("../images/good.png"); /* Ícono de check (válido) */
+  background-size: contain;
 }
 
 .empty {
-    display: inline-block;
-    background-image: url('../images/bad.png'); /* Ícono de cruz (inválido) */
-    background-size: contain;
+  display: inline-block;
+  background-image: url("../images/bad.png"); /* Ícono de cruz (inválido) */
+  background-size: contain;
 }
 
-:host{
-    width: 100%;
-    height: 100%;
+:host {
+  width: 100%;
+  height: 100%;
 }
 
-.a{
-    text-decoration: none;
+.a {
+  text-decoration: none;
 }
 
-.list{
+.list {
     list-style: none;
 }

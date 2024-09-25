@@ -1,4 +1,12 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  OnChanges,
+  SimpleChanges,
+  Input,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateMatchModalComponent } from '../create-match-modal/create-match-modal.component';
 import { WebSocketService } from '../../_services/websocket.service';
@@ -10,8 +18,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './match-list.component.html',
   styleUrl: './match-list.component.css',
 })
-export class MatchListComponent implements OnInit {
+export class MatchListComponent implements OnInit, OnChanges {
   @Output() matchSelected = new EventEmitter<any>();
+  @Input() refreshTrigger: boolean = false;
   matchList: any[] = [];
 
   constructor(
@@ -36,6 +45,17 @@ export class MatchListComponent implements OnInit {
     });
 
     // this.webSocketService.getPlayersAmount(3001);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['refreshTrigger']) {
+      this.refreshMatchList();
+    }
+  }
+
+  refreshMatchList(): void {
+    console.log('refreshing match list');
+    this.webSocketService.getMatchList();
   }
 
   onMatchClick(match: any): void {

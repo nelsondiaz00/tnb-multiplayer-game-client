@@ -8,6 +8,7 @@ import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventory.component';
 import { LandingComponent } from './landing/landing.component'
+import { ChatBotViewComponent } from './chatbot/chat-bot-view/chat-bot-view.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { LandingComponent } from './landing/landing.component'
     SignUpComponent,
     HeroInventoryComponent,
     LandingComponent
+    ChatBotViewComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -86,6 +88,10 @@ export class AppComponent {
   showLandingComponent(){
     this.hideViews();
     this.showLanding = true;
+  }
+  
+  showHeaderComponent() {
+    this.showHeader = true;
     this.cdr.detectChanges();
   }
 
