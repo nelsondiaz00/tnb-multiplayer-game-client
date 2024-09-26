@@ -1,12 +1,24 @@
-.main-container {
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.landing-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../../assets/game-images/background/game-arena-landing.png');
+  background-image: url("../../assets/game-images/background/game-arena-landing.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -20,7 +32,8 @@ h1 {
   margin: 0;
   font-size: clamp(0.15rem, 1.5vw, 1.5rem);
   color: #fcf5ff;
-  text-shadow: -2px -2px 0 #4518a6, 2px -2px 0 #4518a6, -2px 2px 0 #4518a6, 2px 2px 0 #4518a6;
+  text-shadow: -2px -2px 0 #4518a6, 2px -2px 0 #4518a6, -2px 2px 0 #4518a6,
+    2px 2px 0 #4518a6;
   align-self: center;
 }
 
@@ -51,7 +64,7 @@ nav a:hover {
   color: black;
 }
 
-.main{
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +73,7 @@ nav a:hover {
   width: 100%;
 }
 
-.image-container{
+.image-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,9 +83,9 @@ nav a:hover {
   gap: 6%;
 }
 
-button{
+button {
   font-family: inherit;
-  background-color: #E856C3;
+  background-color: #e856c3;
   border: 0.3rem black solid;
   padding: 1% 2% 1% 2%;
   width: fit-content;
@@ -81,12 +94,12 @@ button{
   color: white;
 }
 
-button:hover{
+button:hover {
   background-color: #f391da;
   box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.25);
 }
 
-.main{
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,13 +110,12 @@ button:hover{
   width: 100%;
 }
 
-.hero{
+.hero {
   height: 150px;
 }
 
-.heroes{
+.heroes {
   display: flex;
   justify-content: space-around;
   height: fit-content;
 }
-

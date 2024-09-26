@@ -1,8 +1,8 @@
 :host {
   width: 30%;
-  height: 80%;
   background-color: rgba(154, 124, 222, 255);
   color: white;
+  align-self: center;
 }
 
 p {

@@ -7,7 +7,7 @@ import { ProductCreationComponent } from './inventary/product-creation/product-c
 import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
 import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventory.component';
-import { LandingComponent } from './landing/landing.component'
+import { LandingComponent } from './landing/landing.component';
 import { ChatBotViewComponent } from './chatbot/chat-bot-view/chat-bot-view.component';
 
 @Component({
@@ -22,7 +22,7 @@ import { ChatBotViewComponent } from './chatbot/chat-bot-view/chat-bot-view.comp
     SignInComponent,
     SignUpComponent,
     HeroInventoryComponent,
-    LandingComponent
+    LandingComponent,
     ChatBotViewComponent,
   ],
   templateUrl: './app.component.html',
@@ -85,11 +85,11 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
-  showLandingComponent(){
+  showLandingComponent() {
     this.hideViews();
     this.showLanding = true;
   }
-  
+
   showHeaderComponent() {
     this.showHeader = true;
     this.cdr.detectChanges();
