@@ -5,6 +5,7 @@ import { GameViewComponent } from '../../game/game-view/game-view.component';
 import { CommonModule } from '@angular/common';
 import { WebSocketService } from '../../_services/websocket.service';
 import { SelectHeroComponent } from '../select-hero/select-hero.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-match-management-view',
@@ -22,31 +23,37 @@ import { SelectHeroComponent } from '../select-hero/select-hero.component';
 export class MatchManagementViewComponent {
   @Output() toggleGameView = new EventEmitter<boolean>();
   @Output() showHeader = new EventEmitter<boolean>();
-  constructor(private webSocketService: WebSocketService) {}
+  constructor(
+    private webSocketService: WebSocketService,
+    private router: Router
+  ) {}
 
-  showGameView: boolean = false;
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
+
   selectedMatchConfig: any;
-  showMatchList: boolean = true;
-  refreshTrigger: boolean = false;
 
   onMatchSelected(match: any): void {
     console.log('entró a conexión nueva de socket!');
     this.webSocketService.connectToSocket(match.port);
     this.selectedMatchConfig = match;
-    this.showGameView = true;
-    this.toggleGameView.emit(this.showGameView);
+    this.router.navigate(['game-view'], {
+      state: { matchConfig: this.selectedMatchConfig },
+    });
+    // this.showGameView = true;
+    // this.toggleGameView.emit(this.showGameView);
   }
 
-  onMatchEnded(): void {
-    this.showGameView = false;
-    this.showHeader.emit(true);
-    this.webSocketService.connectMainSocket();
-    this.triggerRefresh();
-    // this.refreshMatchListComponent();
-  }
-  triggerRefresh(): void {
-    this.refreshTrigger = !this.refreshTrigger;
-  }
+  // onMatchEnded(): void {
+  //   this.showGameView = false;
+  //   this.showHeader.emit(true);
+  //   this.webSocketService.connectMainSocket();
+  //   this.triggerRefresh();
+  // }
+  // triggerRefresh(): void {
+  //   this.refreshTrigger = !this.refreshTrigger;
+  // }
 
   // refreshMatchListComponent(): void {
   //   this.showMatchList = false;

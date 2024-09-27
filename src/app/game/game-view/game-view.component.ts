@@ -4,10 +4,10 @@ import { StartBattleModalComponent } from '../start-battle-modal/start-battle-mo
 import { MatchComponent } from '../match/match.component';
 import { ActionBarComponent } from '../action-bar/action-bar.component';
 import { EndMatchModalComponent } from '../end-match-modal/end-match-modal.component';
-import { AppComponent } from '../../app.component';
 import { WebSocketService } from '../../_services/websocket.service';
 import { UserService } from '../../_services/user.service';
 import { IMatch } from '../../_models/interfaces/match.interfaces';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-view',
   standalone: true,
@@ -22,12 +22,19 @@ import { IMatch } from '../../_models/interfaces/match.interfaces';
   styleUrl: './game-view.component.css',
 })
 export class GameViewComponent implements OnInit {
+  matchConfig: any;
+
   constructor(
     private webSocketService: WebSocketService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private router: Router
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      this.matchConfig = navigation.extras.state['matchConfig'];
+    }
+  }
 
-  @Input() matchConfig: any;
   @Output() matchEnded = new EventEmitter<void>();
 
   ngOnInit(): void {
@@ -38,6 +45,6 @@ export class GameViewComponent implements OnInit {
     });
   }
   onMatchEnded() {
-    this.matchEnded.emit();
+    this.router.navigate(['match-management-view']);
   }
 }

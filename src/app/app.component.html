@@ -1,1 +1,29 @@
-<app-landing></app-landing>
+<div class="main-container">
+  <app-chat-bot-view></app-chat-bot-view>
+  <header class="header-main">
+    <h1>The Nexus Battles III</h1>
+    <nav>
+      <ul>
+        <li (click)="navigateTo('match-management-view')">
+          <a>Jugar online</a>
+        </li>
+        <li (click)="navigateTo('nothing')">
+          <a>Misiones</a>
+        </li>
+        <li (click)="navigateTo('nothing')">
+          <a>Torneo</a>
+        </li>
+        <li (click)="navigateTo('hero-inventory')">
+          <a>Mi inventario</a>
+        </li>
+        <li (click)="navigateTo('nothing')">
+          <a>Subasta</a>
+        </li>
+        <li (click)="navigateTo('profile')">
+          <a>Mi cuenta</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<router-outlet></router-outlet>

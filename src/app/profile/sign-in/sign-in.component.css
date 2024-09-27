@@ -1,6 +1,11 @@
+:host {
+  width: 100%;
+  height: 87%;
+  display: block;
+}
 .main-container-sign-in {
   background-image: url("/assets/sign-in-images/images/fondo_login.jpg");
-  min-height: 100vh;
+  min-height: 100%;
   font-family: "Cascadia Code";
   padding: 0px;
   overflow: hidden;
@@ -8,7 +13,7 @@
 
 .inicio {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -173,6 +178,8 @@
 }
 
 #page1 {
+  height: 87vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -241,11 +248,6 @@
   display: inline-block;
   background-image: url("/assets/sign-in-images/images/bad.png"); /* Ícono de cruz (inválido) */
   background-size: contain;
-}
-
-:host {
-  width: 100%;
-  height: 100%;
 }
 
 .a {

@@ -20,6 +20,7 @@ export class EndMatchModalComponent {
 
   onEndMatchClick() {
     this.matchEnded.emit();
+    this.webSocketService.connectMainSocket();
   }
   // endBattle() {
   //   this.webSocketService.startBattle();

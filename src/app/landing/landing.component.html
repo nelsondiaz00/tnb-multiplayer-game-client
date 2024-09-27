@@ -1,16 +1,7 @@
-<div class="landing-container" *ngIf="showLanding">
-  <header class="header-main">
+<div class="landing-container">
+  <!-- <header class="header-main">
     <h1>The Nexus Battles III</h1>
-    <nav>
-      <!-- <ul>
-        <li><a href="#">Misiones</a></li>
-        <li><a href="#">Torneo</a></li>
-        <li><a>Mi inventario</a></li>
-        <li><a href="#">Subasta</a></li>
-        <li><a>Mi cuenta</a></li>
-      </ul> -->
-    </nav>
-  </header>
+  </header> -->
   <div class="main">
     <div class="image-container">
       <div class="heroes">
@@ -45,46 +36,14 @@
           class="hero"
         />
       </div>
-      <button (click)="showSignInComponent()">Juega Online</button>
+      <button (click)="navigateTo('sign-in')">Juega Online</button>
     </div>
   </div>
 </div>
-<div class="main-container">
-  <app-chat-bot-view></app-chat-bot-view>
-  <header class="header-main" *ngIf="showHeader">
-    <h1>The Nexus Battles III</h1>
-    <nav>
-      <ul>
-        <li (click)="showManagementMatchComponent()">
-          <a href="#">Jugar online</a>
-        </li>
-        <li><a>Misiones</a></li>
-        <li><a>Torneo</a></li>
-        <li (click)="showInventaryComponent()">
-          <a>Mi inventario</a>
-        </li>
-        <li><a href="#">Subasta</a></li>
-        <li (click)="showInfoUserComponent()">
-          <a>Mi cuenta</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <app-match-management-view
-    *ngIf="showManagementMatch"
-    (toggleGameView)="toggleGameView($event)"
-    (showHeader)="showHeaderComponent()"
-  ></app-match-management-view>
-  <app-info-user *ngIf="showInfoUser"></app-info-user>
-  <!-- <app-product-creation *ngIf="showInventary"></app-product-creation> -->
-  <app-sign-in
-    *ngIf="showSignIn"
-    (registro)="showRegisterComponent()"
-    (inicioSesion)="showManagementMatchComponent()"
-  ></app-sign-in>
-  <app-sign-up
-    *ngIf="showRegister"
-    (registered)="showSignInComponent()"
-  ></app-sign-up>
-  <app-hero-inventory *ngIf="showInventary"></app-hero-inventory>
-</div>
+<audio
+  id="background-music"
+  src="assets/sounds/landing-sound.mp3"
+  autoplay
+  loop
+></audio>
+<router-outlet></router-outlet>
