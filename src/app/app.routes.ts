@@ -16,5 +16,5 @@ export const routes: Routes = [
   { path: 'hero-inventory', component: HeroInventoryComponent },
   { path: 'landing', component: LandingComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
-];
+];|
 export class AppRoutingModule {}
