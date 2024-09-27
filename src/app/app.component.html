@@ -1,5 +1,4 @@
-<div class="main-container">
-  <app-chat-bot-view></app-chat-bot-view>
+<div class="main-container" *ngIf="showHeader">
   <header class="header-main">
     <h1>The Nexus Battles III</h1>
     <nav>
@@ -26,4 +25,6 @@
     </nav>
   </header>
 </div>
+<app-chat-bot-view></app-chat-bot-view>
+<app-sound-control></app-sound-control>
 <router-outlet></router-outlet>

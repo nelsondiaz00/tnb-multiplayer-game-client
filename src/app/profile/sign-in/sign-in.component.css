@@ -1,6 +1,6 @@
 :host {
   width: 100%;
-  height: 87%;
+  height: 100%;
   display: block;
 }
 .main-container-sign-in {
@@ -178,7 +178,7 @@
 }
 
 #page1 {
-  height: 87vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;

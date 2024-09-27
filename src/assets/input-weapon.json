@@ -56,6 +56,29 @@
   },
   "products": [
     {
+      "idProduct": "1",
+      "productName": "Golpe básico",
+      "productDescription": "A basic attack.",
+      "productType": "hability",
+      "heroType": "warrior",
+      "subHeroType": "weapon",
+      "dropChance": "10%",
+      "powerCost": "2",
+      "effects": [
+        {
+          "attribute": {
+            "name": "attack"
+          },
+          "mathOperator": "+",
+          "turns": 0,
+          "target": "ally",
+          "value": 0,
+          "valueCaused": 0
+        }
+      ],
+      "imagePath": "golpe-basico.png"
+    },
+    {
       "idProduct": "19",
       "productName": "Embate sangriento",
       "productDescription": "Golpe con escudo fuerte",

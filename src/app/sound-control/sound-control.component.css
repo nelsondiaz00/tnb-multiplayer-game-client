@@ -1,0 +1,37 @@
+:host {
+  font-family: "Press Start 2P", cursive;
+  font-size: medium;
+  /* max-width: 800px; */
+  margin: 0 auto;
+  color: #eae0f1;
+  height: auto;
+  width: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+  padding: 0 1% 1% 0%;
+}
+
+button {
+  width: 130px;
+  height: 50px;
+  padding: 2% 10% 2% 10%;
+  background: #e856c3;
+  border: none;
+  box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+button.active {
+  background-color: #ff88cc;
+  transform: translateY(-2px);
+}

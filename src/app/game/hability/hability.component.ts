@@ -4,6 +4,7 @@ import { HabilityService } from './hability.service';
 import { IProduct } from '../../_models/interfaces/product.interfaces';
 import { WebSocketService } from '../../_services/websocket.service';
 import { UserService } from '../../_services/user.service';
+import { SoundService } from '../../_services/sound.service';
 
 @Component({
   selector: 'app-hability',
@@ -20,7 +21,8 @@ export class HabilityComponent implements OnInit {
   constructor(
     private habilityService: HabilityService,
     private webSocketService: WebSocketService,
-    private userService: UserService
+    private userService: UserService,
+    private soundService: SoundService
   ) {}
 
   ngOnInit(): void {
@@ -61,10 +63,18 @@ export class HabilityComponent implements OnInit {
         heroComponent.activateHability();
         setTimeout(() => {
           this.webSocketService.useHability(idUser, idHability, targetEnemy);
-        }, 500); // Ajusta el tiempo según la duración de la animación
-      } else {
-        this.webSocketService.useHability(idUser, idHability, targetEnemy);
+          this.playSound();
+        }, 500);
       }
+    }
+  }
+
+  private playSound(): void {
+    if (this.soundService.isSoundEnabled()) {
+      const audio = new Audio('assets/sounds/hit-sound.mp3');
+      audio.play().catch((error) => {
+        console.error('Error playing sound:', error);
+      });
     }
   }
 }

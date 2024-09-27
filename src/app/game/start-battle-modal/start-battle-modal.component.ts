@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../_services/user.service';
 import { WebSocketService } from '../../_services/websocket.service';
+import { EmitterService } from '../../_services/emitter.service';
 @Component({
   selector: 'app-start-battle-modal',
   standalone: true,
@@ -13,7 +14,8 @@ export class StartBattleModalComponent {
   isVisible: boolean = true;
   constructor(
     private userService: UserService,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
+    private emitterService: EmitterService
   ) {}
 
   checkVisibility(): boolean {
@@ -22,6 +24,7 @@ export class StartBattleModalComponent {
 
   startBattle() {
     console.log('Battle started');
+    this.emitterService.startBattle();
     this.webSocketService.startBattle();
     this.isVisible = false;
   }
