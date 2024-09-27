@@ -1,29 +1,40 @@
 import { provideHttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
-import prohibitedNames from '../../../assets/json/prohibited-names.json'
+import prohibitedNames from '../../../assets/json/prohibited-names.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
   imports: [],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+  styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
+  constructor(private router: Router) {}
+
   @Output() registered = new EventEmitter<void>();
 
   username = '';
   password = '';
   password2 = '';
 
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
+
   toPage2() {
-    (document.getElementById('parte1') as HTMLDivElement).style.display= 'none';
-    (document.getElementById('parte2') as HTMLDivElement).style.display= 'block';
+    (document.getElementById('parte1') as HTMLDivElement).style.display =
+      'none';
+    (document.getElementById('parte2') as HTMLDivElement).style.display =
+      'block';
   }
 
   toPage1() {
-    (document.getElementById('parte1') as HTMLDivElement).style.display= 'block';
-    (document.getElementById('parte2') as HTMLDivElement).style.display= 'none';
+    (document.getElementById('parte1') as HTMLDivElement).style.display =
+      'block';
+    (document.getElementById('parte2') as HTMLDivElement).style.display =
+      'none';
   }
 
   changeUsername(target: any) {
@@ -35,23 +46,58 @@ export class SignUpComponent {
   }
 
   changePassword2(target: any) {
-    if(this.password === target.value) {
+    if (this.password === target.value) {
       this.password2 = target.value;
     }
   }
 
-  submitRegister(){
-    if( (this.password2 === this.password) && this.password2!='' ){
+  isFormValid(): boolean {
+    const inputs = [
+      'name',
+      'lastname',
+      'email',
+      'password',
+      'password2',
+      'username',
+      'rt1',
+      'rt2',
+      'rt3',
+      'rt4',
+    ];
+
+    const selects = ['select1', 'select2', 'select3', 'select4'];
+
+    // Verifica que todos los inputs de texto no estén vacíos
+    const areInputsValid = inputs.every((id) => {
+      const inputElement = document.getElementById(id) as HTMLInputElement;
+      return inputElement && inputElement.value.trim() !== '';
+    });
+
+    // Verifica que todos los selects tengan un valor seleccionado
+    const areSelectsValid = selects.every((id) => {
+      const selectElement = document.getElementById(id) as HTMLSelectElement;
+      return selectElement && selectElement.value !== '';
+    });
+
+    console.log(areInputsValid);
+
+    return areInputsValid && areSelectsValid;
+  }
+
+  submitRegister() {
+    if (this.password2 === this.password && this.password2 != '') {
       if (!localStorage.getItem('users')) {
         const users = [{ user: this.username, password: this.password2 }];
         localStorage.setItem('users', JSON.stringify(users));
-      }else{
-        const users = localStorage.getItem('users')
-        if(users){
+      } else {
+        const users = localStorage.getItem('users');
+        console.log(users, ' wtf hermanoooo');
+        if (users) {
+          console.log('Formulario válido');
           const usersArray = JSON.parse(users);
           usersArray.push({ user: this.username, password: this.password2 });
           localStorage.setItem('users', JSON.stringify(usersArray));
-          this.registered.emit();
+          this.router.navigate(['sign-in']);
         }
       }
     }
@@ -130,7 +176,9 @@ export class SignUpComponent {
       }
     } else {
       if (validEmailIcon != null) {
-        if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(target.value)) {
+        if (
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(target.value)
+        ) {
           validEmailIcon.classList.add('valid');
           validEmailIcon.classList.remove('invalid');
           validEmailIcon.classList.remove('empty');
@@ -157,7 +205,12 @@ export class SignUpComponent {
         const hasNumber = /\d/.test(password);
         const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
         const hasCapitalLetter = /[A-Z]/.test(password);
-        if (password.length >= 8 && hasNumber && hasSpecialChar && hasCapitalLetter) {
+        if (
+          password.length >= 8 &&
+          hasNumber &&
+          hasSpecialChar &&
+          hasCapitalLetter
+        ) {
           validPassIcon.classList.add('valid');
           validPassIcon.classList.remove('invalid');
           validPassIcon.classList.remove('empty');
@@ -198,8 +251,9 @@ export class SignUpComponent {
     console.log(prohibitedNames);
     console.log(prohibitedNames.includes(target.value.toLowerCase()));
     const usernameValue = target.value.toLowerCase(); // Convierte a minúsculas para comparar
-    const isInvalid = prohibitedNames.some(word => usernameValue.includes(word));
-
+    const isInvalid = prohibitedNames.some((word) =>
+      usernameValue.includes(word)
+    );
 
     if (target.value === '') {
       if (validUsernameIcon != null) {

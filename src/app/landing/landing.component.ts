@@ -1,103 +1,45 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ChatBotViewComponent } from '../chatbot/chat-bot-view/chat-bot-view.component';
-import { MatchManagementViewComponent } from '../match-management/match-management-view/match-management-view.component';
-import { InfoUserComponent } from '../profile/info-user/info-user.component';
-import { SignInComponent } from '../profile/sign-in/sign-in.component';
-import { SignUpComponent } from '../profile/sign-up/sign-up.component';
-import { HeroInventoryComponent } from '../inventary/hero-inventory/hero-inventory.component';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [
-    ChatBotViewComponent,
-    MatchManagementViewComponent,
-    InfoUserComponent,
-    SignInComponent,
-    SignUpComponent,
-    HeroInventoryComponent,
-    CommonModule,
-  ],
+  imports: [ChatBotViewComponent, CommonModule, RouterOutlet],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css'],
 })
-export class LandingComponent {
+export class LandingComponent implements AfterViewInit {
   title = 'tnb-multiplayer-client';
-  showGameView = false;
-  showInfoUser = false;
-  showInventary = false;
-  showManagementMatch = false;
-  showHeader = false;
-  showSignIn = false;
-  showRegister = false;
-  showLanding = true;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private router: Router) {}
 
-  toggleGameView(show: boolean) {
-    this.showHeader = false;
-    this.showGameView = show;
-    this.cdr.detectChanges();
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
-  
+  ngAfterViewInit() {
+    const audioElement = document.getElementById(
+      'background-music'
+    ) as HTMLAudioElement;
+    audioElement.volume = 1;
 
-  showInfoUserComponent() {
-    this.hideViews();
-    this.showInfoUser = true;
-    this.cdr.detectChanges();
-  }
+    const playAudio = () => {
+      console.log('Mouse clicked, attempting to play audio.');
+      audioElement
+        .play()
+        .then(() => {
+          console.log('Audio is playing.');
+        })
+        .catch((error) => {
+          console.log(
+            'Autoplay prevention: User interaction is required to play the audio.'
+          );
+        });
+      window.removeEventListener('click', playAudio);
+    };
 
-  showInventaryComponent() {
-    this.hideViews();
-    this.showInventary = true;
-    this.cdr.detectChanges();
-  }
-
-  // showHeaderComponent() {
-  //   this.hideViews();
-  //   this.showHeader = true;
-  //   this.cdr.detectChanges();
-  // }
-
-  showManagementMatchComponent() {
-    this.hideViews();
-    this.showHeader = true;
-    this.showManagementMatch = true;
-    this.cdr.detectChanges();
-  }
-
-  showSignInComponent() {
-    this.hideViews();
-    this.showSignIn = true;
-    this.cdr.detectChanges();
-  }
-
-  showRegisterComponent() {
-    console.log('showRegisterComponent');
-    this.hideViews();
-    this.showRegister = true;
-    this.cdr.detectChanges();
-  }
-
-  showLandingComponent() {
-    this.hideViews();
-    this.showLanding = true;
-  }
-
-  showHeaderComponent() {
-    this.showHeader = true;
-    this.cdr.detectChanges();
-  }
-
-  hideViews() {
-    this.showGameView = false;
-    this.showInfoUser = false;
-    this.showInventary = false;
-    this.showManagementMatch = false;
-    this.showSignIn = false;
-    this.showRegister = false;
-    this.showLanding = false;
-    this.cdr.detectChanges();
+    window.addEventListener('click', playAudio);
   }
 }

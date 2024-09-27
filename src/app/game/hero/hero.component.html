@@ -1,16 +1,20 @@
-<div class="health-bar-main-container">
-  <div class="health-bar-container">
-    <div
-      class="health-bar"
-      [ngClass]="getHealthBarClass()"
-      [style.width.%]="getHealthPercentage()"
-    ></div>
+<div class="bar-main-container">
+  <div class="health-bar-main-container">
+    <div class="health-bar-container">
+      <div
+        class="health-bar"
+        [ngClass]="getHealthBarClass()"
+        [style.width.%]="getHealthPercentage()"
+      ></div>
+    </div>
   </div>
+  <span class="health-percentage"
+    >{{ getHealthPercentage() | number : "1.0-0" }}%</span
+  >
 </div>
 <div class="power-bar-container">
   <div class="power-bar" [style.width.%]="getPowerPercentage()"></div>
 </div>
-
 <div [ngClass]="{ 'mirror-image': ismirrored }" class="image-container">
   <!-- <div class="health-difference" [ngClass]="getHealthDifferenceClass()"> -->
   <div
@@ -42,7 +46,9 @@
 </div>
 <h1>
   {{
-    (hero.idUser === userService.getIdUser()
+    (hero.idUser.includes("_")
+      ? "IA (bot)"
+      : hero.idUser === userService.getIdUser()
       ? hero.idUser + "(you)"
       : hero.idUser) +
       (hero.idUser === userService.getOwnerIdUser() ? "(dueño de sala)" : "")

@@ -1,134 +1,200 @@
 <body class="registro1">
-    <div class="main">
-      <div class="cont1">
-        <button href="#inicio" class="boton3">← Atrás</button>
-        <h3 class="signup">Registro</h3>
-      </div>
-        <div class="content">
-            <div id="parte1" class="content2">
-                <div class="left">
-                    <h3 class="subtitle">Información Personal</h3>
-                    <div class="form">
-                        <div class="form1">
-                            <div class="cont">
-                                <label class="form_label" for="name" id="label_nombre">Nombres</label>
-                                <input id="name" type="text" class="input" (input)="validateName($event.target)">
-                                <span id="name-valid-icon" class="validity-icon empty"></span>
-                            </div>
-                            <div class="cont">
-                                <label class="form_label">Apellidos</label>
-                                <input id="lastname" type="text" class="input" (input)="validateLastname($event.target)">
-                                <span id="lastname-valid-icon" class="validity-icon empty"></span>
-                            </div>
-                            <div class="cont">
-                                <label class="form_label">Email</label>
-                                <input id="email" type="mail" class="input" (input)="validateEmail($event.target)">
-                                <span id="email-valid-icon" class="validity-icon empty"></span>
-                            </div>
-                        </div>
-                        <div class="form1">
-                            <div class="cont">
-                                <label class="form_label" for="" id="label_nombre">Contraseña</label>
-                                <input #CONTRA id="password" type="password" class="input" (change)="changePassword($event.target)" (input)="validatePassword($event.target)">
-                                <i class="toggle-password off" id="toggle-icon" (click)="toggleIcon(CONTRA)"></i>
-                                <span id="password-valid-icon" class="validity-icon empty"></span>
-                            </div>
-                            <div class="cont">
-                                <label class="form_label">Contraseña (Otra vez)</label>
-                                <input id="password2" type="password" class="input" (change)="changePassword2($event.target)" (input)="validatePasswordsMatch($event.target)">
-                                <span id="password2-valid-icon" class="validity-icon empty"></span>
-                            </div>
-                            <div class="cont">
-                                <label class="form_label">Yo soy... (Nombre de usuario)</label>
-                                <input id="username" class="input" (change)="changeUsername($event.target)" (input)="validateUsername($event.target)">
-                                <span id="username-valid-icon" class="validity-icon empty"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="right">
-                    <!-- <img id="profilepic" class="profilepic" src="/assets/sign-in-images/images/noprofilepic.png" /> -->
-                    <div class="options">
-                        <!-- <img id="profilepic1" class="profilepic_option" src="/assets/sign-in-images/images/pic1.png" />
+  <div class="main">
+    <div class="cont1">
+      <button (click)="navigateTo('sign-in')" class="boton3">← Atrás</button>
+      <h3 class="signup">Registro</h3>
+    </div>
+    <div class="content">
+      <div id="parte1" class="content2">
+        <div class="left">
+          <h3 class="subtitle">Información Personal</h3>
+          <div class="form">
+            <div class="form1">
+              <div class="cont">
+                <label class="form_label" for="name" id="label_nombre"
+                  >Nombres</label
+                >
+                <input
+                  id="name"
+                  type="text"
+                  class="input"
+                  (input)="validateName($event.target)"
+                />
+                <span id="name-valid-icon" class="validity-icon empty"></span>
+              </div>
+              <div class="cont">
+                <label class="form_label">Apellidos</label>
+                <input
+                  id="lastname"
+                  type="text"
+                  class="input"
+                  (input)="validateLastname($event.target)"
+                />
+                <span
+                  id="lastname-valid-icon"
+                  class="validity-icon empty"
+                ></span>
+              </div>
+              <div class="cont">
+                <label class="form_label">Email</label>
+                <input
+                  id="email"
+                  type="mail"
+                  class="input"
+                  (input)="validateEmail($event.target)"
+                />
+                <span id="email-valid-icon" class="validity-icon empty"></span>
+              </div>
+            </div>
+            <div class="form1">
+              <div class="cont">
+                <label class="form_label" for="" id="label_nombre"
+                  >Contraseña</label
+                >
+                <input
+                  #CONTRA
+                  id="password"
+                  type="password"
+                  class="input"
+                  (change)="changePassword($event.target)"
+                  (input)="validatePassword($event.target)"
+                />
+                <i
+                  class="toggle-password off"
+                  id="toggle-icon"
+                  (click)="toggleIcon(CONTRA)"
+                ></i>
+                <span
+                  id="password-valid-icon"
+                  class="validity-icon empty"
+                ></span>
+              </div>
+              <div class="cont">
+                <label class="form_label">Contraseña (Otra vez)</label>
+                <input
+                  id="password2"
+                  type="password"
+                  class="input"
+                  (change)="changePassword2($event.target)"
+                  (input)="validatePasswordsMatch($event.target)"
+                />
+                <span
+                  id="password2-valid-icon"
+                  class="validity-icon empty"
+                ></span>
+              </div>
+              <div class="cont">
+                <label class="form_label">Yo soy... (Nombre de usuario)</label>
+                <input
+                  id="username"
+                  class="input"
+                  (change)="changeUsername($event.target)"
+                  (input)="validateUsername($event.target)"
+                />
+                <span
+                  id="username-valid-icon"
+                  class="validity-icon empty"
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <!-- <img id="profilepic" class="profilepic" src="/assets/sign-in-images/images/noprofilepic.png" /> -->
+          <div class="options">
+            <!-- <img id="profilepic1" class="profilepic_option" src="/assets/sign-in-images/images/pic1.png" />
                         <img id="profilepic2" class="profilepic_option" src="/assets/sign-in-images/images/pic2.png" />
                         <img id="profilepic3" class="profilepic_option" src="/assets/sign-in-images/images/pic3.png" /> -->
-                    </div>
-                </div>
-            </div>
-            <div class="content2" id="parte2">
-                <div class="div-texto">
-                    <p class="little-info">Selecciona 4 preguntas de seguridad diferentes con sus respuestas. Esto te ayudará a recuperar tu cuenta.</p>
-                    <h3 class="subtitle2">Preguntas de seguridad</h3>
-                </div>
-                <div>
-                    <div class="form-2">
-                        <div class="form1-2">
-                            <div class="cont2">
-                                <label class="form_label2" for="select1">Pregunta 1</label>
-                                <select name="select1" id="select1" class="select">
-                                    <option value="">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
-                                    <option value="">¿Cuál es tu deporte favorito?</option>
-                                    <option value="">¿Cuál es el nombre de tu primer peluche?</option>
-                                </select>
-                            </div>
-                            <div class="cont2">
-                                <label class="form_label3">Respuesta 1</label>
-                                <input id="rt1" type="text" class="input2">
-                                <span id="rt1-valid-icon" class="validity-icon-2 empty"></span>
-                            </div>
-                            <div class="cont2">
-                                <label class="form_label2" for="select2">Pregunta 2</label>
-                                <select name="select2" id="select2" class="select">
-                                    <option value="">¿Cuál fue el primer examen que reprobaste?</option>
-                                    <option value="">¿Dónde tuviste tu primer beso?</option>
-                                    <option value="">¿De quién fue tu primer concierto?</option>
-                                </select>
-                            </div>
-                            <div class="cont2">
-                                <label class="form_label3">Respuesta 2</label>
-                                <input id="rt2" type="text" class="input2">
-                                <span id="rt2-valid-icon" class="validity-icon-2 empty"></span>
-                            </div>
-                        </div>
-                        <div class="form1-2">
-                            <div class="cont2">
-                                <label class="form_label2" for="select3">Pregunta 3</label>
-                                <select name="select3" id="select3" class="select">
-                                    <option value="">¿Cómo se llamaba tu primera mascota?</option>
-                                    <option value="">¿En qué mes te casaste?</option>
-                                    <option value="">¿Cuál es el apellido de tu vecino?</option>
-                                </select>
-                            </div>
-                            <div class="cont2">
-                                <label class="form_label3">Respuesta 3</label>
-                                <input id="rt3" type="text" class="input2">
-                                <span id="rt3-valid-icon" class="validity-icon-2 empty"></span>
-                            </div>
-                            <div class="cont2">
-                                <label class="form_label2" for="select4">Pregunta 4</label>
-                                <select name="select4" id="select4" class="select">
-                                    <option value="">¿En qué año tuvo su primer trabajo?</option>
-                                    <option value="">¿En qué año nació su madre?</option>
-                                    <option value="">¿En qué escuela cursó el sexto curso?</option>
-                                </select>
-                            </div>
-                            <div class="cont2">
-                                <label class="form_label3">Respuesta 4</label>
-                                <input id="rt4" type="text" class="input2">
-                                <span id="rt4-valid-icon" class="validity-icon-2 empty"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="div-boton">
-                    <button id="boton-registro" class="button" (click)="submitRegister()">A Jugar!</button>
-                </div>
-            </div>
-            <div class="pagination">
-                <a id="pagina1" class="pagenumber" (click)="toPage1()">1</a>
-                    <a id="pagina2" class="pagenumber2" (click)="toPage2()">2</a>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="content2" id="parte2">
+        <div class="div-texto">
+          <p class="little-info">
+            Selecciona 4 preguntas de seguridad diferentes con sus respuestas.
+            Esto te ayudará a recuperar tu cuenta.
+          </p>
+          <h3 class="subtitle2">Preguntas de seguridad</h3>
+        </div>
+        <div>
+          <div class="form-2">
+            <div class="form1-2">
+              <div class="cont2">
+                <label class="form_label2" for="select1">Pregunta 1</label>
+                <select name="select1" id="select1" class="select">
+                  <option value="">
+                    ¿Cuál es el nombre de tu mejor amigo de la infancia?
+                  </option>
+                  <option value="">¿Cuál es tu deporte favorito?</option>
+                  <option value="">
+                    ¿Cuál es el nombre de tu primer peluche?
+                  </option>
+                </select>
+              </div>
+              <div class="cont2">
+                <label class="form_label3">Respuesta 1</label>
+                <input id="rt1" type="text" class="input2" />
+                <span id="rt1-valid-icon" class="validity-icon-2 empty"></span>
+              </div>
+              <div class="cont2">
+                <label class="form_label2" for="select2">Pregunta 2</label>
+                <select name="select2" id="select2" class="select">
+                  <option value="">
+                    ¿Cuál fue el primer examen que reprobaste?
+                  </option>
+                  <option value="">¿Dónde tuviste tu primer beso?</option>
+                  <option value="">¿De quién fue tu primer concierto?</option>
+                </select>
+              </div>
+              <div class="cont2">
+                <label class="form_label3">Respuesta 2</label>
+                <input id="rt2" type="text" class="input2" />
+                <span id="rt2-valid-icon" class="validity-icon-2 empty"></span>
+              </div>
+            </div>
+            <div class="form1-2">
+              <div class="cont2">
+                <label class="form_label2" for="select3">Pregunta 3</label>
+                <select name="select3" id="select3" class="select">
+                  <option value="">¿Cómo se llamaba tu primera mascota?</option>
+                  <option value="">¿En qué mes te casaste?</option>
+                  <option value="">¿Cuál es el apellido de tu vecino?</option>
+                </select>
+              </div>
+              <div class="cont2">
+                <label class="form_label3">Respuesta 3</label>
+                <input id="rt3" type="text" class="input2" />
+                <span id="rt3-valid-icon" class="validity-icon-2 empty"></span>
+              </div>
+              <div class="cont2">
+                <label class="form_label2" for="select4">Pregunta 4</label>
+                <select name="select4" id="select4" class="select">
+                  <option value="">¿En qué año tuvo su primer trabajo?</option>
+                  <option value="">¿En qué año nació su madre?</option>
+                  <option value="">
+                    ¿En qué escuela cursó el sexto curso?
+                  </option>
+                </select>
+              </div>
+              <div class="cont2">
+                <label class="form_label3">Respuesta 4</label>
+                <input id="rt4" type="text" class="input2" />
+                <span id="rt4-valid-icon" class="validity-icon-2 empty"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="div-boton">
+          <button id="boton-registro" class="button" (click)="submitRegister()">
+            A Jugar!
+          </button>
+        </div>
+      </div>
+      <div class="pagination">
+        <a id="pagina1" class="pagenumber" (click)="toPage1()">1</a>
+        <a id="pagina2" class="pagenumber2" (click)="toPage2()">2</a>
+      </div>
     </div>
-    <script type="module" src="/src/view/registroView.js"></script>
+  </div>
+  <script type="module" src="/src/view/registroView.js"></script>
 </body>
