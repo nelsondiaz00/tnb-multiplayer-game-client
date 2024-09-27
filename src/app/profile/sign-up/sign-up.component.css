@@ -1,9 +1,10 @@
 :host {
   width: 100%;
-  height: 87%;
+  height: 100%;
+  display: block;
 }
 body {
-  min-height: 100vh;
+  min-height: 100%;
   overflow: hidden;
 }
 
@@ -15,7 +16,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: "inline-flex";
 }
 
 .cont1 {
@@ -65,14 +65,14 @@ body {
 
 .main {
   padding: 0% 10% 0% 10%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-self: center;
   justify-self: center;
-  height: 100vh;
+  height: 100%;
   gap: 20px;
-  display: flex;
 }
 
 .signup {
@@ -448,9 +448,4 @@ body {
 .boton3:hover {
   cursor: pointer;
   text-decoration: underline;
-}
-
-:host {
-  width: 100%;
-  height: 100%;
 }

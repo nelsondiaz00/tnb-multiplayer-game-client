@@ -14,7 +14,6 @@ export class SignUpComponent {
   constructor(private router: Router) {}
 
   @Output() registered = new EventEmitter<void>();
-
   username = '';
   password = '';
   password2 = '';
@@ -74,14 +73,14 @@ export class SignUpComponent {
     });
 
     // Verifica que todos los selects tengan un valor seleccionado
-    const areSelectsValid = selects.every((id) => {
-      const selectElement = document.getElementById(id) as HTMLSelectElement;
-      return selectElement && selectElement.value !== '';
-    });
+    // const areSelectsValid = selects.every((id) => {
+    //   const selectElement = document.getElementById(id) as HTMLSelectElement;
+    //   return selectElement && selectElement.value !== '';
+    // });
 
     console.log(areInputsValid);
 
-    return areInputsValid && areSelectsValid;
+    return areInputsValid;
   }
 
   submitRegister() {
@@ -91,8 +90,8 @@ export class SignUpComponent {
         localStorage.setItem('users', JSON.stringify(users));
       } else {
         const users = localStorage.getItem('users');
-        console.log(users, ' wtf hermanoooo');
-        if (users) {
+        console.log(users && this.isFormValid(), ' wtf hermanoooo ');
+        if (users && this.isFormValid()) {
           console.log('Formulario válido');
           const usersArray = JSON.parse(users);
           usersArray.push({ user: this.username, password: this.password2 });

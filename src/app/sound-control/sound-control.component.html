@@ -1,1 +1,4 @@
-<p>sound-control works!</p>
+<button (click)="toggleSound()" [ngClass]="{ active: isActive }">
+  {{ isActive ? "Sound On" : "Sound Off" }}
+</button>
+<audio #backgroundMusic loop></audio>

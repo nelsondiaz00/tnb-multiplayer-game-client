@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UserService } from '../../_services/user.service';
 import { teamSide } from '../../_models/types/team.type';
 import { WebSocketService } from '../../_services/websocket.service';
+import { SoundService } from '../../_services/sound.service';
 @Component({
   selector: 'app-hero',
   standalone: true,
@@ -27,7 +28,8 @@ export class HeroComponent implements OnChanges {
 
   constructor(
     public userService: UserService,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
+    private soundService: SoundService
   ) {}
 
   ngOnInit(): void {
@@ -129,9 +131,19 @@ export class HeroComponent implements OnChanges {
     }
     if (heroElement) {
       heroElement.classList.add('hero-move-back-animation');
+      this.playSound();
       setTimeout(() => {
         heroElement.classList.remove('hero-move-back-animation');
       }, 800);
+    }
+  }
+
+  private playSound(): void {
+    if (this.soundService.isSoundEnabled()) {
+      const audio = new Audio('assets/sounds/beaten-sound.mp3');
+      audio.play().catch((error) => {
+        console.error('Error playing sound:', error);
+      });
     }
   }
 
@@ -142,20 +154,19 @@ export class HeroComponent implements OnChanges {
 
     if (heroElement) {
       heroElement.classList.add('use-hability-animation');
-      heroElement.classList.add('shake'); // Agrega la clase de animación "shake"
+      heroElement.classList.add('shake');
       setTimeout(() => {
         heroElement.classList.remove('use-hability-animation');
-        heroElement.classList.remove('shake'); // Remueve la clase de animación "shake"
-      }, 1000); // Ajusta el tiempo según la duración de la animación
+        heroElement.classList.remove('shake');
+      }, 1000);
     }
   }
 
   activateHability(): void {
-    // console.log(this.userService.getIdUser(), ' usuario que ');
     this.isShaking = true;
     setTimeout(() => {
       this.isShaking = false;
-    }, 500); // Duración de la animación de "shake"
+    }, 500);
   }
 
   getHealthPercentage(): number {
