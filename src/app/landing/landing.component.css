@@ -31,7 +31,7 @@ header {
 
 h1 {
   margin: 0;
-  font-size: clamp(0.15rem, 1.5vw, 1.5rem);
+  font-size: clamp(0.2rem, 2vw, 2rem);
   color: #fcf5ff;
   text-shadow: -2px -2px 0 #4518a6, 2px -2px 0 #4518a6, -2px 2px 0 #4518a6,
     2px 2px 0 #4518a6;
@@ -93,12 +93,12 @@ nav a:hover {
 
 button {
   font-family: inherit;
+  font-size: clamp(0.1rem, 1vw, 1rem);
   background-color: #e856c3;
   border: 0.3rem black solid;
   padding: 1% 2% 1% 2%;
   width: fit-content;
   box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.25);
-  font-size: 18px;
   color: white;
 }
 
@@ -119,7 +119,7 @@ button:hover {
 }
 
 .hero {
-  height: 150px;
+  width: 10vw;
 }
 
 .heroes {

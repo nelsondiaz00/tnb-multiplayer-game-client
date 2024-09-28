@@ -23,17 +23,38 @@ export class SignUpComponent {
   }
 
   toPage2() {
-    (document.getElementById('parte1') as HTMLDivElement).style.display =
-      'none';
-    (document.getElementById('parte2') as HTMLDivElement).style.display =
-      'block';
+    const validity = this.checkAll();
+    console.log(validity);
+
+    if(validity){
+      const p1 = document.getElementById('pagina1') as HTMLDivElement;
+      p1?.classList.add('pagenumber2');
+      p1?.classList.remove('pagenumber');
+      const p2 = document.getElementById('pagina2') as HTMLDivElement;
+      p2?.classList.add('pagenumber');
+      p2?.classList.remove('pagenumber2');
+
+      const page1 = document.getElementById('parte1') as HTMLDivElement;
+      const page2 = document.getElementById('parte2') as HTMLDivElement;
+      page1.classList.add('oculto');
+      page2.classList.remove('oculto');
+    }else{
+      alert('Completa todos los campos para continuar!')
+    }
   }
 
   toPage1() {
-    (document.getElementById('parte1') as HTMLDivElement).style.display =
-      'block';
-    (document.getElementById('parte2') as HTMLDivElement).style.display =
-      'none';
+    const p1 = document.getElementById('pagina1') as HTMLDivElement;
+    p1?.classList.add('pagenumber');
+    p1?.classList.remove('pagenumber2');
+    const p2 = document.getElementById('pagina2') as HTMLDivElement;
+    p2?.classList.add('pagenumber2');
+    p2?.classList.remove('pagenumber');
+
+    const page1 = document.getElementById('parte1') as HTMLDivElement;
+    const page2 = document.getElementById('parte2') as HTMLDivElement;
+    page1.classList.remove('oculto');
+    page2.classList.add('oculto');
   }
 
   changeUsername(target: any) {
@@ -247,8 +268,6 @@ export class SignUpComponent {
 
   validateUsername(target: any) {
     const validUsernameIcon = document.getElementById('username-valid-icon');
-    console.log(prohibitedNames);
-    console.log(prohibitedNames.includes(target.value.toLowerCase()));
     const usernameValue = target.value.toLowerCase(); // Convierte a minúsculas para comparar
     const isInvalid = prohibitedNames.some((word) =>
       usernameValue.includes(word)
@@ -280,4 +299,17 @@ export class SignUpComponent {
       }
     }
   }
+
+  setImage(target: any){
+    const src = target.src;
+    const pp = document.getElementById('pp') as HTMLImageElement;
+    pp.src = src;
+  }
+
+  checkAll(){
+      const parte1 = document.getElementById('parte1');
+      const validIcons = parte1?.querySelectorAll('.valid');
+      console.log(validIcons);
+      return validIcons?.length === 6
+}
 }
