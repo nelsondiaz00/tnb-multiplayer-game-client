@@ -1,0 +1,205 @@
+{
+  "player": {
+    "playerId": "player123",
+    "name": "John Doe",
+    "level": 10,
+    "inventory": {
+      "id": "inventario1",
+      "armors": [
+        {
+          "id": "armor123",
+          "name": "Dragon Armor",
+          "status": "active",
+          "effectList": [
+            {
+              "value": "50",
+              "maxValue": 100,
+              "attribute": "defense",
+              "type": 1,
+              "turns": 5,
+              "operator": "+",
+              "heroType": "warrior",
+              "heroSubtype": "dragonKnight"
+            }
+          ],
+          "drop": 10,
+          "type": "armor",
+          "heroType": "GUERRERO",
+          "subheroType": "ARMAS",
+          "cost": 200,
+          "heroLevel": 15,
+          "powerCost": 50,
+          "coolDownTurns": 3,
+          "conditions": [
+            {
+              "name": "OnFire",
+              "description": "Armor effectiveness is reduced when the hero is on fire."
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "id": "item123",
+          "name": "Dragon Item",
+          "status": "active",
+          "effectList": [
+            {
+              "value": "50",
+              "maxValue": 100,
+              "attribute": "defense",
+              "type": 1,
+              "turns": 5,
+              "operator": "+",
+              "heroType": "warrior",
+              "heroSubtype": "dragonKnight"
+            }
+          ],
+          "drop": 10,
+          "type": "armor",
+          "heroType": "MAGO",
+          "subheroType": "FUEGO",
+          "cost": 200,
+          "heroLevel": 15,
+          "powerCost": 50,
+          "coolDownTurns": 3,
+          "conditions": [
+            {
+              "name": "OnFire",
+              "description": "Armor effectiveness is reduced when the hero is on fire."
+            }
+          ]
+        }
+      ],
+      "weapons": [
+        {
+          "id": "weapon123",
+          "name": "Dragon Weapon",
+          "status": "active",
+          "effectList": [
+            {
+              "value": "50",
+              "maxValue": 100,
+              "attribute": "defense",
+              "type": 1,
+              "turns": 5,
+              "operator": "+",
+              "heroType": "warrior",
+              "heroSubtype": "dragonKnight"
+            }
+          ],
+          "drop": 10,
+          "type": "armor",
+          "heroType": "GUERRERO",
+          "subheroType": "TANQUE",
+          "cost": 200,
+          "heroLevel": 15,
+          "powerCost": 50,
+          "coolDownTurns": 3,
+          "conditions": [
+            {
+              "name": "OnFire",
+              "description": "Armor effectiveness is reduced when the hero is on fire."
+            }
+          ]
+        }
+      ],
+      "size": 0
+    },
+    "_domainEvents": [],
+    "heroList": [
+      {
+        "_id": "66f36b9092ad01cea85430d5",
+        "props": {
+          "groupId": "GUERRERO",
+          "subgroupId": "TANQUE",
+          "level": 1,
+          "blood": 44,
+          "mana": 10,
+          "defense": 11,
+          "attack": {
+            "props": {
+              "value": 10,
+              "minValue": 1,
+              "maxValue": 6
+            }
+          },
+          "damage": {
+            "props": {
+              "value": 0,
+              "minValue": 1,
+              "maxValue": 4
+            }
+          },
+          "skills": [],
+          "baseStats": {
+            "props": {
+              "damageProbability": 40,
+              "criticalProbability": 0,
+              "evadeHitProbability": 5,
+              "resistProbability": 0,
+              "escapeProbability": 5
+            }
+          },
+          "inventory": {
+            "_id": "",
+            "props": {
+              "armors": [],
+              "items": [],
+              "weapons": [],
+              "size": 0
+            },
+            "_domainEvents": []
+          }
+        },
+        "_domainEvents": []
+      },
+      {
+        "_id": "66f36b9092ad01cea85430d5",
+        "props": {
+          "groupId": "PICARO",
+          "subgroupId": "MACHETE",
+          "level": 1,
+          "blood": 36,
+          "mana": 8,
+          "defense": 8,
+          "attack": {
+            "props": {
+              "value": 10,
+              "minValue": 1,
+              "maxValue": 10
+            }
+          },
+          "damage": {
+            "props": {
+              "value": 0,
+              "minValue": 1,
+              "maxValue": 8
+            }
+          },
+          "skills": [],
+          "baseStats": {
+            "props": {
+              "damageProbability": 40,
+              "criticalProbability": 0,
+              "evadeHitProbability": 5,
+              "resistProbability": 0,
+              "escapeProbability": 5
+            }
+          },
+          "inventory": {
+            "_id": "",
+            "props": {
+              "armors": [],
+              "items": [],
+              "weapons": [],
+              "size": 0
+            },
+            "_domainEvents": []
+          }
+        },
+        "_domainEvents": []
+      }
+    ]
+  }
+}

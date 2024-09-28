@@ -8,7 +8,7 @@ import { IProduct } from '../../_models/interfaces/product.interfaces';
   providedIn: 'root',
 })
 export class HabilityService {
-  private jsonUrl = 'assets/input-weapon.json';
+  private jsonUrl = 'assets/json/input-weapon.json';
 
   constructor(private http: HttpClient) {}
 

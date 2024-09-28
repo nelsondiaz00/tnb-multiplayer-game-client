@@ -4,8 +4,9 @@ import { MatchManagementViewComponent } from './match-management/match-managemen
 import { InfoUserComponent } from './profile/info-user/info-user.component';
 import { SignInComponent } from './profile/sign-in/sign-in.component';
 import { SignUpComponent } from './profile/sign-up/sign-up.component';
-import { HeroInventoryComponent } from './inventary/hero-inventory/hero-inventory.component';
+import { HeroInventoryComponent } from './inventary/client-inventory/hero-inventory/hero-inventory.component';
 import { LandingComponent } from './landing/landing.component';
+import { ClientInventoryViewComponent } from './inventary/client-inventory/client-inventory-view/client-inventory-view.component';
 
 export const routes: Routes = [
   { path: 'match-management-view', component: MatchManagementViewComponent },
@@ -13,7 +14,7 @@ export const routes: Routes = [
   { path: 'profile', component: InfoUserComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'hero-inventory', component: HeroInventoryComponent },
+  { path: 'hero-inventory', component: ClientInventoryViewComponent },
   { path: 'landing', component: LandingComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];

@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Press Start 2P", "Cascadia Code", monospace;
+}
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.outer-container {
+  width: 100%;
+  height: 100%;
+  background-color: #f0acdf;
+  padding: 1px;
+  box-shadow: inset 6px 6px 0px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.inner-container {
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 0px 20px;
+}
+
+.top-buttons button {
+  background-color: #e856c3;
+  border: 3.5px solid #0a0614;
+  font-size: 12px;
+  padding: 10px;
+  width: 18%;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+.top-buttons button:hover {
+  background-color: #ffffff;
+  color: #e856c3;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 0 0;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.pagination a {
+  margin: 0 3px; /* Reduce el margen entre los botones */
+  padding: 5px;
+  border: 3px solid #0a0614;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  display: inline-flex; /* Asegura que las flechas también sean botones */
+  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  font-size: 10px;
+  background-color: #e856c3;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pagination a:hover {
+  background-color: #ffffff;
+  color: #e856c3;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 1921px) and (min-width: 1700px) {
+  .inner-container {
+    width: 100%; /* Ancho fijo del contenido */
+  }
+
+  .grid {
+    gap: 10px; /* Ajusta el espacio entre columnas y filas */
+  }
+
+  .top-buttons button {
+    width: 22%; /* Ajusta el ancho de los botones */
+  }
+
+  .pagination a {
+    margin: 0 5px; /* Ajusta el margen entre los botones */
+  }
+}
+
+/* Estilos para resoluciones menores a 1366x768 */
+@media (max-width: 1366px) {
+  .inner-container {
+    width: 100%; /* Ancho fijo del contenido */
+  }
+
+  .grid {
+    gap: 8px; /* Ajusta el espacio entre columnas y filas */
+  }
+
+  .top-buttons button {
+    width: 25%; /* Ajusta el ancho de los botones */
+  }
+
+  .pagination a {
+    margin: 0 8px; /* Ajusta el margen entre los botones */
+  }
+}

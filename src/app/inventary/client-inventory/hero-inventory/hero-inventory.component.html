@@ -1,0 +1,19 @@
+<div class="outer-container">
+  <div class="inner-container">
+    <div class="top-buttons">
+      <button (click)="setFilter('all')">TODOS</button>
+      <button (click)="setFilter('items')">Items</button>
+      <button (click)="setFilter('armors')">Armaduras</button>
+      <button (click)="setFilter('weapons')">Armas</button>
+      <button (click)="setFilter('hability')">Habilidades</button>
+    </div>
+    <app-product-list [filter]="filter"></app-product-list>
+    <div class="pagination">
+      <a>1</a>
+      <a>2</a>
+      <a>3</a>
+      <a>&rsaquo;</a>
+      <a>&raquo;</a>
+    </div>
+  </div>
+</div>
