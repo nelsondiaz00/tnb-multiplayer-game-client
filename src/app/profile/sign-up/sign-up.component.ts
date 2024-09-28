@@ -23,10 +23,7 @@ export class SignUpComponent {
   }
 
   toPage2() {
-    const validity = this.checkAll();
-    console.log(validity);
-
-    if(validity){
+    if(this.checkAll()){
       const p1 = document.getElementById('pagina1') as HTMLDivElement;
       p1?.classList.add('pagenumber2');
       p1?.classList.remove('pagenumber');
@@ -105,21 +102,25 @@ export class SignUpComponent {
   }
 
   submitRegister() {
-    if (this.password2 === this.password && this.password2 != '') {
-      if (!localStorage.getItem('users')) {
-        const users = [{ user: this.username, password: this.password2 }];
-        localStorage.setItem('users', JSON.stringify(users));
-      } else {
-        const users = localStorage.getItem('users');
-        console.log(users && this.isFormValid(), ' wtf hermanoooo ');
-        if (users && this.isFormValid()) {
-          console.log('Formulario válido');
-          const usersArray = JSON.parse(users);
-          usersArray.push({ user: this.username, password: this.password2 });
-          localStorage.setItem('users', JSON.stringify(usersArray));
-          this.router.navigate(['sign-in']);
+    if (this.checkAll2()) {
+      if (this.password2 === this.password && this.password2 != '') {
+        if (!localStorage.getItem('users')) {
+          const users = [{ user: this.username, password: this.password2 }];
+          localStorage.setItem('users', JSON.stringify(users));
+        } else {
+          const users = localStorage.getItem('users');
+          console.log(users && this.isFormValid(), ' wtf hermanoooo ');
+          if (users && this.isFormValid()) {
+            console.log('Formulario válido');
+            const usersArray = JSON.parse(users);
+            usersArray.push({ user: this.username, password: this.password2 });
+            localStorage.setItem('users', JSON.stringify(usersArray));
+            this.router.navigate(['sign-in']);
+          }
         }
       }
+    }else{
+      alert('Completa todos los campos para continuar!')
     }
   }
 
@@ -309,7 +310,82 @@ export class SignUpComponent {
   checkAll(){
       const parte1 = document.getElementById('parte1');
       const validIcons = parte1?.querySelectorAll('.valid');
-      console.log(validIcons);
       return validIcons?.length === 6
-}
+  }
+
+  checkAll2(){
+    const parte2 = document.getElementById('parte2');
+    const validIcons = parte2?.querySelectorAll('.valid');
+    return validIcons?.length === 4
+  }
+
+  validater1(target: any) {
+    const validUserIcon = document.getElementById('rt1-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+  validater2(target: any) {
+    const validUserIcon = document.getElementById('rt2-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+  validater3(target: any) {
+    const validUserIcon = document.getElementById('rt3-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+  validater4(target: any) {
+    const validUserIcon = document.getElementById('rt4-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+
 }
