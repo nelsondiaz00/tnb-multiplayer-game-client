@@ -100,15 +100,15 @@
           </div>
         </div>
         <div class="right">
-          <!-- <img id="profilepic" class="profilepic" src="/assets/sign-in-images/images/noprofilepic.png" /> -->
+          <img id="pp" class="profilepic" src="/assets/sign-in-images/images/noprofilepic.png" />
           <div class="options">
-            <!-- <img id="profilepic1" class="profilepic_option" src="/assets/sign-in-images/images/pic1.png" />
-                        <img id="profilepic2" class="profilepic_option" src="/assets/sign-in-images/images/pic2.png" />
-                        <img id="profilepic3" class="profilepic_option" src="/assets/sign-in-images/images/pic3.png" /> -->
+            <img id="profilepic1" class="profilepic_option" src="/assets/sign-in-images/images/pic1.png" (click)="setImage($event.target)"/>
+            <img id="profilepic2" class="profilepic_option" src="/assets/sign-in-images/images/pic2.png" (click)="setImage($event.target)"/>
+            <img id="profilepic3" class="profilepic_option" src="/assets/sign-in-images/images/pic3.png" (click)="setImage($event.target)"/>
           </div>
         </div>
       </div>
-      <div class="content2" id="parte2">
+      <div class="content3 oculto" id="parte2">
         <div class="div-texto">
           <p class="little-info">
             Selecciona 4 preguntas de seguridad diferentes con sus respuestas.

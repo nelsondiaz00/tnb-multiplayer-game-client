@@ -1,70 +1,26 @@
 :host {
   width: 100%;
   height: 100%;
-  background-image: url("/assets/game-images/background/fondo-registro.jpg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   background-position: center;
 }
 
 .main {
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 0 10% 0 10%;
-}
-
-.nav {
-  align-self: stretch;
-  height: 105px;
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  background: rgba(255, 255, 255, 0.6);
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-.title {
-  text-align: right;
-  color: white;
-  font-size: 48px;
-  font-weight: 400;
-  word-wrap: break-word;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 20px;
-  display: flex;
-}
-
-li {
-  text-align: center;
-  color: #2f1575;
-  font-size: 15px;
-  font-weight: 400;
-  word-wrap: break-word;
+  padding: 3% 10% 10% 10%;
+  background-image: url("/assets/game-images/background/fondo-registro.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .cont {
-  align-self: stretch;
-  flex: 1 1 0;
-  /* padding-top: 60px;
-  padding-bottom: 100px;
-  padding-left: 110px;
-  padding-right: 110px; */
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -78,37 +34,55 @@ li {
   flex: 1 1 0;
   padding: 20px;
   background-color: white;
+  height: fit-content;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 40px;
   display: inline-flex;
+
 }
 
 .contImg {
-  width: 430px;
   align-self: stretch;
-  padding: 10px;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
   display: flex;
+  height: fit-content;
+}
+
+.contInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
 }
 
 .profilepic {
-  width: 410px;
-  height: 410px;
+  width: 350px;
+  height: 350px;
   border: 7px #4335af solid;
+}
+
+.ppOptions{
+  width: 100%;
+  align-self: stretch;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  display: flex;
+  padding: 2% 0%;
 }
 
 .username {
   align-self: stretch;
-  height: 55px;
   text-align: right;
-  color: #4518a6;
-  font-size: 48px;
+  color: #ffffff;
+  font-size: 28px;
   font-weight: 400;
   word-wrap: break-word;
-  text-shadow: rgb(255, 255, 255) 2px 2px 0px;
+  text-shadow: #4518a6 2px 2px 0px;
 }
 
 button {
@@ -117,7 +91,7 @@ button {
   padding: 2% 10% 2% 10%;
   background: #e856c3;
   border: 0px solid;
-  box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -125,19 +99,20 @@ button {
   display: flex;
   color: white;
   font-family: inherit;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 button:hover {
   background: #fa9fe3;
-  box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .text {
   align-self: stretch;
   color: #2c6f7f;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   word-wrap: break-word;
 }
@@ -147,11 +122,44 @@ button:hover {
   text-align: center;
   color: #ff5e68;
   padding: 10px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
   word-wrap: break-word;
+  cursor: pointer;
 }
 
 .recuperar:hover {
   text-decoration: underline;
+}
+
+img{
+  width: 119px;
+  height: 119px;
+}
+
+.form {
+  align-self: stretch;
+  padding: 5px;
+  font-family: inherit;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  width: 95%;
+}
+
+.parte2{
+  gap: 10px;
+}
+
+.oculto{
+  display: none;
+}
+
+.visible{
+  display: block;
+}
+
+#guardarInfo{
+  margin-top: 5%;
 }

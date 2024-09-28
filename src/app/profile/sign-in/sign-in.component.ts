@@ -21,6 +21,10 @@ export class SignInComponent {
   username = '';
   password = '';
 
+  emitLanding(){
+    this.navigateTo('landing');
+  }
+
   emitRegistro() {
     this.navigateTo('sign-up');
   }
@@ -96,15 +100,9 @@ export class SignInComponent {
       }
     } else {
       if (validUserIcon != null) {
-        if (/^[a-zA-Z]+$/.test(target.value)) {
-          validUserIcon.classList.add('valid');
-          validUserIcon.classList.remove('invalid');
-          validUserIcon.classList.remove('empty');
-        } else {
-          validUserIcon.classList.add('invalid');
-          validUserIcon.classList.remove('valid');
-          validUserIcon.classList.remove('empty');
-        }
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
       }
     }
   }
@@ -119,24 +117,9 @@ export class SignInComponent {
       }
     } else {
       if (validPassIcon != null) {
-        const password = target.value;
-        const hasNumber = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        const hasCapitalLetter = /[A-Z]/.test(password);
-        if (
-          password.length >= 8 &&
-          hasNumber &&
-          hasSpecialChar &&
-          hasCapitalLetter
-        ) {
-          validPassIcon.classList.add('valid');
-          validPassIcon.classList.remove('invalid');
-          validPassIcon.classList.remove('empty');
-        } else {
-          validPassIcon.classList.add('invalid');
-          validPassIcon.classList.remove('valid');
-          validPassIcon.classList.remove('empty');
-        }
+        validPassIcon.classList.add('valid');
+        validPassIcon.classList.remove('empty');
+        validPassIcon.classList.remove('invalid');
       }
     }
   }

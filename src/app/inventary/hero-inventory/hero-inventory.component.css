@@ -2,23 +2,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Press Start 2P", 'Cascadia Code', monospace;
 }
 :host {
   background-image: url("/assets/game-images/inventary-icons/Fondo.jpg");
   background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
   background-position: center; /* Centra la imagen en el fondo */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
-  font-family: Arial, sans-serif;
-  background-color: #cccccc00;
+  padding: 0px;
   margin: 0; /* Elimina el margen del body */
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
   box-sizing: border-box;
   width: 100%; /* Asegura que el body ocupe todo el ancho */
-  height: 100%; /* Asegura que el body ocupe toda la altura de la ventana */
+  height: 90%; /* Asegura que el body ocupe toda la altura de la ventana */
 }
-/* 
+/*
 body {
 
 } */
@@ -26,31 +26,28 @@ body {
 .container {
   display: flex;
   gap: 20px;
-  border-radius: 10px;
-  width: 80%; /* Ajusta el ancho según sea necesario */
+  height: fit-content;
   padding: 20px; /* Ajusta el padding si es necesario */
-  margin: 0; /* Elimina el margen */
   box-sizing: border-box;
-  border: 2px solid #000;
-  background-color: #c4bec865; /* Fondo blanco con transparencia */
+  background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia */
 }
 
 .card {
-  width: 24%; /* Ajusta el ancho de la tarjeta */
-  padding: 20px;
-  border-radius: 10px;
+  width: 25%; /* Ajusta el ancho de la tarjeta */
+  border: #000 4px solid;
+  padding: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   position: relative; /* Necesario para posicionar los círculos */
-  background-color: #0a0614a4; /*  0a0614a2  12070654  Elimina el fondo */
-  margin: 15px;
+  background-color: #ffffffdc; /*  0a0614a2  12070654  Elimina el fondo */
+
 }
 
 .image-container {
   background-image: url("/assets/game-images/heroes/weapon.warrior.png"); /* Ruta relativa a la misma carpeta */
-  background-size: 100% 100%; /* Estira la imagen para que llene el contenedor, puede deformarse */
+  background-size: 21vh; /* Estira la imagen para que llene el contenedor, puede deformarse */
   background-position: center; /* Centra la imagen dentro del contenedor */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
   width: 40%;
@@ -78,11 +75,11 @@ body {
   width: 40px; /* Ajusta el ancho de los contenedores de círculos */
 }
 .circles-left {
-  left: -40px; /* Ajusta la distancia desde la imagen */
+  left: -55px; /* Ajusta la distancia desde la imagen */
 }
 
 .circles-right {
-  right: -30px; /* Ajusta la distancia desde la imagen */
+  right: -45px; /* Ajusta la distancia desde la imagen */
 }
 
 .image-container img {
@@ -92,24 +89,24 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
 }
 
 .circles-container {
   display: flex;
   justify-content: space-between; /* Espacio entre los círculos */
-  width: 100%;
+  width: 105%;
   position: absolute;
   bottom: 0; /* Ubica los círculos en la parte inferior del contenedor de la imagen */
   padding: 0 5px; /* Espacio interno adicional para los bordes del contenedor */
   box-sizing: border-box;
+  background-color: cyan;
 }
 
 .circle {
   width: 40px; /* Tamaño del círculo */
   height: 40px;
-  background-color: #a03939fa;
-  border-radius: 50%;
+  background-color: #9B7CDF;
+  box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.25);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -149,6 +146,7 @@ body {
   justify-content: center; /* Centra los círculos en la fila */
   margin-top: -15px;
   margin-bottom: 10px; /* Espacio debajo de la fila de círculos */
+  gap: 5px;
 }
 .circle span {
   position: absolute;
@@ -166,13 +164,13 @@ body {
 
 .character-info h2 {
   font-size: 20px;
-  color: #9d2faa;
+  color: #E856C3;
   margin: 10px 0 5px; /* Menor margen superior e inferior */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 .character-info p {
-  font-size: 16px;
+  font-size: 12px;
   color: #6c3494;
   margin: 0;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
@@ -200,10 +198,9 @@ body {
 }
 
 .outer-container {
-  background-color: #bbbbbb00;
-  border-radius: 0px;
+  background-color: #F0ACDF;
   padding: 1px;
-  box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 6px 6px 0px rgba(0, 0, 0, 0.25);
   width: 75%; /* Ajusta el ancho del contenedor */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
@@ -211,8 +208,6 @@ body {
 
 .inner-container {
   width: 100%; /* Ocupa el 100% del ancho del contenedor */
-  background-color: #ffffff00;
-  border-radius: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -223,25 +218,24 @@ body {
 .top-buttons {
   display: flex;
   justify-content: space-between;
-  background-color: transparent; /* Elimina el fondo */
-  padding: 10px;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  padding: 20px 20px 0px 20px;
 }
 
 .top-buttons button {
-  background-color: #0a061477;
-  border: 1px solid #0a0614;
-  border-radius: 5px;
+  background-color: #e856c3;
+  border: 3.5px solid #0a0614;
+  font-size: 12px;
   padding: 10px;
   width: 18%;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  color: #fff;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
 }
 
 .top-buttons button:hover {
-  background-color: #5d0572;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  background-color: #ffffff;
+  color: #e856c3;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* Estilos para el grid */
@@ -249,16 +243,17 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px; /* Espacio entre columnas y filas */
-  padding: 20px;
+  padding: 20px 20px 5px 20px;
   background-color: #f0acdf00; /* Color de fondo del grid */
   flex-grow: 1; /* Ocupa el espacio restante */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 .grid-item {
-  background-color: #0a0614a4;
-  border-radius: 5px;
-  border: 1px solid #000000;
+  background-color: #ffffff;
+  box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+  font-size: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -268,11 +263,19 @@ body {
   width: 100%; /* Asegura que el item ocupe el ancho del contenedor */
   padding-top: 144.93%; /* Proporción del alto al 69% del ancho para mantener la relación de aspecto */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  cursor: pointer;
 }
 
 .grid-item:hover {
   background-color: #5d0572;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.grid-item:hover .grid-item-info p {
+  color: #fff; /* Change the color of grid-item-info when grid-item is hovered */
+}
+
+.grid-item:hover .grid-item-info h3 {
+  color: #fff; /* Change the color of grid-item-info when grid-item is hovered */
 }
 
 .grid-item-image {
@@ -282,7 +285,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
@@ -303,15 +305,15 @@ body {
 }
 
 .grid-item-info h3 {
-  font-size: 16px;
+  font-size: 12px;
   color: #9d2faa;
-  margin: 5px 0 3px; /* Margen entre el título y el subtítulo */
+  padding-bottom: 5px;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 .grid-item-info p {
-  font-size: 14px;
-  color: #6c3494;
+  font-size: 8px;
+  color: #000000;
   margin: 0;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
@@ -345,30 +347,30 @@ body {
 .pagination {
   display: flex;
   justify-content: center;
-  padding: 10px 0;
-  background-color: transparent; /* Elimina el fondo */
-  border-top: 1px solid #0a0614;
+  padding: 10px 0 0 0;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 .pagination a {
   margin: 0 3px; /* Reduce el margen entre los botones */
-  padding: 10px 15px;
-  border: 1px solid #0a0614;
-  border-radius: 5px;
+  padding: 5px;
+  border: 3px solid #0a0614;
   cursor: pointer;
   text-decoration: none;
-  color: #000;
-  background-color: #0a061477;
+  color: #ffffff;
   display: inline-flex; /* Asegura que las flechas también sean botones */
   align-items: center; /* Centra el contenido verticalmente */
   justify-content: center; /* Centra el contenido horizontalmente */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  font-size: 10px;
+  background-color: #e856c3;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .pagination a:hover {
-  background-color: #5d0572;
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  background-color: #ffffff;
+  color: #e856c3;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* Lista oculta */
