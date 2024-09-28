@@ -1,0 +1,37 @@
+<div class="grid">
+  <!-- 12 ítems en la cuadrícula -->
+  <ng-container *ngIf="isArmors">
+    <button *ngFor="let armor of armors" class="grid-item">
+      <div class="grid-item-image">
+        <img src="assets/game-images/spells/agonia.png" alt="Item 1" />
+      </div>
+      <div class="grid-item-info">
+        <h3>{{ armor.name }}</h3>
+        <p>{{ armor.heroType }}</p>
+      </div>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="isItems">
+    <button *ngFor="let item of items" class="grid-item">
+      <div class="grid-item-image">
+        <img src="assets/game-images/spells/agonia.png" alt="Item 1" />
+      </div>
+      <div class="grid-item-info">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.heroType }}</p>
+      </div>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="isWeapons">
+    <button *ngFor="let weapon of weapons" class="grid-item">
+      <div class="grid-item-image">
+        <img src="assets/game-images/spells/agonia.png" alt="Item 1" />
+      </div>
+      <div class="grid-item-info">
+        <h3>{{ weapon.name }}</h3>
+        <p>{{ weapon.heroType }}</p>
+      </div>
+    </button>
+  </ng-container>
+</div>
