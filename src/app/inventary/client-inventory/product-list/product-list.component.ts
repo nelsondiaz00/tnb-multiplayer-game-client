@@ -6,6 +6,7 @@ import { AbstractWeapon } from '../../../_models/domain-inventory/element/weapon
 import { AbstractPlayer } from '../../../_models/domain-inventory/player/AbstractPlayer';
 import { CommonModule } from '@angular/common';
 import { AbstractSkill } from '../../../_models/domain-inventory/skill/AbstractSkill';
+import axios from 'axios';
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -48,11 +49,36 @@ export class ProductListComponent {
     }
   }
 
-  ngOnInit(): void {
-    this.inventoryService.player$.subscribe((player) => {
+  async ngOnInit(): Promise<void> {
+    this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
+        for ( let i = 0; i < player.inventory.items.length; i++ ) {
+          let item: AbstractItem = player.inventory.items[i];
+
+          item = ((await axios.get(`http://localhost:1803/item/${item._id}`)).data as {data: AbstractItem}).data;
+
+          player.inventory.items[i] = item
+        }
         this.items = player.inventory.items;
+
+        for ( let i = 0; i < player.inventory.armors.length; i++ ) {
+          let armor: AbstractArmor = player.inventory.armors[i];
+
+          armor = ((await axios.get(`http://localhost:1803/armor/${armor._id}`)).data as {data: AbstractArmor}).data;
+
+          player.inventory.armors[i] = armor
+        }
         this.armors = player.inventory.armors;
+
+        for ( let i = 0; i < player.inventory.weapons.length; i++ ) {
+          let weapon: AbstractWeapon = player.inventory.weapons[i];
+
+          console.log(weapon._id);
+          
+          weapon = ((await axios.get(`http://localhost:1803/weapon/${weapon._id}`)).data as {data: AbstractWeapon}).data;
+
+          player.inventory.weapons[i] = weapon
+        }
         this.weapons = player.inventory.weapons;
       }
     });
