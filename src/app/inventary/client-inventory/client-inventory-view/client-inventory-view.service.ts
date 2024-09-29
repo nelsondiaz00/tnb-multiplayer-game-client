@@ -19,7 +19,7 @@ export class ClientInventoryService {
   constructor(private http: HttpClient) {}
 
   setPlayer(): void {
-    this.getPlayerFromJson().subscribe((player) => {
+    this.getPlayerFromAPI().subscribe((player) => {
       this.playerSubject.next(player);
       console.log(player + " ' ??'");
     });
@@ -29,7 +29,7 @@ export class ClientInventoryService {
     return this.playerSubject.value;
   }
 
-  getPlayerFromJson(): Observable<AbstractPlayer> {
+  getPlayerFromAPI(): Observable<AbstractPlayer> {
     return this.http.get<any>(this.jsonUrl).pipe(
       map((data) => {
         const playerData = data.player;

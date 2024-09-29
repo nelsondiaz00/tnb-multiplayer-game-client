@@ -8,7 +8,7 @@
       "armors": [
         {
           "id": "armor123",
-          "name": "Dragon Armor",
+          "name": "Defensa del enfurecido",
           "status": "active",
           "effectList": [
             {
@@ -41,7 +41,7 @@
       "items": [
         {
           "id": "item123",
-          "name": "Dragon Item",
+          "name": "Pinchos de escudo",
           "status": "active",
           "effectList": [
             {
@@ -74,7 +74,7 @@
       "weapons": [
         {
           "id": "weapon123",
-          "name": "Dragon Weapon",
+          "name": "Empuñadura de Furia",
           "status": "active",
           "effectList": [
             {

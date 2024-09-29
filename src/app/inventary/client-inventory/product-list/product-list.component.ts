@@ -24,6 +24,16 @@ export class ProductListComponent {
   @Input() filter: string = 'all';
   constructor(private inventoryService: ClientInventoryService) {}
 
+  ngOnInit(): void {
+    this.inventoryService.player$.subscribe((player) => {
+      if (player) {
+        this.items = player.inventory.items;
+        this.armors = player.inventory.armors;
+        this.weapons = player.inventory.weapons;
+      }
+    });
+  }
+
   ngOnChanges(): void {
     this.applyFilter();
   }
@@ -48,13 +58,11 @@ export class ProductListComponent {
     }
   }
 
-  ngOnInit(): void {
-    this.inventoryService.player$.subscribe((player) => {
-      if (player) {
-        this.items = player.inventory.items;
-        this.armors = player.inventory.armors;
-        this.weapons = player.inventory.weapons;
-      }
-    });
+  getImagePath(
+    name: string,
+    type: 'armors' | 'weapons' | 'items' | 'spells'
+  ): string {
+    const newName = name.toLowerCase().replace(/\s+/g, '-');
+    return `assets/game-images/${type}/${newName}.png`;
   }
 }
