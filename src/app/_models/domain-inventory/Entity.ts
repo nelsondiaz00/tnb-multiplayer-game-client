@@ -3,7 +3,7 @@ const isEntity = (v: any): v is Entity<any> => {
 }
 
 export abstract class Entity<TId> {
-  protected readonly _id: string
+  public readonly _id: string
   public readonly props: TId
 
   constructor(id: string, props: TId) {

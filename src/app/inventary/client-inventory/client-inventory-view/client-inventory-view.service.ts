@@ -7,6 +7,8 @@ import { AbstractInventory } from '../../../_models/domain-inventory/inventory/A
 import Inventory from '../../../_models/domain-inventory/inventory/Inventory';
 import Player from '../../../_models/domain-inventory/player/Player';
 import { AbstractHero } from '../../../_models/domain-inventory/hero/AbstractHero';
+import axios from 'axios';
+import NullPlayer from '../../../_models/domain-inventory/player/NullPlayer';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +18,11 @@ export class ClientInventoryService {
   private playerSubject = new BehaviorSubject<AbstractPlayer | null>(null);
   public player$ = this.playerSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  setPlayer(): void {
-    this.getPlayerFromJson().subscribe((player) => {
+  async setPlayer(): Promise<void> {
+    const playerObservable = await this.getPlayerFromApi();
+    playerObservable.subscribe((player) => {
       this.playerSubject.next(player);
       console.log(player + " ' ??'");
     });
@@ -29,34 +32,38 @@ export class ClientInventoryService {
     return this.playerSubject.value;
   }
 
-  getPlayerFromJson(): Observable<AbstractPlayer> {
-    return this.http.get<any>(this.jsonUrl).pipe(
-      map((data) => {
-        const playerData = data.player;
-        if (!playerData || !playerData.inventory) {
-          throw new Error('Invalid data structure');
-        }
+  async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
 
-        const inventory: AbstractInventory = Inventory.create(
-          playerData.inventory.id,
-          playerData.inventory.armors,
-          playerData.inventory.items,
-          playerData.inventory.weapons,
-          playerData.inventory.size
-        );
+    let player: AbstractPlayer = NullPlayer.create();
 
-        const player: AbstractPlayer = Player.create(
-          playerData.playerId,
-          playerData.name,
-          playerData.level,
-          inventory,
-          playerData.heroList as AbstractHero[]
-        );
+    const response = await axios.post("http://localhost:1803/player/getPlayer", { "id": "66f88ce65033b7f4bab66a44" })
 
-        console.log(player);
+    if (response.data) {
 
-        return player;
-      })
-    );
+      const playerData: AbstractPlayer = (response.data as {data: AbstractPlayer}).data;
+
+      if (!playerData || !playerData.props.inventory) {
+        throw new Error('Invalid data structure');
+      }
+
+      const inventory: AbstractInventory = Inventory.create(
+        playerData.props.inventory.id,
+        playerData.props.inventory.props.armors,
+        playerData.props.inventory.props.items,
+        playerData.props.inventory.props.weapons,
+        playerData.props.inventory.props.size
+      );
+
+      player = Player.create(
+        playerData.id,
+        playerData.props.name,
+        playerData.props.level,
+        inventory,
+        playerData.props.heroList as AbstractHero[]
+      );
+
+    }
+
+    return new BehaviorSubject<AbstractPlayer>(player).asObservable();
   }
 }
