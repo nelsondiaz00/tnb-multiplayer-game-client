@@ -32,7 +32,7 @@ export class ClientInventoryService {
 
     const response = await axios.post(
       'http://localhost:1803/player/getPlayer',
-      { id: '66f88ce65033b7f4bab66a44' }
+      { id: '66f8eefc18fd498699a18844' }
     );
 
     if (response.data) {
@@ -59,7 +59,6 @@ export class ClientInventoryService {
         inventory,
         playerData.props.heroList as AbstractHero[]
       );
-      console.log(player);
     }
 
     return new BehaviorSubject<AbstractPlayer>(player).asObservable();

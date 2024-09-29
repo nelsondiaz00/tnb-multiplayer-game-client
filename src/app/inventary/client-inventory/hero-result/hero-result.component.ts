@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ClientInventoryService } from '../client-inventory-view/client-inventory-view.service';
 import { AbstractHero } from '../../../_models/domain-inventory/hero/AbstractHero';
 import { CommonModule } from '@angular/common';
+import axios from 'axios';
 @Component({
   selector: 'app-hero-result',
   standalone: true,
@@ -16,9 +17,19 @@ export class HeroResultComponent {
 
   constructor(private inventoryService: ClientInventoryService) {}
 
-  ngOnInit(): void {
-    this.inventoryService.player$.subscribe((player) => {
+  async ngOnInit(): Promise<void> {
+    this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
+        for (let i = 0; i < player.heroList.length; i++) {
+          let hero: AbstractHero = player.heroList[i];
+
+          hero = (
+            (await axios.get(`http://localhost:1803/hero/${hero._id}`))
+              .data as { data: AbstractHero }
+          ).data;
+
+          player.heroList[i] = hero;
+        }
         this.heroes = player.heroList;
         this.actualHero = this.heroes[0];
       }
@@ -26,6 +37,11 @@ export class HeroResultComponent {
   }
 
   public translateHero(type: string, subtype: string): string {
+
+    if(!type || !subtype){
+      return 'TIPO O SUBTIPO DESCONOCIDO';
+    }
+
     const translations: { [key: string]: { [key: string]: string } } = {
       MAGO: {
         FUEGO: 'fire.wizard',

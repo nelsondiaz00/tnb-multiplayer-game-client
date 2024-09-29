@@ -65,18 +65,6 @@ export class ProductListComponent {
   async ngOnInit(): Promise<void> {
     this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
-        for (let i = 0; i < player.inventory.items.length; i++) {
-          let item: AbstractItem = player.inventory.items[i];
-
-          item = (
-            (await axios.get(`http://localhost:1803/item/${item._id}`))
-              .data as { data: AbstractItem }
-          ).data;
-
-          player.inventory.items[i] = item;
-        }
-        this.items = player.inventory.items;
-
         for (let i = 0; i < player.inventory.armors.length; i++) {
           let armor: AbstractArmor = player.inventory.armors[i];
 
@@ -88,6 +76,18 @@ export class ProductListComponent {
           player.inventory.armors[i] = armor;
         }
         this.armors = player.inventory.armors;
+
+        for (let i = 0; i < player.inventory.items.length; i++) {
+          let item: AbstractItem = player.inventory.items[i];
+
+          item = (
+            (await axios.get(`http://localhost:1803/item/${item._id}`))
+              .data as { data: AbstractItem }
+          ).data;
+
+          player.inventory.items[i] = item;
+        }
+        this.items = player.inventory.items;
 
         for (let i = 0; i < player.inventory.weapons.length; i++) {
           let weapon: AbstractWeapon = player.inventory.weapons[i];
