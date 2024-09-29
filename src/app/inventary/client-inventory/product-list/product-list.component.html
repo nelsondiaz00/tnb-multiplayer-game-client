@@ -3,7 +3,7 @@
   <ng-container *ngIf="isArmors">
     <button *ngFor="let armor of armors" class="grid-item">
       <div class="grid-item-image">
-        <img src="assets/game-images/spells/agonia.png" alt="Item 1" />
+        <img src="{{ getImagePath(armor.name, 'armors') }}" />
       </div>
       <div class="grid-item-info">
         <h3>{{ armor.props.name }}</h3>
@@ -15,7 +15,7 @@
   <ng-container *ngIf="isItems">
     <button *ngFor="let item of items" class="grid-item">
       <div class="grid-item-image">
-        <img src="assets/game-images/spells/agonia.png" alt="Item 1" />
+        <img src="{{ getImagePath(item.name, 'items') }}" />
       </div>
       <div class="grid-item-info">
         <h3>{{ item.props.name }}</h3>
@@ -26,7 +26,7 @@
   <ng-container *ngIf="isWeapons">
     <button *ngFor="let weapon of weapons" class="grid-item">
       <div class="grid-item-image">
-        <img src="assets/game-images/spells/agonia.png" alt="Item 1" />
+        <img src="{{ getImagePath(weapon.name, 'weapons') }}" />
       </div>
       <div class="grid-item-info">
         <h3>{{ weapon.props.name }}</h3>
