@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AbstractPlayer } from '../../../_models/domain-inventory/player/AbstractPlayer';
 import { AbstractInventory } from '../../../_models/domain-inventory/inventory/AbstractInventory';
 import Inventory from '../../../_models/domain-inventory/inventory/Inventory';
@@ -14,11 +12,8 @@ import NullPlayer from '../../../_models/domain-inventory/player/NullPlayer';
   providedIn: 'root',
 })
 export class ClientInventoryService {
-  private jsonUrl = 'assets/json/input-inventory.json';
   private playerSubject = new BehaviorSubject<AbstractPlayer | null>(null);
   public player$ = this.playerSubject.asObservable();
-
-  constructor(private http: HttpClient) { }
 
   async setPlayer(): Promise<void> {
     const playerObservable = await this.getPlayerFromApi();
@@ -33,14 +28,17 @@ export class ClientInventoryService {
   }
 
   async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
-
     let player: AbstractPlayer = NullPlayer.create();
 
-    const response = await axios.post("http://localhost:1803/player/getPlayer", { "id": "66f88ce65033b7f4bab66a44" })
+    const response = await axios.post(
+      'http://localhost:1803/player/getPlayer',
+      { id: '66f88ce65033b7f4bab66a44' }
+    );
 
     if (response.data) {
-
-      const playerData: AbstractPlayer = (response.data as {data: AbstractPlayer}).data;
+      const playerData: AbstractPlayer = (
+        response.data as { data: AbstractPlayer }
+      ).data;
 
       if (!playerData || !playerData.props.inventory) {
         throw new Error('Invalid data structure');
@@ -61,7 +59,7 @@ export class ClientInventoryService {
         inventory,
         playerData.props.heroList as AbstractHero[]
       );
-
+      console.log(player);
     }
 
     return new BehaviorSubject<AbstractPlayer>(player).asObservable();

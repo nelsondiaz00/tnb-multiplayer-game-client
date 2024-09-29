@@ -40,11 +40,15 @@ export class HeroResultComponent {
         ARMAS: 'weapon.warrior',
       },
     };
+    const upperType = type.toUpperCase();
+    const upperSubtype = subtype.toUpperCase();
 
     const translatedType =
-      '/assets/game-images/heroes/' + translations[type]?.[subtype] + '.png';
-    console.log(translatedType, ' ???');
-    return translatedType || 'Tipo o subtipo desconocido';
+      '/assets/game-images/heroes/' +
+      translations[upperType]?.[upperSubtype] +
+      '.png';
+
+    return translatedType || 'TIPO O SUBTIPO DESCONOCIDO';
   }
   updateCurrentHero(): void {
     this.actualHero = this.heroes[this.currentHeroIndex];
