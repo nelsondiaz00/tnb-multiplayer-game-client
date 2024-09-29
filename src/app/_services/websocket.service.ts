@@ -109,7 +109,7 @@ export class WebSocketService {
       const extraDataHero = JSON.parse(heroData);
       // console.log(this.extraDataHero, ' extra data hero');
 
-      fetch('./assets/input-weapon.json')
+      fetch('./assets/json/input-weapon.json')
         .then((response) => response.json())
         .then((data) => {
           this.userService.setIdUser(idTemp);

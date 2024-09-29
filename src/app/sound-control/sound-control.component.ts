@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
@@ -17,9 +18,9 @@ import { SoundService } from '../_services/sound.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sound-control.component.html',
-  styleUrl: './sound-control.component.css',
+  styleUrls: ['./sound-control.component.css'],
 })
-export class SoundControlComponent implements OnInit, OnDestroy {
+export class SoundControlComponent implements OnInit, OnDestroy, AfterViewInit {
   isActive = false;
   currentAudioSource = '';
   private subscription: Subscription = new Subscription();
@@ -55,6 +56,12 @@ export class SoundControlComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngAfterViewInit() {
+    if (this.isActive && this.currentAudioSource) {
+      this.playAudio();
+    }
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -64,7 +71,7 @@ export class SoundControlComponent implements OnInit, OnDestroy {
   }
 
   private playAudio() {
-    if (this.backgroundMusic.nativeElement.src) {
+    if (this.backgroundMusic?.nativeElement?.src) {
       const audio = this.backgroundMusic.nativeElement;
       audio.play().catch((error) => {
         console.error('Error playing audio:', error);
@@ -73,9 +80,11 @@ export class SoundControlComponent implements OnInit, OnDestroy {
   }
 
   private pauseAudio() {
-    const audio = this.backgroundMusic.nativeElement;
-    audio.pause();
-    audio.currentTime = 0;
+    if (this.backgroundMusic?.nativeElement) {
+      const audio = this.backgroundMusic.nativeElement;
+      audio.pause();
+      audio.currentTime = 0;
+    }
   }
 
   private setAudioSource(url: string) {
