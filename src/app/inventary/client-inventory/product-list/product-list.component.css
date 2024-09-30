@@ -24,7 +24,7 @@
   text-align: center;
   position: relative; /* Necesario para la imagen */
   width: 100%; /* Asegura que el item ocupe el ancho del contenedor */
-  padding-top: 144.93%; /* Proporción del alto al 69% del ancho para mantener la relación de aspecto */
+  padding-top: 100%; /* Proporción del alto al 69% del ancho para mantener la relación de aspecto */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
   cursor: pointer;
 }

@@ -108,7 +108,7 @@
           </div>
         </div>
       </div>
-      <div class="content3 oculto" id="parte2">
+      <div id="parte2" class="content3 oculto">
         <div class="div-texto">
           <p class="little-info">
             Selecciona 4 preguntas de seguridad diferentes con sus respuestas.
@@ -116,7 +116,6 @@
           </p>
           <h3 class="subtitle2">Preguntas de seguridad</h3>
         </div>
-        <div>
           <div class="form-2">
             <div class="form1-2">
               <div class="cont2">
@@ -133,7 +132,7 @@
               </div>
               <div class="cont2">
                 <label class="form_label3">Respuesta 1</label>
-                <input id="rt1" type="text" class="input2" />
+                <input id="rt1" type="text" class="input2" (input)="validater1($event.target)"/>
                 <span id="rt1-valid-icon" class="validity-icon-2 empty"></span>
               </div>
               <div class="cont2">
@@ -148,7 +147,7 @@
               </div>
               <div class="cont2">
                 <label class="form_label3">Respuesta 2</label>
-                <input id="rt2" type="text" class="input2" />
+                <input id="rt2" type="text" class="input2" (input)="validater2($event.target)"/>
                 <span id="rt2-valid-icon" class="validity-icon-2 empty"></span>
               </div>
             </div>
@@ -163,7 +162,7 @@
               </div>
               <div class="cont2">
                 <label class="form_label3">Respuesta 3</label>
-                <input id="rt3" type="text" class="input2" />
+                <input id="rt3" type="text" class="input2" (input)="validater3($event.target)" />
                 <span id="rt3-valid-icon" class="validity-icon-2 empty"></span>
               </div>
               <div class="cont2">
@@ -178,16 +177,13 @@
               </div>
               <div class="cont2">
                 <label class="form_label3">Respuesta 4</label>
-                <input id="rt4" type="text" class="input2" />
+                <input id="rt4" type="text" class="input2" (input)="validater4($event.target)"/>
                 <span id="rt4-valid-icon" class="validity-icon-2 empty"></span>
               </div>
             </div>
           </div>
-        </div>
         <div class="div-boton">
-          <button id="boton-registro" class="button" (click)="submitRegister()">
-            A Jugar!
-          </button>
+          <button id="boton-registro" class="button" (click)="submitRegister()">A Jugar!</button>
         </div>
       </div>
       <div class="pagination">
@@ -195,6 +191,5 @@
         <a id="pagina2" class="pagenumber2" (click)="toPage2()">2</a>
       </div>
     </div>
-  </div>
-  <script type="module" src="/src/view/registroView.js"></script>
+    </div>
 </body>
