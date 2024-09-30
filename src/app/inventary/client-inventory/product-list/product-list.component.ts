@@ -53,12 +53,14 @@ export class ProductListComponent {
     name: string,
     type: 'armors' | 'weapons' | 'items' | 'spells'
   ): string {
-    console.log(name, type);
-    // if (!name) {
-    //   console.error('Name is undefined for type:', type);
-    //   return '';
-    // }
-    const newName = name.toLowerCase().replace(/\s+/g, '-');
+    const newName = name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ñ/g, 'n')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
+    // console.log(`assets/game-images/${type}/${newName}.png`);
+
     return `assets/game-images/${type}/${newName}.png`;
   }
 
@@ -92,7 +94,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.weapons.length; i++) {
           let weapon: AbstractWeapon = player.inventory.weapons[i];
 
-          console.log(weapon._id);
+          // console.log(weapon._id);
 
           weapon = (
             (await axios.get(`http://localhost:1803/weapon/${weapon._id}`))
