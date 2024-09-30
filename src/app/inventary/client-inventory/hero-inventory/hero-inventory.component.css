@@ -37,9 +37,9 @@
 .top-buttons button {
   background-color: #e856c3;
   border: 3.5px solid #0a0614;
-  font-size: 12px;
+  font-size: 10px;
   padding: 10px;
-  width: 18%;
+  width:16%;
   cursor: pointer;
   color: #fff;
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
@@ -90,7 +90,7 @@
   }
 
   .top-buttons button {
-    width: 22%; /* Ajusta el ancho de los botones */
+    width: 16%; /* Ajusta el ancho de los botones */
   }
 
   .pagination a {
