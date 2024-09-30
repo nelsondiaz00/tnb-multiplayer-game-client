@@ -1,5 +1,5 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { ClientInventoryService } from '../client-inventory-view/client-inventory-view.service';
+import { ClientInventoryService } from '../../../_services/client-inventory.service';
 import { AbstractItem } from '../../../_models/domain-inventory/element/item/AbstractItem';
 import AbstractArmor from '../../../_models/domain-inventory/element/armor/AbstractArmor';
 import { AbstractWeapon } from '../../../_models/domain-inventory/element/weapon/AbstractWeapon';
@@ -32,7 +32,8 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.armors.length; i++) {
           let armor: AbstractArmor = player.inventory.armors[i];
           armor = (
-            (await axios.get(`http://localhost:1803/armor/${armor._id}`)).data as { data: AbstractArmor }
+            (await axios.get(`http://localhost:1803/armor/${armor._id}`))
+              .data as { data: AbstractArmor }
           ).data;
           player.inventory.armors[i] = armor;
         }
@@ -41,7 +42,8 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.items.length; i++) {
           let item: AbstractItem = player.inventory.items[i];
           item = (
-            (await axios.get(`http://localhost:1803/item/${item._id}`)).data as { data: AbstractItem }
+            (await axios.get(`http://localhost:1803/item/${item._id}`))
+              .data as { data: AbstractItem }
           ).data;
           player.inventory.items[i] = item;
         }
@@ -50,7 +52,8 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.weapons.length; i++) {
           let weapon: AbstractWeapon = player.inventory.weapons[i];
           weapon = (
-            (await axios.get(`http://localhost:1803/weapon/${weapon._id}`)).data as { data: AbstractWeapon }
+            (await axios.get(`http://localhost:1803/weapon/${weapon._id}`))
+              .data as { data: AbstractWeapon }
           ).data;
           player.inventory.weapons[i] = weapon;
         }
@@ -62,7 +65,11 @@ export class ProductListComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['filter'] || changes['currentPage'] || changes['itemsPerPage']) {
+    if (
+      changes['filter'] ||
+      changes['currentPage'] ||
+      changes['itemsPerPage']
+    ) {
       this.applyFilter();
     }
   }
@@ -93,6 +100,7 @@ export class ProductListComponent {
       .replace(/ñ/g, 'n')
       .replace(/\s+/g, '-')
       .toLowerCase();
+    console.log(`assets/game-images/${type}/${newName}.png`);
     return `assets/game-images/${type}/${newName}.png`;
   }
 

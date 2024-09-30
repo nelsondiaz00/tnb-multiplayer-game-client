@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeroInventoryComponent } from '../hero-inventory/hero-inventory.component';
 import { HeroResultComponent } from '../hero-result/hero-result.component';
-import { ClientInventoryService } from './client-inventory-view.service';
+import { ClientInventoryService } from '../../../_services/client-inventory.service';
 @Component({
   selector: 'app-client-inventory-view',
   standalone: true,

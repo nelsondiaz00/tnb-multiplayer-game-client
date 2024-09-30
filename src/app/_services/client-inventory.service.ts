@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AbstractPlayer } from '../../../_models/domain-inventory/player/AbstractPlayer';
-import { AbstractInventory } from '../../../_models/domain-inventory/inventory/AbstractInventory';
-import Inventory from '../../../_models/domain-inventory/inventory/Inventory';
-import Player from '../../../_models/domain-inventory/player/Player';
-import { AbstractHero } from '../../../_models/domain-inventory/hero/AbstractHero';
+import { AbstractPlayer } from '../_models/domain-inventory/player/AbstractPlayer';
+import { AbstractInventory } from '../_models/domain-inventory/inventory/AbstractInventory';
+import Inventory from '../_models/domain-inventory/inventory/Inventory';
+import Player from '../_models/domain-inventory/player/Player';
+import { AbstractHero } from '../_models/domain-inventory/hero/AbstractHero';
 import axios from 'axios';
-import NullPlayer from '../../../_models/domain-inventory/player/NullPlayer';
+import NullPlayer from '../_models/domain-inventory/player/NullPlayer';
 
 @Injectable({
   providedIn: 'root',

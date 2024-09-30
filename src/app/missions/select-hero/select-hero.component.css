@@ -1,0 +1,42 @@
+:host {
+  width: 30%;
+  background-color: rgba(154, 124, 222, 255);
+  color: white;
+  align-self: center;
+}
+
+p {
+  text-align: center;
+}
+
+.hero-display {
+  margin-top: 10%;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.arrow {
+  font-size: 50px;
+  background: none;
+  border: none;
+  color: #ff009d;
+  cursor: pointer;
+}
+
+.hero-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 50%;
+  max-width: 400px;
+  height: fit-content;
+  align-self: center;
+}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductConditionComponent } from '../../product-condition/product-condition.component';
-import { ClientInventoryService } from '../client-inventory-view/client-inventory-view.service';
+import { ClientInventoryService } from '../../../_services/client-inventory.service';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-hero-inventory',
@@ -19,7 +19,7 @@ export class HeroInventoryComponent {
 
   setFilter(filter: string): void {
     this.filter = filter;
-    this.currentPage = 1; 
+    this.currentPage = 1;
   }
 
   changePage(page: number): void {
