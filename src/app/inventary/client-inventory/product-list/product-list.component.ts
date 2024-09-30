@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { ClientInventoryService } from '../client-inventory-view/client-inventory-view.service';
 import { AbstractItem } from '../../../_models/domain-inventory/element/item/AbstractItem';
 import AbstractArmor from '../../../_models/domain-inventory/element/armor/AbstractArmor';
@@ -15,96 +15,91 @@ import axios from 'axios';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent {
+  @Input() filter: string = 'all';
+  @Input() currentPage: number = 1;
+  @Input() itemsPerPage: number = 12;
   items: AbstractItem[] = [];
   armors: AbstractArmor[] = [];
   weapons: AbstractWeapon[] = [];
   skills: AbstractSkill[] = [];
-  isItems: boolean = true;
-  isArmors: boolean = true;
-  isWeapons: boolean = true;
-  @Input() filter: string = 'all';
+  filteredItems: any[] = [];
+
   constructor(private inventoryService: ClientInventoryService) {}
-
-  ngOnChanges(): void {
-    this.applyFilter();
-  }
-
-  applyFilter(): void {
-    if (this.filter === 'all') {
-      this.isItems = true;
-      this.isArmors = true;
-      this.isWeapons = true;
-    } else if (this.filter === 'items') {
-      this.isItems = true;
-      this.isArmors = false;
-      this.isWeapons = false;
-    } else if (this.filter === 'armors') {
-      this.isItems = false;
-      this.isArmors = true;
-      this.isWeapons = false;
-    } else if (this.filter === 'weapons') {
-      this.isItems = false;
-      this.isArmors = false;
-      this.isWeapons = true;
-    }
-  }
-
-  getImagePath(
-    name: string,
-    type: 'armors' | 'weapons' | 'items' | 'spells'
-  ): string {
-    const newName = name
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/ñ/g, 'n')
-      .replace(/\s+/g, '-')
-      .toLowerCase();
-    // console.log(`assets/game-images/${type}/${newName}.png`);
-
-    return `assets/game-images/${type}/${newName}.png`;
-  }
 
   async ngOnInit(): Promise<void> {
     this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
         for (let i = 0; i < player.inventory.armors.length; i++) {
           let armor: AbstractArmor = player.inventory.armors[i];
-
           armor = (
-            (await axios.get(`http://localhost:1803/armor/${armor._id}`))
-              .data as { data: AbstractArmor }
+            (await axios.get(`http://localhost:1803/armor/${armor._id}`)).data as { data: AbstractArmor }
           ).data;
-
           player.inventory.armors[i] = armor;
         }
         this.armors = player.inventory.armors;
 
         for (let i = 0; i < player.inventory.items.length; i++) {
           let item: AbstractItem = player.inventory.items[i];
-
           item = (
-            (await axios.get(`http://localhost:1803/item/${item._id}`))
-              .data as { data: AbstractItem }
+            (await axios.get(`http://localhost:1803/item/${item._id}`)).data as { data: AbstractItem }
           ).data;
-
           player.inventory.items[i] = item;
         }
         this.items = player.inventory.items;
 
         for (let i = 0; i < player.inventory.weapons.length; i++) {
           let weapon: AbstractWeapon = player.inventory.weapons[i];
-
-          // console.log(weapon._id);
-
           weapon = (
-            (await axios.get(`http://localhost:1803/weapon/${weapon._id}`))
-              .data as { data: AbstractWeapon }
+            (await axios.get(`http://localhost:1803/weapon/${weapon._id}`)).data as { data: AbstractWeapon }
           ).data;
-
           player.inventory.weapons[i] = weapon;
         }
         this.weapons = player.inventory.weapons;
+
+        this.applyFilter();
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['filter'] || changes['currentPage'] || changes['itemsPerPage']) {
+      this.applyFilter();
+    }
+  }
+
+  applyFilter(): void {
+    let filtered: any[] = [];
+    if (this.filter === 'all' || this.filter === 'armors') {
+      filtered = filtered.concat(this.armors);
+    }
+    if (this.filter === 'all' || this.filter === 'items') {
+      filtered = filtered.concat(this.items);
+    }
+    if (this.filter === 'all' || this.filter === 'weapons') {
+      filtered = filtered.concat(this.weapons);
+    }
+    this.filteredItems = filtered;
+  }
+
+  get paginatedItems() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredItems.slice(start, start + this.itemsPerPage);
+  }
+
+  getImagePath(name: string, type: string): string {
+    const newName = name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ñ/g, 'n')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
+    return `assets/game-images/${type}/${newName}.png`;
+  }
+
+  getItemType(item: any): string {
+    if (this.armors.includes(item)) return 'armors';
+    if (this.items.includes(item)) return 'items';
+    if (this.weapons.includes(item)) return 'weapons';
+    return 'unknown';
   }
 }

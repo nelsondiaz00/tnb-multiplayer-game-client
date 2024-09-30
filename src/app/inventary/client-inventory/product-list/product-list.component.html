@@ -1,37 +1,20 @@
 <div class="grid">
   <!-- 12 ítems en la cuadrícula -->
-  <ng-container *ngIf="isArmors">
-    <button *ngFor="let armor of armors" class="grid-item">
-      <div class="grid-item-image">
-        <img src="{{ getImagePath(armor.props.name, 'armors') }}" />
-      </div>
-      <div class="grid-item-info">
-        <h3>{{ armor.props.name }}</h3>
-        <p>{{ armor.props.heroType }}</p>
-      </div>
-    </button>
-  </ng-container>
-
-  <ng-container *ngIf="isItems">
-    <button *ngFor="let item of items" class="grid-item">
-      <div class="grid-item-image">
-        <img src="{{ getImagePath(item.props.name, 'items') }}" />
-      </div>
-      <div class="grid-item-info">
-        <h3>{{ item.props.name }}</h3>
-        <p>{{ item.props.heroType }}</p>
-      </div>
-    </button>
-  </ng-container>
-  <ng-container *ngIf="isWeapons">
-    <button *ngFor="let weapon of weapons" class="grid-item">
-      <div class="grid-item-image">
-        <img src="{{ getImagePath(weapon.props.name, 'weapons') }}" />
-      </div>
-      <div class="grid-item-info">
-        <h3>{{ weapon.props.name }}</h3>
-        <p>{{ weapon.props.heroType }}</p>
-      </div>
-    </button>
-  </ng-container>
+  <button *ngFor="let item of paginatedItems" class="grid-item">
+    <div class="grid-item-image">
+      <img src="{{ getImagePath(item.props.name, getItemType(item)) }}" />
+    </div>
+    <div class="grid-item-info">
+      <h3>{{ item.props.name }}</h3>
+      <p>{{ item.props.heroType }}</p>
+    </div>
+  </button>
+</div>
+<div class="pagination">
+  <!-- <button
+    *ngFor="let page of [].constructor(totalPages); let i = index"
+    (click)="changePage(i + 1)"
+  >
+    {{ i + 1 }}
+  </button> -->
 </div>
