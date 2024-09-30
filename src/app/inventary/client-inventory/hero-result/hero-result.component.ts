@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClientInventoryService } from '../client-inventory-view/client-inventory-view.service';
+import { ClientInventoryService } from '../../../_services/client-inventory.service';
 import { AbstractHero } from '../../../_models/domain-inventory/hero/AbstractHero';
 import { CommonModule } from '@angular/common';
 import axios from 'axios';
@@ -37,8 +37,7 @@ export class HeroResultComponent {
   }
 
   public translateHero(type: string, subtype: string): string {
-
-    if(!type || !subtype){
+    if (!type || !subtype) {
       return 'TIPO O SUBTIPO DESCONOCIDO';
     }
 

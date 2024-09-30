@@ -1,0 +1,11 @@
+<div class="select-hero-container">
+  <p>Elige un héroe</p>
+  <div class="hero-display">
+    <button class="arrow" id="prev-hero" (click)="prevHero()">&lt;</button>
+    <div class="hero-image">
+      <img id="hero-image" [src]="currentHero.image" />
+      <p>{{ translateHero(currentHero.type, currentHero.subtype) }}</p>
+    </div>
+    <button class="arrow" id="next-hero" (click)="nextHero()">&gt;</button>
+  </div>
+</div>
