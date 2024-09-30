@@ -7,13 +7,18 @@
       <button (click)="setFilter('weapons')">Armas</button>
       <button (click)="setFilter('hability')">Habilidades</button>
     </div>
-    <app-product-list [filter]="filter"></app-product-list>
+    <app-product-list
+      [filter]="filter"
+      [currentPage]="currentPage"
+      [itemsPerPage]="itemsPerPage"
+    ></app-product-list>
     <div class="pagination">
-      <a>1</a>
-      <a>2</a>
-      <a>3</a>
-      <a>&rsaquo;</a>
-      <a>&raquo;</a>
+      <button
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        (click)="changePage(i + 1)"
+      >
+        {{ i + 1 }}
+      </button>
     </div>
   </div>
 </div>
