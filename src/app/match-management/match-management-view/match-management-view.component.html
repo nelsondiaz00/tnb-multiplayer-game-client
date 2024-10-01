@@ -1,13 +1,10 @@
-<div *ngIf="!showGameView" class="selection-container">
+<div class="selection-container">
   <app-select-hero></app-select-hero>
-  <app-match-list
-    [refreshTrigger]="refreshTrigger"
-    (matchSelected)="onMatchSelected($event)"
-  ></app-match-list>
+  <app-match-list (matchSelected)="onMatchSelected($event)"></app-match-list>
 </div>
-<div *ngIf="showGameView" class="game-container">
+<!-- <div *ngIf="showGameView" class="game-container">
   <app-game-view
     [matchConfig]="selectedMatchConfig"
     (matchEnded)="onMatchEnded()"
   ></app-game-view>
-</div>
+</div> -->

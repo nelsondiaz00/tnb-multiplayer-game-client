@@ -1,0 +1,27 @@
+<main>
+  <section class="lobby-selection">
+    <h2>Tablón de misiones</h2>
+    <div id="game-room-list" class="game-room-list">
+      <!-- <ng-container *ngIf="matchList.length > 0; else noMatches">
+        <div *ngFor="let match of matchList" class="game-room-item">
+          <button class="buttom-item" (click)="onMatchClick(match)">
+            Partida {{ match.port - 3000 }} - Modo: {{ match.amountRed }} v
+            {{ match.amountBlue }} {{ "(Abierta)" }}
+          </button>
+        </div>
+      </ng-container> -->
+      <ng-template #noMatches>
+        <p>No hay partidas disponibles en este momento.</p>
+      </ng-template>
+    </div>
+    <div class="button-container">
+      <!-- <button
+        id="create-game-button"
+        class="create-game-button"
+        (click)="openCreateMatchModal()"
+      >
+        Crear Partida
+      </button> -->
+    </div>
+  </section>
+</main>

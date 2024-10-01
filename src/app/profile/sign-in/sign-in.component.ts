@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,11 +12,21 @@ export class SignInComponent {
   @Output() registro = new EventEmitter<void>();
   @Output() inicioSesion = new EventEmitter<void>();
 
+  constructor(private router: Router) {}
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
+
   username = '';
   password = '';
 
+  emitLanding(){
+    this.navigateTo('landing');
+  }
+
   emitRegistro() {
-    this.registro.emit();
+    this.navigateTo('sign-up');
   }
 
   ngOnInit() {
@@ -49,7 +60,7 @@ export class SignInComponent {
           if (user.password === this.password) {
             const user = { user: this.username, password: this.password };
             localStorage.setItem('loggedUser', JSON.stringify(user));
-            this.inicioSesion.emit();
+            this.navigateTo('match-management-view');
           }
         }
       }
@@ -89,15 +100,9 @@ export class SignInComponent {
       }
     } else {
       if (validUserIcon != null) {
-        if (/^[a-zA-Z]+$/.test(target.value)) {
-          validUserIcon.classList.add('valid');
-          validUserIcon.classList.remove('invalid');
-          validUserIcon.classList.remove('empty');
-        } else {
-          validUserIcon.classList.add('invalid');
-          validUserIcon.classList.remove('valid');
-          validUserIcon.classList.remove('empty');
-        }
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
       }
     }
   }
@@ -112,19 +117,9 @@ export class SignInComponent {
       }
     } else {
       if (validPassIcon != null) {
-        const password = target.value;
-        const hasNumber = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        const hasCapitalLetter = /[A-Z]/.test(password);
-        if (password.length >= 8 && hasNumber && hasSpecialChar && hasCapitalLetter) {
-          validPassIcon.classList.add('valid');
-          validPassIcon.classList.remove('invalid');
-          validPassIcon.classList.remove('empty');
-        } else {
-          validPassIcon.classList.add('invalid');
-          validPassIcon.classList.remove('valid');
-          validPassIcon.classList.remove('empty');
-        }
+        validPassIcon.classList.add('valid');
+        validPassIcon.classList.remove('empty');
+        validPassIcon.classList.remove('invalid');
       }
     }
   }

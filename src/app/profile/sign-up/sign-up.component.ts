@@ -1,29 +1,57 @@
 import { provideHttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
-import prohibitedNames from './prohibited-names.json';
+import prohibitedNames from '../../../assets/json/prohibited-names.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
   imports: [],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+  styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
-  @Output() registered = new EventEmitter<void>();
+  constructor(private router: Router) {}
 
+  @Output() registered = new EventEmitter<void>();
   username = '';
   password = '';
   password2 = '';
 
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
+
   toPage2() {
-    (document.getElementById('parte1') as HTMLDivElement).style.display= 'none';
-    (document.getElementById('parte2') as HTMLDivElement).style.display= 'block';
+    if(this.checkAll()){
+      const p1 = document.getElementById('pagina1') as HTMLDivElement;
+      p1?.classList.add('pagenumber2');
+      p1?.classList.remove('pagenumber');
+      const p2 = document.getElementById('pagina2') as HTMLDivElement;
+      p2?.classList.add('pagenumber');
+      p2?.classList.remove('pagenumber2');
+
+      const page1 = document.getElementById('parte1') as HTMLDivElement;
+      const page2 = document.getElementById('parte2') as HTMLDivElement;
+      page1.classList.add('oculto');
+      page2.classList.remove('oculto');
+    }else{
+      alert('Completa todos los campos para continuar!')
+    }
   }
 
   toPage1() {
-    (document.getElementById('parte1') as HTMLDivElement).style.display= 'block';
-    (document.getElementById('parte2') as HTMLDivElement).style.display= 'none';
+    const p1 = document.getElementById('pagina1') as HTMLDivElement;
+    p1?.classList.add('pagenumber');
+    p1?.classList.remove('pagenumber2');
+    const p2 = document.getElementById('pagina2') as HTMLDivElement;
+    p2?.classList.add('pagenumber2');
+    p2?.classList.remove('pagenumber');
+
+    const page1 = document.getElementById('parte1') as HTMLDivElement;
+    const page2 = document.getElementById('parte2') as HTMLDivElement;
+    page1.classList.remove('oculto');
+    page2.classList.add('oculto');
   }
 
   changeUsername(target: any) {
@@ -35,25 +63,64 @@ export class SignUpComponent {
   }
 
   changePassword2(target: any) {
-    if(this.password === target.value) {
+    if (this.password === target.value) {
       this.password2 = target.value;
     }
   }
 
-  submitRegister(){
-    if( (this.password2 === this.password) && this.password2!='' ){
-      if (!localStorage.getItem('users')) {
-        const users = [{ user: this.username, password: this.password2 }];
-        localStorage.setItem('users', JSON.stringify(users));
-      }else{
-        const users = localStorage.getItem('users')
-        if(users){
-          const usersArray = JSON.parse(users);
-          usersArray.push({ user: this.username, password: this.password2 });
-          localStorage.setItem('users', JSON.stringify(usersArray));
-          this.registered.emit();
+  isFormValid(): boolean {
+    const inputs = [
+      'name',
+      'lastname',
+      'email',
+      'password',
+      'password2',
+      'username',
+      'rt1',
+      'rt2',
+      'rt3',
+      'rt4',
+    ];
+
+    const selects = ['select1', 'select2', 'select3', 'select4'];
+
+    // Verifica que todos los inputs de texto no estén vacíos
+    const areInputsValid = inputs.every((id) => {
+      const inputElement = document.getElementById(id) as HTMLInputElement;
+      return inputElement && inputElement.value.trim() !== '';
+    });
+
+    // Verifica que todos los selects tengan un valor seleccionado
+    // const areSelectsValid = selects.every((id) => {
+    //   const selectElement = document.getElementById(id) as HTMLSelectElement;
+    //   return selectElement && selectElement.value !== '';
+    // });
+
+    console.log(areInputsValid);
+
+    return areInputsValid;
+  }
+
+  submitRegister() {
+    if (this.checkAll2()) {
+      if (this.password2 === this.password && this.password2 != '') {
+        if (!localStorage.getItem('users')) {
+          const users = [{ user: this.username, password: this.password2 }];
+          localStorage.setItem('users', JSON.stringify(users));
+        } else {
+          const users = localStorage.getItem('users');
+          console.log(users && this.isFormValid(), ' wtf hermanoooo ');
+          if (users && this.isFormValid()) {
+            console.log('Formulario válido');
+            const usersArray = JSON.parse(users);
+            usersArray.push({ user: this.username, password: this.password2 });
+            localStorage.setItem('users', JSON.stringify(usersArray));
+            this.router.navigate(['sign-in']);
+          }
         }
       }
+    }else{
+      alert('Completa todos los campos para continuar!')
     }
   }
 
@@ -130,7 +197,9 @@ export class SignUpComponent {
       }
     } else {
       if (validEmailIcon != null) {
-        if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(target.value)) {
+        if (
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(target.value)
+        ) {
           validEmailIcon.classList.add('valid');
           validEmailIcon.classList.remove('invalid');
           validEmailIcon.classList.remove('empty');
@@ -157,7 +226,12 @@ export class SignUpComponent {
         const hasNumber = /\d/.test(password);
         const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
         const hasCapitalLetter = /[A-Z]/.test(password);
-        if (password.length >= 8 && hasNumber && hasSpecialChar && hasCapitalLetter) {
+        if (
+          password.length >= 8 &&
+          hasNumber &&
+          hasSpecialChar &&
+          hasCapitalLetter
+        ) {
           validPassIcon.classList.add('valid');
           validPassIcon.classList.remove('invalid');
           validPassIcon.classList.remove('empty');
@@ -195,11 +269,10 @@ export class SignUpComponent {
 
   validateUsername(target: any) {
     const validUsernameIcon = document.getElementById('username-valid-icon');
-    console.log(prohibitedNames);
-    console.log(prohibitedNames.includes(target.value.toLowerCase()));
     const usernameValue = target.value.toLowerCase(); // Convierte a minúsculas para comparar
-    const isInvalid = prohibitedNames.some(word => usernameValue.includes(word));
-
+    const isInvalid = prohibitedNames.some((word) =>
+      usernameValue.includes(word)
+    );
 
     if (target.value === '') {
       if (validUsernameIcon != null) {
@@ -227,4 +300,92 @@ export class SignUpComponent {
       }
     }
   }
+
+  setImage(target: any){
+    const src = target.src;
+    const pp = document.getElementById('pp') as HTMLImageElement;
+    pp.src = src;
+  }
+
+  checkAll(){
+      const parte1 = document.getElementById('parte1');
+      const validIcons = parte1?.querySelectorAll('.valid');
+      return validIcons?.length === 6
+  }
+
+  checkAll2(){
+    const parte2 = document.getElementById('parte2');
+    const validIcons = parte2?.querySelectorAll('.valid');
+    return validIcons?.length === 4
+  }
+
+  validater1(target: any) {
+    const validUserIcon = document.getElementById('rt1-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+  validater2(target: any) {
+    const validUserIcon = document.getElementById('rt2-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+  validater3(target: any) {
+    const validUserIcon = document.getElementById('rt3-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+  validater4(target: any) {
+    const validUserIcon = document.getElementById('rt4-valid-icon');
+    if (target.value === '') {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('empty');
+        validUserIcon.classList.remove('valid');
+        validUserIcon.classList.remove('invalid');
+      }
+    } else {
+      if (validUserIcon != null) {
+        validUserIcon.classList.add('valid');
+        validUserIcon.classList.remove('empty');
+        validUserIcon.classList.remove('invalid');
+      }
+    }
+  }
+
+
 }

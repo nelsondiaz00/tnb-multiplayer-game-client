@@ -1,0 +1,82 @@
+* {
+  font-family: "Press Start 2P", "Cascadia Code", monospace;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px; /* Espacio entre columnas y filas */
+  padding: 20px 20px 5px 20px;
+  background-color: #f0acdf00; /* Color de fondo del grid */
+  flex-grow: 1; /* Ocupa el espacio restante */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.grid-item {
+  background-color: #ffffff;
+  box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+  font-size: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative; /* Necesario para la imagen */
+  width: 100%; /* Asegura que el item ocupe el ancho del contenedor */
+  padding-top: 100%; /* Proporción del alto al 69% del ancho para mantener la relación de aspecto */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  cursor: pointer;
+}
+
+.grid-item:hover {
+  background-color: #5d0572;
+}
+
+.grid-item:hover .grid-item-info p {
+  color: #fff; /* Change the color of grid-item-info when grid-item is hovered */
+}
+
+.grid-item:hover .grid-item-info h3 {
+  color: #fff; /* Change the color of grid-item-info when grid-item is hovered */
+}
+
+.grid-item-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.grid-item-image img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.grid-item-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  color: #4800ff;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.grid-item-info h3 {
+  font-size: 12px;
+  color: #9d2faa;
+  padding-bottom: 5px;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.grid-item-info p {
+  font-size: 8px;
+  color: #000000;
+  margin: 0;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}

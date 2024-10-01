@@ -1,142 +1,146 @@
-
-body{
-    background-image: url("../images/fondo_login.jpg");
-    min-height: 100vh;
-    font-family: "Cascadia Code";
-    padding: 0px;
-    overflow: hidden;
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.main-container-sign-in {
+  background-image: url("/assets/sign-in-images/images/fondo_login.jpg");
+  min-height: 100%;
+  font-family: "Cascadia Code";
+  padding: 0px;
+  overflow: hidden;
 }
 
-.inicio{
-    width: 100%;
-    height: 100vh;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: auto;
+.inicio {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: auto;
 }
 
-.cont{
-    padding-left: 10%;
-    padding-right: 10%;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    display: inline-flex;
-    flex-direction: row;
-    width: fit-content;
+.cont {
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  display: inline-flex;
+  flex-direction: row;
+  width: fit-content;
 }
 
-#flecha{
-    width: 20px;
-    height: 20px;
+#flecha {
+  width: 20px;
+  height: 20px;
 }
 
-.cont2{
-    width: 30%;
-    height: 35%;
-    padding: 5%;
-    background: #F4F3FF;
-    box-shadow: 0px 10px 0px #4518A6;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    display: flex;
+.cont2 {
+  width: 30%;
+  height: 35%;
+  padding: 5%;
+  background: #f4f3ff;
+  box-shadow: 0px 10px 0px #4518a6;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  display: flex;
 }
 
-.cont1{
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cont1 {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#title{
-    width: fit-content;
-    height: fit-content;
-    text-align: center;
-    color: #4931FA;
-    font-size: 36px;
-    font-weight: 600;
-    word-wrap: break-word;
-    margin: 0px;
+#title {
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  color: #4931fa;
+  font-size: 36px;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin: 0px;
 }
 
-.form-label{
-    width: 100%;
-    height: auto;
-    color: #2F1575;
-    font-size: 20px;
-    font-weight: 400;
-    word-wrap: break-word;
+.form-label {
+  width: 100%;
+  height: auto;
+  color: #2f1575;
+  font-size: 20px;
+  font-weight: 400;
+  word-wrap: break-word;
 }
 
-.form-input{
-    width: 100%;
-    height: 2vw;
-    font-size: 15px;
-    font-family: inherit;
-    color: white;
-    background: #4335AF;
-    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25) inset;
+.form-input {
+  width: 100%;
+  height: 2vw;
+  font-size: 15px;
+  font-family: inherit;
+  color: white;
+  background: #4335af;
+  box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
-.link{
-    width: 391px;
-    height: 20px;
-    text-align: center;
-    color: #FF5E68;
-    font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
-    word-wrap: break-word
+.link {
+  width: 391px;
+  height: 20px;
+  text-align: center;
+  color: #ff5e68;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  word-wrap: break-word;
 }
 
-.link:hover{
-    text-decoration: underline;
+.link:hover {
+  text-decoration: underline;
 }
 
-.boton{
-    width: fit-content;
-    height: auto;
-    padding: 2% 10% 2% 10%;
-    background: #E856C3;
-    border: 0px solid;
-    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    display: flex;
-    color: white;
-    font-family: inherit;
-    font-size: 20px;
-    font-weight: 600;
+.boton {
+  width: fit-content;
+  height: auto;
+  padding: 2% 10% 2% 10%;
+  background: #e856c3;
+  border: 0px solid;
+  box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  color: white;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.boton2{
-    width: fit-content;
-    height: auto;
-    padding: 2% 10% 2% 10%;
-    background: #ffffff;
-    border: 0px solid;
-    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    display: flex;
-    color: #E856C3;
-    font-family: inherit;
-    font-size: 20px;
-    font-weight: 600;
-    word-wrap: normal;
+.boton2 {
+  width: fit-content;
+  height: auto;
+  padding: 2% 10% 2% 10%;
+  background: #ffffff;
+  border: 0px solid;
+  box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.25);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  color: #e856c3;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  word-wrap: normal;
 }
 
-.boton3{
+.boton3 {
   width: fit-content;
   height: auto;
   background-color: transparent;
@@ -146,80 +150,81 @@ body{
   font-family: inherit;
 }
 
-.boton:hover{
-    background: #fa9fe3;
-    box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
+.boton:hover {
+  background: #fa9fe3;
+  box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
-.boton2:hover{
+.boton2:hover {
   background: #fa9fe3;
   color: white;
   box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
-.boton3:hover{
+.boton3:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.cont{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap:10px;
-    margin: 5% 10% 5% 10%;
-    padding: 0% 20% 0% 20%;
-    justify-content: left;
-    align-items: left;
+.cont {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5% 10% 5% 10%;
+  padding: 0% 20% 0% 20%;
+  justify-content: left;
+  align-items: left;
 }
 
-#page1{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+#page1 {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-#page2{
-    display: none;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
+#page2 {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.mini-cont{
-    position: relative;
-    width: 100%;
+.mini-cont {
+  position: relative;
+  width: 100%;
 }
 
-.mini-mini-cont{
-    position: relative;
-    display: flex;
-    flex-direction: row;
+.mini-mini-cont {
+  position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .toggle-password {
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    bottom: 0;
-    right: 0;
-    margin: 0% 7% 2% 0%;
-    cursor: pointer;
-    border: none;
-    background-size: contain;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  bottom: 0;
+  right: 0;
+  margin: 0% 7% 2% 0%;
+  cursor: pointer;
+  border: none;
+  background-size: contain;
 }
 
-.off{
-  background-image: url('../images/closeeye_white.png');
+.off {
+  background-image: url("/assets/sign-in-images/images/closeeye_white.png");
 }
 
-.on{
-  background-image: url('../images/openeye_white.png');
+.on {
+  background-image: url("/assets/sign-in-images/images/openeye_white.png");
 }
-
 
 .validity-icon {
   position: absolute;
@@ -229,25 +234,20 @@ body{
   width: 18px;
   height: 18px;
   display: inline_block; /* Oculto por defecto */
-  background-image: url("../images/bad.png");
+  background-image: url("/assets/sign-in-images/images/bad.png");
   background-size: contain;
 }
 
 .valid {
   display: inline-block;
-  background-image: url("../images/good.png"); /* Ícono de check (válido) */
+  background-image: url("/assets/sign-in-images/images/good.png"); /* Ícono de check (válido) */
   background-size: contain;
 }
 
 .empty {
   display: inline-block;
-  background-image: url("../images/bad.png"); /* Ícono de cruz (inválido) */
+  background-image: url("/assets/sign-in-images/images/bad.png"); /* Ícono de cruz (inválido) */
   background-size: contain;
-}
-
-:host {
-  width: 100%;
-  height: 100%;
 }
 
 .a {
@@ -255,5 +255,5 @@ body{
 }
 
 .list {
-    list-style: none;
+  list-style: none;
 }

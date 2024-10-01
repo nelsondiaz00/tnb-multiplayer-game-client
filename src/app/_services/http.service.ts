@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/get_response';
+const API_URL = 'http://localhost:5002/get_response';
 
 export async function getChatbotResponse(message: string): Promise<string> {
   try {

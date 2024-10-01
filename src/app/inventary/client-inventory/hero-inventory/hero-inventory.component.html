@@ -1,0 +1,24 @@
+<div class="outer-container">
+  <div class="inner-container">
+    <div class="top-buttons">
+      <button (click)="setFilter('all')">TODOS</button>
+      <button (click)="setFilter('items')">Items</button>
+      <button (click)="setFilter('armors')">Armaduras</button>
+      <button (click)="setFilter('weapons')">Armas</button>
+      <button (click)="setFilter('hability')">Habilidades</button>
+    </div>
+    <app-product-list
+      [filter]="filter"
+      [currentPage]="currentPage"
+      [itemsPerPage]="itemsPerPage"
+    ></app-product-list>
+    <div class="pagination">
+      <button
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        (click)="changePage(i + 1)"
+      >
+        {{ i + 1 }}
+      </button>
+    </div>
+  </div>
+</div>

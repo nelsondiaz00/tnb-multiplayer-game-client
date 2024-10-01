@@ -1,0 +1,54 @@
+<div *ngIf="!actualHero">
+  <h2>Cargando información del héroe...</h2>
+</div>
+<div *ngIf="actualHero" class="info">
+  <div
+    class="image-container"
+    [style.backgroundImage]="
+      'url(' +
+      translateHero(actualHero.props.groupId, actualHero.props.subgroupId) +
+      ')'
+    "
+  >
+    <!-- Círculos a la izquierda -->
+    <div class="circles-left">
+      <div class="circle" id="helmet"></div>
+      <div class="circle" id="chest"></div>
+      <div class="circle" id="gloves"></div>
+    </div>
+
+    <!-- Imagen -->
+    <div class="image"></div>
+
+    <!-- Círculos a la derecha -->
+    <div class="circles-right">
+      <div class="circle" id="bracers"></div>
+      <div class="circle" id="pants"></div>
+      <div class="circle" id="shoes"></div>
+    </div>
+  </div>
+
+  <div class="circles-row">
+    <div class="circle" title="Armas1"></div>
+    <div class="circle" title="Armas2"></div>
+    <div class="circle" title="Items1"></div>
+    <div class="circle" title="Items1"></div>
+  </div>
+
+  <div class="character-info">
+    <div class="button-hero-list">
+      <h1 (click)="prevHero()" class="prev-button"><</h1>
+      <h1 (click)="nextHero()" class="next-button">></h1>
+    </div>
+    <h2>{{ actualHero.props.groupId + " " + actualHero.props.subgroupId }}</h2>
+    <p>{{ actualHero.props.level }}</p>
+  </div>
+  <div id="stats-info" class="stats">
+    <p>Estadísticas</p>
+    <p>{{ "Vida: " + actualHero.props.blood }}</p>
+    <p>{{ "Poder: " + actualHero.props.mana }}</p>
+    <p>{{ "Defensa: " + actualHero.props.defense }}</p>
+    <p>{{ "Ataque: " + actualHero.props.attack.props.value }}</p>
+    <p>{{ "Daño: " + actualHero.props.damage.props.value }}</p>
+  </div>
+</div>

@@ -1,49 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TNB-III</title>
-  </head>
-  <body>
-    <div class="main-container">
-      <app-chat-bot-view></app-chat-bot-view>
-      <header class="header-main" *ngIf="showHeader">
-        <h1>The Nexus Battles III</h1>
-        <nav>
-          <ul>
-            <li (click)="showManagementMatchComponent()">
-              <a href="#">Jugar online</a>
-            </li>
-            <li><a href="#">Misiones</a></li>
-            <li><a href="#">Torneo</a></li>
-            <li (click)="showInventaryComponent()">
-              <a href="#inventary">Mi inventario</a>
-            </li>
-            <li><a href="#">Subasta</a></li>
-            <li (click)="showInfoUserComponent()">
-              <a href="#profile">Mi cuenta</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <app-match-management-view
-        *ngIf="showManagementMatch"
-        (toggleGameView)="toggleGameView($event)"
-        (showHeader)="showHeaderComponent()"
-      ></app-match-management-view>
-      <app-info-user *ngIf="showInfoUser"></app-info-user>
-      <!-- <app-product-creation *ngIf="showInventary"></app-product-creation> -->
-      <app-sign-in
-        *ngIf="showSignIn"
-        (registro)="showRegisterComponent()"
-        (inicioSesion)="showManagementMatchComponent()"
-      ></app-sign-in>
-      <app-sign-up
-        *ngIf="showRegister"
-        (registered)="showSignInComponent()"
-      ></app-sign-up>
-      <app-hero-inventory *ngIf="showInventary"></app-hero-inventory>
-    </div>
-  </body>
-</html>
+<div class="main-container" *ngIf="showHeader">
+  <header class="header-main">
+    <h1>The Nexus Battles III</h1>
+    <nav>
+      <ul>
+        <li (click)="navigateTo('match-management-view')">
+          <a>Jugar online</a>
+        </li>
+        <li (click)="navigateTo('missions')">
+          <a>Misiones</a>
+        </li>
+        <li (click)="navigateTo('nothing')">
+          <a>Torneo</a>
+        </li>
+        <li (click)="navigateTo('hero-inventory')">
+          <a>Mi inventario</a>
+        </li>
+        <li (click)="navigateTo('nothing')">
+          <a>Subasta</a>
+        </li>
+        <li (click)="navigateTo('profile')">
+          <a>Mi cuenta</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>
+<app-chat-bot-view></app-chat-bot-view>
+<app-sound-control></app-sound-control>
+<router-outlet></router-outlet>

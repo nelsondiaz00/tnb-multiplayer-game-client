@@ -5,7 +5,8 @@ import { teamSide } from '../types/team.type';
 
 export interface IHero {
   idUser: string;
-  // idHero: string;
+  nameUser: string;
+  idHero: string;
   type: heroType;
   subtype: subHeroType;
   attributes: { [key: string]: IAttribute };
