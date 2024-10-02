@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5002/get_response';
+const API_URL = 'http://127.0.0.1:5002/prompt';
 
 export async function getChatbotResponse(message: string): Promise<string> {
   try {
@@ -13,8 +13,9 @@ export async function getChatbotResponse(message: string): Promise<string> {
         },
       }
     );
-    const data = response.data as { response: string };
-    return data.response;
+    const data: any = response.data;
+    console.log(data, ' °!!!');
+    return data.message;
   } catch (error) {
     console.error('Error fetching chatbot response:', error);
     throw error;

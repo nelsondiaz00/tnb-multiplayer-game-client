@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,7 @@ export class SignInComponent {
   @Output() registro = new EventEmitter<void>();
   @Output() inicioSesion = new EventEmitter<void>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   navigateTo(route: string) {
     this.router.navigate([route]);
@@ -21,7 +22,7 @@ export class SignInComponent {
   username = '';
   password = '';
 
-  emitLanding(){
+  emitLanding() {
     this.navigateTo('landing');
   }
 
@@ -60,6 +61,8 @@ export class SignInComponent {
           if (user.password === this.password) {
             const user = { user: this.username, password: this.password };
             localStorage.setItem('loggedUser', JSON.stringify(user));
+            // this.userService.setIdUser(user.user);
+            console.log('User:', this.userService.getIdUser());
             this.navigateTo('match-management-view');
           }
         }

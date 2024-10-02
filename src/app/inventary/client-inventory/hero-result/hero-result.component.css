@@ -12,7 +12,7 @@
 
 .image-container {
   /* background-image: url("/assets/game-images/heroes/weapon.warrior.png");  */
-  background-size:cover;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 60%;
@@ -154,9 +154,8 @@ h1:hover {
   padding-top: 5%;
 }
 
-
 .character-info p {
-  font-size: clamp(0.06rem, 0.6vw, 0.6rem);;
+  font-size: clamp(0.06rem, 0.6vw, 0.6rem);
   color: #6c3494;
   margin: 0;
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
@@ -178,7 +177,6 @@ h1:hover {
   left: 10px;
   width: calc(100% - 10px);
 }
-
 
 .stats p {
   font-size: clamp(0.06rem, 0.6vw, 0.6rem);
@@ -206,6 +204,6 @@ h1:hover {
   justify-content: center;
   text-align: left; /* Cambia la alineación del texto */
   position: relative; /* Asegura que se muestre en su contexto */
-  z-index: 10; /* Asegura que el elemento esté por encima de otros elementos si es necesario */
+  z-index: 3; /* Asegura que el elemento esté por encima de otros elementos si es necesario */
   box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
