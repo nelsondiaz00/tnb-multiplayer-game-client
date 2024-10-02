@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CreateMatchModalComponent } from '../create-match-modal/create-match-modal.component';
 import { MatchListComponent } from '../match-list/match-list.component';
 import { GameViewComponent } from '../../game/game-view/game-view.component';
@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { WebSocketService } from '../../_services/websocket.service';
 import { SelectHeroComponent } from '../select-hero/select-hero.component';
 import { Router } from '@angular/router';
+import { ChatModule } from '../global-chat/chat.module'; // Importa el ChatModule
 
 @Component({
   selector: 'app-match-management-view',
@@ -13,16 +14,18 @@ import { Router } from '@angular/router';
   imports: [
     CommonModule,
     CreateMatchModalComponent,
+    ChatModule, // Importa el módulo que contiene GlobalChatComponent
     MatchListComponent,
     GameViewComponent,
     SelectHeroComponent,
   ],
   templateUrl: './match-management-view.component.html',
-  styleUrl: './match-management-view.component.css',
+  styleUrls: ['./match-management-view.component.css'],
 })
 export class MatchManagementViewComponent {
   @Output() toggleGameView = new EventEmitter<boolean>();
   @Output() showHeader = new EventEmitter<boolean>();
+
   constructor(
     private webSocketService: WebSocketService,
     private router: Router

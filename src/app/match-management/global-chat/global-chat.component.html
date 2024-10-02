@@ -1,0 +1,19 @@
+<div class="chat-section">
+  <h3>Chat Global</h3>
+  <div class="display-chat"> <div class="chat-box">
+    <div *ngFor="let message of messages" class="chat-message">
+      <strong>{{ message.sender }}:</strong> {{ message.text }}
+    </div>
+  </div>
+  <div class="chat-input-wrapper">
+    <input
+      type="text"
+      [value]="newMessage"
+      (input)="onInputChange($event)"
+      (keydown.enter)="sendMessage()"
+      placeholder="Escribe un mensaje..."
+    />
+    <button class="send-button" (click)="sendMessage()">Enviar</button>
+  </div>
+</div>
+</div>
