@@ -1,27 +1,35 @@
 <main>
   <section class="lobby-selection">
     <h2>Tablón de misiones</h2>
-    <div id="game-room-list" class="game-room-list">
-      <!-- <ng-container *ngIf="matchList.length > 0; else noMatches">
-        <div *ngFor="let match of matchList" class="game-room-item">
-          <button class="buttom-item" (click)="onMatchClick(match)">
-            Partida {{ match.port - 3000 }} - Modo: {{ match.amountRed }} v
-            {{ match.amountBlue }} {{ "(Abierta)" }}
-          </button>
-        </div>
-      </ng-container> -->
-      <ng-template #noMatches>
-        <p>No hay partidas disponibles en este momento.</p>
-      </ng-template>
-    </div>
-    <div class="button-container">
-      <!-- <button
-        id="create-game-button"
-        class="create-game-button"
-        (click)="openCreateMatchModal()"
-      >
-        Crear Partida
-      </button> -->
+    <div class="game-room-container">
+      <div id="game-room-list" class="game-room-list">
+        <ng-container *ngIf="missions.length > 0; else noMatches">
+          <div *ngFor="let mission of missions" class="game-room-item">
+            <div class="indicators-container">
+              <span class="indicators">Estado:</span>
+              {{ mission.active ? "En progreso" : "Inactiva" }}
+              <span class="indicators">Progreso:</span>
+              {{ "Sin iniciar" }}
+            </div>
+            <button class="buttom-item" (click)="startMission(mission)">
+              <span style="color: #ff009d">Nombre:</span> {{ mission.name }}
+              <span style="color: #ff009d">Descripción:</span>
+              {{ mission.description }}
+              <span style="color: #ff009d">Dificultad:</span>
+              {{ mission.enemyCount }}
+              <span style="color: #ff009d">Recompensa:</span>
+              {{ mission.reward }}
+              <span style="color: #ff009d">Tiempo requerido:</span>
+              {{ mission.time }} <span style="color: #ff009d">Estado:</span>
+              {{ mission.active }}
+              <span style="color: #ff009d">{{ "(Abierta)" }}</span>
+            </button>
+          </div>
+        </ng-container>
+        <ng-template #noMatches>
+          <p>No hay partidas disponibles en este momento.</p>
+        </ng-template>
+      </div>
     </div>
   </section>
 </main>

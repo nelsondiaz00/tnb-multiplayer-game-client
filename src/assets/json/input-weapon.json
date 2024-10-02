@@ -1,6 +1,8 @@
 {
   "teamSide": "red",
   "idUser": "user9",
+  "nameUser": "Nelson",
+  "idHero": "idHero",
   "type": "warrior",
   "subtype": "weapon",
   "attributes": {
