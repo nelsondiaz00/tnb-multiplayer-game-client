@@ -111,4 +111,22 @@ export class ProductListComponent {
     if (this.weapons.includes(item)) return 'weapons';
     return 'unknown';
   }
+
+  cardClick(item: any): void {
+    const type = this.getItemType(item);
+    switch (type) {
+      case 'armors':
+        this.inventoryService.getHeroeActual().props.inventory?.props.armors.push(item);
+        break;
+      case 'items':
+        this.inventoryService.getHeroeActual().props.inventory?.props.items.push(item);
+        break;
+      case 'weapons':
+        this.inventoryService.getHeroeActual().props.inventory?.props.weapons.push(item);
+        break;
+      default:
+        console.log('Unknown type card clicked', item);
+        break;
+    }
+  }
 }

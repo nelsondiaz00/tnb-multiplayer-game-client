@@ -32,6 +32,7 @@ export class HeroResultComponent {
         // }
         this.heroes = player.heroList;
         this.actualHero = this.heroes[0];
+        this.inventoryService.setHeroeActual(this.actualHero);
       }
     });
   }

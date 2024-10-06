@@ -7,6 +7,7 @@ import Player from '../_models/domain-inventory/player/Player';
 import { AbstractHero } from '../_models/domain-inventory/hero/AbstractHero';
 import axios from 'axios';
 import NullPlayer from '../_models/domain-inventory/player/NullPlayer';
+import { NullHero } from '../_models/domain-inventory/hero/NullHero';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ import NullPlayer from '../_models/domain-inventory/player/NullPlayer';
 export class ClientInventoryService {
   private playerSubject = new BehaviorSubject<AbstractPlayer | null>(null);
   public player$ = this.playerSubject.asObservable();
+  public heroeActual: AbstractHero = NullHero.create();
 
   async setPlayer(): Promise<void> {
     const playerObservable = await this.getPlayerFromApi();
@@ -62,5 +64,13 @@ export class ClientInventoryService {
     }
 
     return new BehaviorSubject<AbstractPlayer>(player).asObservable();
+  }
+
+  setHeroeActual(hero: AbstractHero): void {
+    this.heroeActual = hero;
+  }
+
+  getHeroeActual(): AbstractHero {
+    return this.heroeActual
   }
 }

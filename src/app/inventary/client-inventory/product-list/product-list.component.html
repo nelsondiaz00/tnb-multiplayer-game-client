@@ -1,6 +1,6 @@
 <div class="grid">
   <!-- 12 ítems en la cuadrícula -->
-  <button *ngFor="let item of paginatedItems" class="grid-item">
+  <button *ngFor="let item of paginatedItems" class="grid-item" (click)="cardClick(item)">
     <div class="grid-item-image">
       <img src="{{ getImagePath(item.props.name, getItemType(item)) }}" />
     </div>
