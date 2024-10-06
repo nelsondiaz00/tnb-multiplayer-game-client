@@ -32,7 +32,7 @@ export class ClientInventoryService {
 
     const response = await axios.post(
       'http://localhost:1803/player/getPlayer',
-      { id: '66f8eefc18fd498699a18844' }
+      { id: '6702193f00d446eb9b5e359f' }
     );
 
     if (response.data) {
