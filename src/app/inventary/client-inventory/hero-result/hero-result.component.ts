@@ -11,11 +11,10 @@ import axios from 'axios';
   styleUrl: './hero-result.component.css',
 })
 export class HeroResultComponent {
-  heroes: AbstractHero[] = [];
   actualHero!: AbstractHero;
   currentHeroIndex: number = 0;
 
-  constructor(private inventoryService: ClientInventoryService) {}
+  constructor(private inventoryService: ClientInventoryService) { }
 
   async ngOnInit(): Promise<void> {
     this.inventoryService.player$.subscribe(async (player) => {
@@ -30,8 +29,8 @@ export class HeroResultComponent {
 
         //   player.heroList[i] = hero;
         // }
-        this.heroes = player.heroList;
-        this.actualHero = this.heroes[0];
+        this.inventoryService.setHeroes(player.heroList);
+        this.actualHero = this.inventoryService.getHeroes()[0];
         this.inventoryService.setHeroeActual(this.actualHero);
       }
     });
@@ -67,17 +66,19 @@ export class HeroResultComponent {
     return translatedType || 'TIPO O SUBTIPO DESCONOCIDO';
   }
   updateCurrentHero(): void {
-    this.actualHero = this.heroes[this.currentHeroIndex];
+    this.actualHero = this.inventoryService.getHeroes()[this.currentHeroIndex];
     this.inventoryService.setHeroeActual(this.actualHero)
   }
   nextHero(): void {
-    this.currentHeroIndex = (this.currentHeroIndex + 1) % this.heroes.length;
+    this.currentHeroIndex = (this.currentHeroIndex + 1) % this.inventoryService.getHeroes().length;
+    this.inventoryService.setActualHeroIndex(this.currentHeroIndex);
     this.updateCurrentHero();
   }
 
   prevHero(): void {
     this.currentHeroIndex =
-      (this.currentHeroIndex - 1 + this.heroes.length) % this.heroes.length;
+      (this.currentHeroIndex - 1 + this.inventoryService.getHeroes().length) % this.inventoryService.getHeroes().length;
+    this.inventoryService.setActualHeroIndex(this.currentHeroIndex);
     this.updateCurrentHero();
   }
 }

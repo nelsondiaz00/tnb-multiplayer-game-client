@@ -16,12 +16,14 @@ export class ClientInventoryService {
   private playerSubject = new BehaviorSubject<AbstractPlayer | null>(null);
   public player$ = this.playerSubject.asObservable();
   public heroeActual: AbstractHero = NullHero.create();
+  public actualHeroIndex: number = 0;
+  public heroes: AbstractHero[] = [];
 
   async setPlayer(): Promise<void> {
     const playerObservable = await this.getPlayerFromApi();
     playerObservable.subscribe((player) => {
       this.playerSubject.next(player);
-      console.log(player);
+      // console.log(player);
     });
   }
 
@@ -72,5 +74,21 @@ export class ClientInventoryService {
 
   getHeroeActual(): AbstractHero {
     return this.heroeActual
+  }
+
+  setActualHeroIndex(index: number): void {
+    this.actualHeroIndex = index;
+  }
+
+  getActualHeroIndex(): number {
+    return this.actualHeroIndex;
+  }
+
+  setHeroes(heroes: AbstractHero[]): void {
+    this.heroes = heroes;
+  }
+
+  getHeroes(): AbstractHero[] {
+    return this.heroes;
   }
 }

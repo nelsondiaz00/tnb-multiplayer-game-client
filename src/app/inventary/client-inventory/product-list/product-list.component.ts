@@ -7,6 +7,12 @@ import { AbstractPlayer } from '../../../_models/domain-inventory/player/Abstrac
 import { CommonModule } from '@angular/common';
 import { AbstractSkill } from '../../../_models/domain-inventory/skill/AbstractSkill';
 import axios from 'axios';
+import { AbstractEffect } from '../../../_models/domain-inventory/effect/AbstractEffect';
+import { AbstractHero, HeroProps } from '../../../_models/domain-inventory/hero/AbstractHero';
+import SpecialAttribute, { SpecialAttributeProps } from '../../../_models/domain-inventory/hero/valueObjects/Attribute';
+import { Hero } from '../../../_models/domain-inventory/hero/Hero';
+import { evaluate } from "mathjs";
+
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -24,7 +30,7 @@ export class ProductListComponent {
   skills: AbstractSkill[] = [];
   filteredItems: any[] = [];
 
-  constructor(private inventoryService: ClientInventoryService) {}
+  constructor(private inventoryService: ClientInventoryService) { }
 
   async ngOnInit(): Promise<void> {
     this.inventoryService.player$.subscribe(async (player) => {
@@ -116,6 +122,7 @@ export class ProductListComponent {
 
   cardClick(item: any): void {
     const type = this.getItemType(item);
+    console.log('clicked',item);
     switch (type) {
       case 'armors':
         this.inventoryService.getHeroeActual().props.inventory?.props.armors.push(item);
@@ -130,6 +137,11 @@ export class ProductListComponent {
         console.log('Unknown type card clicked', item);
         break;
     }
+    const heroResult = this.handleApplyElementEffects(item.props.effectList, this.inventoryService.getHeroeActual());
+    console.log('Heroe actualizado', heroResult);
+    
+    this.inventoryService.setHeroeActual(heroResult)
+    this.inventoryService.getHeroes()[this.inventoryService.getActualHeroIndex()] = heroResult;
   }
 
   private selectEquipedItems(pagItems: any): any {
@@ -154,6 +166,104 @@ export class ProductListComponent {
       pagItems[i].equiped = equiped;
     }
     return pagItems;
+  }
+
+  public handleApplyElementEffects(effectList: AbstractEffect[], hero: AbstractHero): AbstractHero {
+    //declara los tipos requeridos
+    type HeroPropertiesKeys = keyof HeroProps
+
+    // Copia los valores actuales del heroe
+    const attributesCopy: HeroProps = { ...hero.props };
+
+    // Recibe la lista de efectos del producto
+    const effects = effectList
+
+    // Aplica cada efecto al heroe
+    effects.forEach((effect: AbstractEffect) => {
+      // Convierte el nombre del atributo a minuscula y lo utiliza como una key en el heroe
+      let keyString = effect.props.attribute.toLowerCase()
+
+      //pequena traduccion si el atributo es distinto a los que se trabaja
+      if(keyString==='life') keyString = 'blood'
+
+      // Si incluye attack o damage se trabaja como atributo especial
+      if (keyString.includes("attack") || keyString.includes("damage")) {
+        // Crea la key para acceder al atributo
+        let key: HeroPropertiesKeys
+        if (keyString.includes("attack")) { key = "attack" as HeroPropertiesKeys }
+        else { key = "damage" as HeroPropertiesKeys }
+
+        // Accede al atributo especial y obtiene sus propiedades
+        const specialAttribute: SpecialAttribute = attributesCopy[key] as SpecialAttribute;
+        const specialAttributeProps: SpecialAttributeProps = specialAttribute.props;
+
+        // Selecciona la propiedad del atributo especial, construye la ecuacion del efecto para afectar la propiedad y la resuelve
+        if (keyString.includes("min")) {
+          const ecuation = specialAttributeProps.minValue + effect.props.operator + effect.props.value;
+          specialAttributeProps.minValue = evaluate(ecuation)
+        } else {
+          if (keyString.includes("max")) {
+            const ecuation = specialAttributeProps.maxValue + effect.props.operator + effect.props.value;
+            specialAttributeProps.maxValue = evaluate(ecuation);
+          } else {
+            const ecuation = specialAttributeProps.value + effect.props.operator + effect.props.value;
+            specialAttributeProps.value = evaluate(ecuation);
+          }
+        }
+      } else {
+        // Crea la key y obtiene el valor del atributo
+        const key: HeroPropertiesKeys = keyString as HeroPropertiesKeys
+        const attributeCopy = attributesCopy[key];
+
+        // Si existe y es numerico construye la ecuacion del efecto para afectar el atributo, la resuelve y asigna el resultado
+        if (attributeCopy) {
+          if (typeof attributeCopy === "number") {
+            const ecuation = attributeCopy + effect.props.operator + effect.props.value;
+            (attributesCopy[key] as number) = evaluate(ecuation);
+          }
+        } else {
+          // Atributo no existe
+          console.warn(
+            "Atributo no encontrado!",
+            keyString
+          );
+        }
+      }
+
+    });
+
+    const {
+      groupId,
+      subgroupId,
+      status,
+      name,
+      level,
+      blood,
+      mana,
+      defense,
+      attack,
+      damage,
+      skills,
+      baseStats,
+      inventory
+    } = attributesCopy
+
+    return Hero.create(
+      hero._id,
+      groupId,
+      subgroupId,
+      status,
+      name,
+      level,
+      blood,
+      mana,
+      defense,
+      attack,
+      damage,
+      skills,
+      baseStats,
+      inventory
+    );
   }
 
 }
