@@ -20,16 +20,16 @@ export class HeroResultComponent {
   async ngOnInit(): Promise<void> {
     this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
-        for (let i = 0; i < player.heroList.length; i++) {
-          let hero: AbstractHero = player.heroList[i];
+        // for (let i = 0; i < player.heroList.length; i++) {
+        //   let hero: AbstractHero = player.heroList[i];
 
-          hero = (
-            (await axios.get(`http://localhost:1803/hero/${hero._id}`))
-              .data as { data: AbstractHero }
-          ).data;
+        //   hero = (
+        //     (await axios.get(`http://localhost:1803/hero/${hero._id}`))
+        //       .data as { data: AbstractHero }
+        //   ).data;
 
-          player.heroList[i] = hero;
-        }
+        //   player.heroList[i] = hero;
+        // }
         this.heroes = player.heroList;
         this.actualHero = this.heroes[0];
       }
