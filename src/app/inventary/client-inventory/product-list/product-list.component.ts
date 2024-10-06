@@ -90,7 +90,9 @@ export class ProductListComponent {
 
   get paginatedItems() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
-    return this.filteredItems.slice(start, start + this.itemsPerPage);
+    let pagItems = this.filteredItems.slice(start, start + this.itemsPerPage);
+    pagItems = this.selectEquipedItems(pagItems);
+    return pagItems;
   }
 
   getImagePath(name: string, type: string): string {
@@ -129,4 +131,29 @@ export class ProductListComponent {
         break;
     }
   }
+
+  private selectEquipedItems(pagItems: any): any {
+    for (let i = 0; i < pagItems.length; i++) {
+      const item = pagItems[i];
+      const type = this.getItemType(item);
+      let equiped = false;
+      switch (type) {
+        case 'armors':
+          equiped = this.inventoryService.getHeroeActual().props.inventory?.props.armors.includes(item) === true;
+          break;
+        case 'items':
+          equiped = this.inventoryService.getHeroeActual().props.inventory?.props.items.includes(item) === true;
+          break;
+        case 'weapons':
+          equiped = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.includes(item) === true;
+          break;
+        default:
+          console.log('Unknown type card clicked', item);
+          break;
+      }
+      pagItems[i].equiped = equiped;
+    }
+    return pagItems;
+  }
+
 }

@@ -68,6 +68,7 @@ export class HeroResultComponent {
   }
   updateCurrentHero(): void {
     this.actualHero = this.heroes[this.currentHeroIndex];
+    this.inventoryService.setHeroeActual(this.actualHero)
   }
   nextHero(): void {
     this.currentHeroIndex = (this.currentHeroIndex + 1) % this.heroes.length;
