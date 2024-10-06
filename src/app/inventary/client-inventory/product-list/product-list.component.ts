@@ -94,6 +94,7 @@ export class ProductListComponent {
   }
 
   getImagePath(name: string, type: string): string {
+    name = name.trimEnd();
     const newName = name
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
