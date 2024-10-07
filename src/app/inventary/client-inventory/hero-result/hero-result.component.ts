@@ -4,6 +4,8 @@ import { AbstractHero } from '../../../_models/domain-inventory/hero/AbstractHer
 import { CommonModule } from '@angular/common';
 import axios from 'axios';
 import { Subscription } from 'rxjs';
+import { re } from 'mathjs';
+import AbstractArmor from '../../../_models/domain-inventory/element/armor/AbstractArmor';
 @Component({
   selector: 'app-hero-result',
   standalone: true,
@@ -91,4 +93,30 @@ export class HeroResultComponent {
     this.inventoryService.setActualHeroIndex(this.currentHeroIndex);
     this.updateCurrentHero();
   }
+
+  getImagePath(name: string, type: string): string {
+    name = name.trimEnd();
+    const newName = name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ñ/g, 'n')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
+    console.log(`assets/game-images/${type}/${newName}.png`);
+    return `assets/game-images/${type}/${newName}.png`;
+  }
+
+  getEquipedArmorImage( armorType: string ): string {
+    let armorName = ""
+    this.inventoryService.getHeroeActual().props.inventory?.props.armors.forEach(armor => {
+      if (armor.type === armorType) {
+        armorName = armor.props.name;
+      }
+    })
+    if(armorName === ""){
+      return ""
+    }
+    return `url(${this.getImagePath( armorName, 'armors')})`
+  }
+
 }

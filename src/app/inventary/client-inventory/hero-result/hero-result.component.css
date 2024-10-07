@@ -99,13 +99,13 @@ h1:hover {
   background-repeat: no-repeat; /* Evita que la imagen se repita */
 }
 
-#helmet {
+/* #helmet {
   background-image: url("/assets/game-images/inventary-icons/Casco.png");
 }
 
 #chest {
   background-image: url("/assets/game-images/inventary-icons/Pecho.png");
-}
+} */
 
 #gloves {
   margin: 15px 5px;
@@ -115,13 +115,13 @@ h1:hover {
   margin: 15px 5px;
 }
 
-#pants {
+/* #pants {
   background-image: url("/assets/game-images/inventary-icons/Piernas.png");
 }
 
 #shoes {
   background-image: url("/assets/game-images/inventary-icons/botas.png");
-}
+} */
 
 .circles-row {
   display: flex;

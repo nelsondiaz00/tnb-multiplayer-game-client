@@ -2,7 +2,7 @@ import { AbstractElement, ElementProps } from "../AbstractElement";
 
 
 export default abstract class AbstractArmor extends AbstractElement {
-    private type: string;
+    public type: string;
 
     constructor(id: string, props: ElementProps, type: string){
         super(id, props)

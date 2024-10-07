@@ -11,7 +11,7 @@ import { AbstractEffect } from '../../../_models/domain-inventory/effect/Abstrac
 import { AbstractHero, HeroProps } from '../../../_models/domain-inventory/hero/AbstractHero';
 import SpecialAttribute, { SpecialAttributeProps } from '../../../_models/domain-inventory/hero/valueObjects/Attribute';
 import { Hero } from '../../../_models/domain-inventory/hero/Hero';
-import { evaluate } from "mathjs";
+import { evaluate, re } from "mathjs";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -129,6 +129,7 @@ export class ProductListComponent {
   }
 
   cardClick(item: any): void {
+    let equipable = true;
     let effectList = item.props.effectList
 
     const isItemEquiped = this.isItemEquiped(item);
@@ -136,18 +137,19 @@ export class ProductListComponent {
       effectList = this.revertEffectsOperator(effectList);
       this.unequipItemsOfHeroInventory(item);
     } else {
-      this.equipItemsInHeroInventory(item);
-    }
-    const heroResult = this.handleApplyElementEffects(effectList, this.inventoryService.getHeroeActual());
-    if(isItemEquiped){
-      this.revertEffectsOperator(effectList);
+      equipable = this.equipItemsInHeroInventory(item);
     }
 
-    console.log(heroResult);
-    
-    this.inventoryService.setHeroeActual(heroResult)
-    this.heroes[this.inventoryService.getActualHeroIndex()] = heroResult;
-    this.inventoryService.setHeroes(this.heroes);
+    if (equipable) {
+      const heroResult = this.handleApplyElementEffects(effectList, this.inventoryService.getHeroeActual());
+      if (isItemEquiped) {
+        this.revertEffectsOperator(effectList);
+      }
+
+      this.inventoryService.setHeroeActual(heroResult)
+      this.heroes[this.inventoryService.getActualHeroIndex()] = heroResult;
+      this.inventoryService.setHeroes(this.heroes);
+    }
   }
 
   private selectEquipedItems(pagItems: any): any {
@@ -276,11 +278,19 @@ export class ProductListComponent {
     );
   }
 
-  equipItemsInHeroInventory(item: any){
-    const type = this.getItemType(item);      
+  equipItemsInHeroInventory(item: any): boolean {
+    let equipable = true;
+    const type = this.getItemType(item);
     switch (type) {
       case 'armors':
-        this.inventoryService.getHeroeActual().props.inventory?.props.armors.push(item);
+        const armors = this.inventoryService.getHeroeActual().props.inventory?.props.armors;
+        const armorTypeExists = armors?.some(armor => armor.type === item.type);
+        if (!armorTypeExists) {
+          armors?.push(item);
+        } else {
+          equipable = false;
+          alert(`Ya existe una armadura del tipo ${item.type} equipada.`);
+        }
         break;
       case 'items':
         this.inventoryService.getHeroeActual().props.inventory?.props.items.push(item);
@@ -292,27 +302,28 @@ export class ProductListComponent {
         console.log('Unknown type card clicked', item);
         break;
     }
+    return equipable
   }
 
-  unequipItemsOfHeroInventory(item: any){
-    const type = this.getItemType(item);    
+  unequipItemsOfHeroInventory(item: any) {
+    const type = this.getItemType(item);
     let index
     switch (type) {
       case 'armors':
         index = this.inventoryService.getHeroeActual().props.inventory?.props.armors.indexOf(item);
-        if(index && (index !== -1)) {
+        if (index && (index !== -1)) {
           this.inventoryService.getHeroeActual().props.inventory?.props.armors.splice(index, 1);
         }
         break;
       case 'items':
         index = this.inventoryService.getHeroeActual().props.inventory?.props.items.indexOf(item);
-        if(index && (index !== -1)) {
+        if (index && (index !== -1)) {
           this.inventoryService.getHeroeActual().props.inventory?.props.items.splice(index, 1);
         }
         break;
       case 'weapons':
         index = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.indexOf(item);
-        if(index && (index !== -1)) {
+        if (index && (index !== -1)) {
           this.inventoryService.getHeroeActual().props.inventory?.props.weapons.splice(index, 1);
         }
         break;
@@ -340,7 +351,7 @@ export class ProductListComponent {
           break;
         default:
           console.warn(`Unexpected operator: ${effect.props.operator}`);
-      }      
+      }
     });
     return effects
   }

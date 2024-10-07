@@ -24,7 +24,7 @@ export class ClientInventoryService {
     const playerObservable = await this.getPlayerFromApi();
     playerObservable.subscribe((player) => {
       this.playerSubject.next(player);
-      // console.log(player);
+      console.log(player);
     });
   }
 

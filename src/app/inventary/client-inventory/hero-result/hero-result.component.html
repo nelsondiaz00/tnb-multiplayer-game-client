@@ -10,21 +10,21 @@
       ')'
     "
   >
-    <!-- Círculos a la izquierda -->
+    <!-- Círculos a la izquierda "Casco" "Pecho" "Guantes"-->
     <div class="circles-left">
-      <div class="circle" id="helmet"></div>
-      <div class="circle" id="chest"></div>
-      <div class="circle" id="gloves"></div>
+      <div class="circle" id="helmet" [style.backgroundImage]="getEquipedArmorImage( 'Casco' )" ></div>
+      <div class="circle" id="chest" [style.backgroundImage]="getEquipedArmorImage( 'Pecho' )" ></div>
+      <div class="circle" id="gloves" [style.backgroundImage]="getEquipedArmorImage( 'Guantes' )" ></div>
     </div>
 
     <!-- Imagen -->
     <div class="image"></div>
 
-    <!-- Círculos a la derecha -->
+    <!-- Círculos a la derecha "Brazaletes" "Pantalon" "Zapatos"-->
     <div class="circles-right">
-      <div class="circle" id="bracers"></div>
-      <div class="circle" id="pants"></div>
-      <div class="circle" id="shoes"></div>
+      <div class="circle" id="bracers" [style.backgroundImage]="getEquipedArmorImage( 'Brazaletes' )" ></div>
+      <div class="circle" id="pants" [style.backgroundImage]="getEquipedArmorImage( 'Pantalon' )" ></div>
+      <div class="circle" id="shoes" [style.backgroundImage]="getEquipedArmorImage( 'Zapatos' )" ></div>
     </div>
   </div>
 
