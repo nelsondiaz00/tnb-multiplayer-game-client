@@ -289,7 +289,7 @@ export class ProductListComponent {
           armors?.push(item);
         } else {
           equipable = false;
-          alert(`Ya existe una armadura del tipo ${item.type} equipada.`);
+          // alert(`Ya existe una armadura del tipo ${item.type} equipada.`);
         }
         break;
       case 'items':
