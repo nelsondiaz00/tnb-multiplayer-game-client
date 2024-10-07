@@ -12,6 +12,7 @@ import { AbstractHero, HeroProps } from '../../../_models/domain-inventory/hero/
 import SpecialAttribute, { SpecialAttributeProps } from '../../../_models/domain-inventory/hero/valueObjects/Attribute';
 import { Hero } from '../../../_models/domain-inventory/hero/Hero';
 import { evaluate } from "mathjs";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -29,10 +30,17 @@ export class ProductListComponent {
   weapons: AbstractWeapon[] = [];
   skills: AbstractSkill[] = [];
   filteredItems: any[] = [];
+  heroesSubscription: Subscription = new Subscription();
+  heroes: AbstractHero[] = [];
 
   constructor(private inventoryService: ClientInventoryService) { }
 
   async ngOnInit(): Promise<void> {
+    this.heroesSubscription = this.inventoryService.heroes$.subscribe(heroes => {
+      if (heroes.length > 0) {
+        this.heroes = heroes;
+      }
+    });
     this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
         for (let i = 0; i < player.inventory.armors.length; i++) {
@@ -121,51 +129,53 @@ export class ProductListComponent {
   }
 
   cardClick(item: any): void {
-    const type = this.getItemType(item);
-    console.log('clicked',item);
-    switch (type) {
-      case 'armors':
-        this.inventoryService.getHeroeActual().props.inventory?.props.armors.push(item);
-        break;
-      case 'items':
-        this.inventoryService.getHeroeActual().props.inventory?.props.items.push(item);
-        break;
-      case 'weapons':
-        this.inventoryService.getHeroeActual().props.inventory?.props.weapons.push(item);
-        break;
-      default:
-        console.log('Unknown type card clicked', item);
-        break;
+    let effectList = item.props.effectList
+
+    const isItemEquiped = this.isItemEquiped(item);
+    if (isItemEquiped) {
+      effectList = this.revertEffectsOperator(effectList);
+      this.unequipItemsOfHeroInventory(item);
+    } else {
+      this.equipItemsInHeroInventory(item);
     }
-    const heroResult = this.handleApplyElementEffects(item.props.effectList, this.inventoryService.getHeroeActual());
-    console.log('Heroe actualizado', heroResult);
+    const heroResult = this.handleApplyElementEffects(effectList, this.inventoryService.getHeroeActual());
+    if(isItemEquiped){
+      this.revertEffectsOperator(effectList);
+    }
+
+    console.log(heroResult);
     
     this.inventoryService.setHeroeActual(heroResult)
-    this.inventoryService.getHeroes()[this.inventoryService.getActualHeroIndex()] = heroResult;
+    this.heroes[this.inventoryService.getActualHeroIndex()] = heroResult;
+    this.inventoryService.setHeroes(this.heroes);
   }
 
   private selectEquipedItems(pagItems: any): any {
     for (let i = 0; i < pagItems.length; i++) {
       const item = pagItems[i];
-      const type = this.getItemType(item);
-      let equiped = false;
-      switch (type) {
-        case 'armors':
-          equiped = this.inventoryService.getHeroeActual().props.inventory?.props.armors.includes(item) === true;
-          break;
-        case 'items':
-          equiped = this.inventoryService.getHeroeActual().props.inventory?.props.items.includes(item) === true;
-          break;
-        case 'weapons':
-          equiped = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.includes(item) === true;
-          break;
-        default:
-          console.log('Unknown type card clicked', item);
-          break;
-      }
-      pagItems[i].equiped = equiped;
+      pagItems[i].equiped = this.isItemEquiped(item);
     }
     return pagItems;
+  }
+
+  private isItemEquiped(item: any): boolean {
+    const type = this.getItemType(item);
+    let equiped = false;
+    switch (type) {
+      case 'armors':
+        equiped = this.inventoryService.getHeroeActual().props.inventory?.props.armors.includes(item) === true;
+        break;
+      case 'items':
+        equiped = this.inventoryService.getHeroeActual().props.inventory?.props.items.includes(item) === true;
+        break;
+      case 'weapons':
+        equiped = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.includes(item) === true;
+        break;
+      default:
+        console.log('Unknown type card clicked', item);
+        break;
+    }
+    return equiped;
   }
 
   public handleApplyElementEffects(effectList: AbstractEffect[], hero: AbstractHero): AbstractHero {
@@ -184,7 +194,7 @@ export class ProductListComponent {
       let keyString = effect.props.attribute.toLowerCase()
 
       //pequena traduccion si el atributo es distinto a los que se trabaja
-      if(keyString==='life') keyString = 'blood'
+      if (keyString === 'life') keyString = 'blood'
 
       // Si incluye attack o damage se trabaja como atributo especial
       if (keyString.includes("attack") || keyString.includes("damage")) {
@@ -264,6 +274,75 @@ export class ProductListComponent {
       baseStats,
       inventory
     );
+  }
+
+  equipItemsInHeroInventory(item: any){
+    const type = this.getItemType(item);      
+    switch (type) {
+      case 'armors':
+        this.inventoryService.getHeroeActual().props.inventory?.props.armors.push(item);
+        break;
+      case 'items':
+        this.inventoryService.getHeroeActual().props.inventory?.props.items.push(item);
+        break;
+      case 'weapons':
+        this.inventoryService.getHeroeActual().props.inventory?.props.weapons.push(item);
+        break;
+      default:
+        console.log('Unknown type card clicked', item);
+        break;
+    }
+  }
+
+  unequipItemsOfHeroInventory(item: any){
+    const type = this.getItemType(item);    
+    let index
+    switch (type) {
+      case 'armors':
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.armors.indexOf(item);
+        if(index && (index !== -1)) {
+          this.inventoryService.getHeroeActual().props.inventory?.props.armors.splice(index, 1);
+        }
+        break;
+      case 'items':
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.items.indexOf(item);
+        if(index && (index !== -1)) {
+          this.inventoryService.getHeroeActual().props.inventory?.props.items.splice(index, 1);
+        }
+        break;
+      case 'weapons':
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.indexOf(item);
+        if(index && (index !== -1)) {
+          this.inventoryService.getHeroeActual().props.inventory?.props.weapons.splice(index, 1);
+        }
+        break;
+      default:
+        console.log('Unknown type card clicked', item);
+        break;
+    }
+  }
+
+  revertEffectsOperator(effectList: any): any {
+    const effects = effectList;
+    effects.forEach((effect: any) => {
+      switch (effect.props.operator) {
+        case '+':
+          effect.props.operator = '-';
+          break;
+        case '-':
+          effect.props.operator = '+';
+          break;
+        case '*':
+          effect.props.operator = '/';
+          break;
+        case '/':
+          effect.props.operator = '*';
+          break;
+        default:
+          console.warn(`Unexpected operator: ${effect.props.operator}`);
+      }      
+    });
+    return effects
   }
 
 }
