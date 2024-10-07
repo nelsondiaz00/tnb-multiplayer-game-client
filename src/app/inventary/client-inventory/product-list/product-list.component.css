@@ -29,6 +29,7 @@
   cursor: pointer;
 }
 
+.grid-item.active,
 .grid-item:hover {
   background-color: #5d0572;
 }

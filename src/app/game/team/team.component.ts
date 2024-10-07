@@ -17,12 +17,11 @@ export class TeamComponent {
   players: (IHero | null)[] = [];
   ngOnChanges() {
     if (this.teamreceived) {
-      //console.log(this.amountPlayers, ' color');
       this.team = this.teamreceived;
-      // Rellenar el array con héroes existentes y null para los espacios vacíos
       this.players = [...this.team.players];
+      // console.log(this.players, 'players');
       while (this.players.length < (this.amountPlayers ?? 0)) {
-        this.players.push(null); // Espacios vacíos se llenan con null
+        this.players.push(null);
       }
     } else {
       console.log('No team received');

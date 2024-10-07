@@ -41,24 +41,6 @@ export class MatchManagementViewComponent {
     this.router.navigate(['game-view'], {
       state: { matchConfig: this.selectedMatchConfig },
     });
-    // this.showGameView = true;
-    // this.toggleGameView.emit(this.showGameView);
   }
 
-  // onMatchEnded(): void {
-  //   this.showGameView = false;
-  //   this.showHeader.emit(true);
-  //   this.webSocketService.connectMainSocket();
-  //   this.triggerRefresh();
-  // }
-  // triggerRefresh(): void {
-  //   this.refreshTrigger = !this.refreshTrigger;
-  // }
-
-  // refreshMatchListComponent(): void {
-  //   this.showMatchList = false;
-  //   setTimeout(() => {
-  //     this.showMatchList = true;
-  //   }, 0);
-  // }
 }

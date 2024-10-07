@@ -24,7 +24,6 @@ export class HeroComponent implements OnChanges {
   perpetratorId?: string;
   victimId?: string;
   reasonFailed: string = 'Golpe fallado';
-  extraDataHero: any = '';
 
   constructor(
     public userService: UserService,
@@ -33,12 +32,6 @@ export class HeroComponent implements OnChanges {
   ) {}
 
   ngOnInit(): void {
-    const heroData = localStorage.getItem('currentHeroSelected');
-    if (heroData) {
-      this.extraDataHero = JSON.parse(heroData);
-      console.log(this.extraDataHero, ' extra data hero');
-    }
-
     this.webSocketService.turnInfo$.subscribe(() => {
       this.userService.setHeroComponent(this);
       this.resetTargeted();

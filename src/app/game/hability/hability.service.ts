@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IProduct } from '../../_models/interfaces/product.interfaces';
+import { UserService } from '../../_services/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HabilityService {
-  private jsonUrl = 'assets/json/input-weapon.json';
+  // private jsonUrl = 'assets/json/input-weapon.json';
 
-  constructor(private http: HttpClient) {}
+  constructor(private userService: UserService) {}
 
   getHabilities(): Observable<IProduct[]> {
-    return this.http
-      .get<{ products: { [key: string]: IProduct } }>(this.jsonUrl)
-      .pipe(
-        map((data) => Object.values(data.products)),
-        map((products: IProduct[]) =>
-          products.filter((product) => product.productType === 'hability')
-        )
-      );
+    const products: IProduct[] =
+      this.userService.getHeroSelected()?.products || [];
+    const habilities: IProduct[] = products.filter(
+      (product) => product.productType === 'hability'
+    );
+    return of(habilities);
   }
 }

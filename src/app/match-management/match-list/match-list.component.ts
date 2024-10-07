@@ -31,10 +31,6 @@ export class MatchListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.webSocketService.getMatchList();
     this.webSocketService.activeMatches$.subscribe((activeMatches: any) => {
-      console.log(
-        'llegó una nueva lista de marches !!!!!!!!!!!! ' +
-          this.webSocketService.socket$.getValue()
-      );
       this.matchList = Array.from(activeMatches).map((match: any) => ({
         port: match.port,
         amountRed: match.amountRed,
@@ -43,7 +39,10 @@ export class MatchListComponent implements OnInit, OnChanges {
         state: true,
       }));
     });
-
+    // console.log(
+    //   'llegó una nueva lista de marches !!!!!!!!!!!! ' +
+    //     this.webSocketService.socket$.getValue()
+    // );
     // this.webSocketService.getPlayersAmount(3001);
   }
 

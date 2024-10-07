@@ -7,6 +7,7 @@ import { IBindInfo } from '../_models/interfaces/bind.info.interface';
 import { UserService } from './user.service';
 import { teamSide } from '../_models/types/team.type';
 import { environment } from '../../environments/environment';
+import { IHero } from '../_models/interfaces/hero.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,9 @@ import { environment } from '../../environments/environment';
 export class WebSocketService {
   public socket$: BehaviorSubject<Socket>;
   public newUser$: Observable<IMatch>;
-  public turnInfo$: Observable<any>; // Define a specific type if available
+  public turnInfo$: Observable<any>;
   public habilityUsed$: Observable<IMatch>;
   public actualMatch$: Observable<IMatch>;
-  private matchDetails$: Observable<IMatch>;
   public activeMatches$: Observable<any>;
   public endMatch$: Observable<any>;
   public amountPlayers$: Observable<any>;
@@ -42,9 +42,6 @@ export class WebSocketService {
     );
     this.actualMatch$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<IMatch>(socket, 'actualMatch'))
-    );
-    this.matchDetails$ = this.socket$.pipe(
-      switchMap((socket) => fromEvent<IMatch>(socket, 'matchDetails'))
     );
     this.activeMatches$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'activeMatches'))
@@ -109,22 +106,39 @@ export class WebSocketService {
       const extraDataHero = JSON.parse(heroData);
       // console.log(this.extraDataHero, ' extra data hero');
 
-      fetch('./assets/json/input-weapon.json')
-        .then((response) => response.json())
-        .then((data) => {
-          this.userService.setIdUser(idTemp);
-          this.userService.setTeamSide(teamSide);
-          const hero = {
-            idUser: idTemp,
-            type: extraDataHero.type,
-            subtype: extraDataHero.subtype,
-            attributes: data.attributes,
-            products: data.products,
-            alive: data.alive,
-            teamSide: teamSide,
-          };
-          this.socket$.getValue().emit('bindInfo', hero);
-        });
+      // fetch('./assets/json/input-weapon.json')
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     this.userService.setIdUser(idTemp);
+      //     this.userService.setTeamSide(teamSide);
+      //     const hero = {
+      //       idUser: idTemp,
+      //       type: extraDataHero.type,
+      //       subtype: extraDataHero.subtype,
+      //       attributes: data.attributes,
+      //       products: data.products,
+      //       alive: data.alive,
+      //       teamSide: teamSide,
+      //     };
+      //     this.socket$.getValue().emit('bindInfo', hero);
+      //   });
+      const heroSelected = this.userService.getHeroSelected();
+      if (heroSelected !== null) {
+        this.userService.setIdUser(heroSelected.idUser);
+        this.userService.setTeamSide(teamSide);
+        const hero: IHero = {
+          idUser: heroSelected.idUser,
+          nameUser: heroSelected.nameUser,
+          idHero: heroSelected.idHero,
+          type: heroSelected.type,
+          subtype: heroSelected.subtype,
+          attributes: heroSelected.attributes,
+          products: heroSelected.products,
+          alive: heroSelected.alive,
+          teamSide: teamSide,
+        };
+        this.socket$.getValue().emit('bindInfo', hero);
+      }
     }
   }
 

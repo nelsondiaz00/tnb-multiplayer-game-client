@@ -30,17 +30,12 @@ export class AttributeComponent implements OnInit {
   };
 
   constructor(
-    private attributeService: AttributeService,
     private webSocketService: WebSocketService,
     private userService: UserService,
     private matchService: MatchService
   ) {}
 
   ngOnInit(): void {
-    // this.attributeService.getAttributes().subscribe((data: IAttribute[]) => {
-    //   this.attributes = data;
-    // });
-
     this.webSocketService.newUser$.subscribe((matchReceived: IMatch) => {
       let match: IMatch = this.matchService.reconstructMatch(matchReceived);
       // console.log(match, ' match ', this.userService.getIdUser());
