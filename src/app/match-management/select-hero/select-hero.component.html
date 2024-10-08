@@ -3,8 +3,12 @@
   <div class="hero-display">
     <button class="arrow" id="prev-hero" (click)="prevHero()">&lt;</button>
     <div class="hero-image">
-      <img id="hero-image" [src]="currentHero.image" />
-      <p>{{ translateHero(currentHero.type, currentHero.subtype) }}</p>
+      <img id="hero-image" [src]="getHeroImageUrl()" />
+      <p>
+        {{
+          translateHero(currentHeroSelected.type, currentHeroSelected.subtype)
+        }}
+      </p>
     </div>
     <button class="arrow" id="next-hero" (click)="nextHero()">&gt;</button>
   </div>

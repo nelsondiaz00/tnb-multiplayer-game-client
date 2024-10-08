@@ -48,10 +48,10 @@
   {{
     (hero.idUser.includes("_")
       ? "IA (bot)"
-      : hero.idUser === userService.getIdUser()
-      ? hero.idUser + "(you)"
-      : hero.idUser) +
-      (hero.idUser === userService.getOwnerIdUser() ? "(dueño de sala)" : "")
+      : hero.nameUser === userService.getIdUser()
+      ? hero.nameUser + "(you)"
+      : hero.nameUser) +
+      (hero.nameUser === userService.getOwnerIdUser() ? "(dueño de sala)" : "")
   }}
 </h1>
 <div class="space-arrow">

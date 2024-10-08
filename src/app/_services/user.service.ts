@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HeroComponent } from '../game/hero/hero.component';
+import { IHero } from '../_models/interfaces/hero.interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private idUser: string | null = null;
+  private heroSelected: IHero | null = null;
   private teamSide: string | null = null;
   private targetEnemy: string | null = null;
   private currentIdUser: string | null = null;
   private heroComponent: HeroComponent | null = null;
   private ownerIdUser: string | null = null;
+
+  setHeroSelected(hero: IHero): void {
+    this.heroSelected = hero;
+  }
+
+  getHeroSelected(): IHero | null {
+    return this.heroSelected;
+  }
 
   setOwnerIdUser(ownerIdUser: string): void {
     this.ownerIdUser = ownerIdUser;

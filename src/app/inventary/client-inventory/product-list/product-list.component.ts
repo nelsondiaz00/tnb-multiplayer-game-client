@@ -117,7 +117,7 @@ export class ProductListComponent {
       .replace(/ñ/g, 'n')
       .replace(/\s+/g, '-')
       .toLowerCase();
-    console.log(`assets/game-images/${type}/${newName}.png`);
+    // console.log(`assets/game-images/${type}/${newName}.png`);
     return `assets/game-images/${type}/${newName}.png`;
   }
 
