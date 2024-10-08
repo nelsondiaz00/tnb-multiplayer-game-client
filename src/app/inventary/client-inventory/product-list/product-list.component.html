@@ -1,6 +1,7 @@
 <div class="grid">
   <!-- 12 ítems en la cuadrícula -->
-  <button *ngFor="let item of paginatedItems" class="grid-item">
+  <button *ngFor="let item of paginatedItems" class="grid-item" [ngClass]="{'active': item.equiped}"
+    (click)="cardClick(item)">
     <div class="grid-item-image">
       <img src="{{ getImagePath(item.props.name, getItemType(item)) }}" />
     </div>
@@ -11,4 +12,10 @@
   </button>
 </div>
 <div class="pagination">
+  <!-- <button
+    *ngFor="let page of [].constructor(totalPages); let i = index"
+    (click)="changePage(i + 1)"
+  >
+    {{ i + 1 }}
+  </button> -->
 </div>
