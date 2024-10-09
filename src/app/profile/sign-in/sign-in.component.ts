@@ -33,12 +33,11 @@ export class SignInComponent {
   ngOnInit() {
     if (!localStorage.getItem('users')) {
       const users = [
-        { user: 'Javier', password: 'Javier123*'},
-        { user: 'Nelson', password: 'Nelson123*', name: 'Nelson Yair', lastname: 'Diaz', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'1', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },
-        { user: 'Ana', password: 'Ana1234*', name: 'Ana', lastname: 'Smith', mail: 'ana.smith@example.com', avatar: '1', p1: '', r1: '', p2: '', r2: '', p3: '', r3: '', p4: '', r4: '' },];
+        { user: 'Javier', password: 'Javier123*', name: 'Nelson Yair', lastname: 'Diaz', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'1', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },
+        { user: 'Nelson', password: 'Nelson123*', name: 'Nelson Yair', lastname: 'Diaz', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'1', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },];
       localStorage.setItem('users', JSON.stringify(users));
     }
-   //localStorage.setItem('users', '');
+        // localStorage.setItem('users', '');
   }
 
   changeUsername(target: any) {
