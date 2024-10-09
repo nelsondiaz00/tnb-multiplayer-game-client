@@ -20,7 +20,6 @@ export class MissionsViewComponent implements OnInit {
       this.missionService.connectToSocket(data.port);
       this.missionService.getActiveMissions();
     });
-    // console.log('Missions view component initialized!');
     const user: string = JSON.parse(
       localStorage.getItem('loggedUser') || '{}'
     ).user;

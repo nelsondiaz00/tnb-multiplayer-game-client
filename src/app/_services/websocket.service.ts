@@ -100,46 +100,26 @@ export class WebSocketService {
     }
   }
 
-  public selectSideTeam(teamSide: teamSide, idTemp: string): void {
-    const heroData = localStorage.getItem('currentHeroSelected');
-    if (heroData) {
-      const extraDataHero = JSON.parse(heroData);
-      // console.log(this.extraDataHero, ' extra data hero');
-
-      // fetch('./assets/json/input-weapon.json')
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     this.userService.setIdUser(idTemp);
-      //     this.userService.setTeamSide(teamSide);
-      //     const hero = {
-      //       idUser: idTemp,
-      //       type: extraDataHero.type,
-      //       subtype: extraDataHero.subtype,
-      //       attributes: data.attributes,
-      //       products: data.products,
-      //       alive: data.alive,
-      //       teamSide: teamSide,
-      //     };
-      //     this.socket$.getValue().emit('bindInfo', hero);
-      //   });
-      const heroSelected = this.userService.getHeroSelected();
-      if (heroSelected !== null) {
-        this.userService.setIdUser(heroSelected.idUser);
-        this.userService.setTeamSide(teamSide);
-        const hero: IHero = {
-          idUser: heroSelected.idUser,
-          nameUser: heroSelected.nameUser,
-          idHero: heroSelected.idHero,
-          type: heroSelected.type,
-          subtype: heroSelected.subtype,
-          attributes: heroSelected.attributes,
-          products: heroSelected.products,
-          alive: heroSelected.alive,
-          teamSide: teamSide,
-        };
-        this.socket$.getValue().emit('bindInfo', hero);
-      }
+  public selectSideTeam(teamSide: teamSide): void {
+    const heroSelected = this.userService.getHeroSelected();
+    if (heroSelected !== null) {
+      this.userService.setIdUser(heroSelected.idUser);
+      this.userService.setTeamSide(teamSide);
+      const hero: IHero = {
+        idUser: heroSelected.idUser,
+        nameUser: heroSelected.nameUser,
+        idHero: 'idHero',
+        type: heroSelected.type,
+        subtype: heroSelected.subtype,
+        attributes: heroSelected.attributes,
+        products: heroSelected.products,
+        alive: heroSelected.alive,
+        teamSide: teamSide,
+      };
+      console.log(hero, ' hero');
+      this.socket$.getValue().emit('bindInfo', hero);
     }
+    console.log('???');
   }
 
   public getMatch(): void {

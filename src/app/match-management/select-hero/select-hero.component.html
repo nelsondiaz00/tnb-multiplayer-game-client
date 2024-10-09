@@ -6,7 +6,7 @@
       <img id="hero-image" [src]="getHeroImageUrl()" />
       <p>
         {{
-          translateHero(currentHeroSelected.type, currentHeroSelected.subtype)
+          translateHero(currentHeroSelected?.type, currentHeroSelected?.subtype)
         }}
       </p>
     </div>

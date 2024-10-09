@@ -13,7 +13,7 @@ import { UserService } from '../../_services/user.service';
 })
 export class SelectHeroComponent implements OnInit {
   heroList: IHero[] = [];
-  currentHeroSelected: IHero = this.heroList[0];
+  currentHeroSelected: IHero | null = null;
 
   constructor(
     private httpService: httpService,

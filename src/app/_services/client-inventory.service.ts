@@ -76,7 +76,7 @@ export class ClientInventoryService {
   }
 
   getHeroeActual(): AbstractHero {
-    return this.heroeActual
+    return this.heroeActual;
   }
 
   setActualHeroIndex(index: number): void {

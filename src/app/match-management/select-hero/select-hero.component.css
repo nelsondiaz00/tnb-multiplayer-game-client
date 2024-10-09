@@ -5,6 +5,10 @@
   align-self: center;
 }
 
+.select-hero-container {
+  border: 5px solid black;
+}
+
 p {
   text-align: center;
 }
