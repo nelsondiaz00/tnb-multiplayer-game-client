@@ -17,6 +17,19 @@ export class SignUpComponent {
   username = '';
   password = '';
   password2 = '';
+  mail = '';
+  name = '';
+  lastname = '';
+  avatar='';
+  p1='';
+  p2='';
+  p3='';
+  p4='';
+  r1='';
+  r2='';
+  r3='';
+  r4='';
+
 
   navigateTo(route: string) {
     this.router.navigate([route]);
@@ -68,57 +81,61 @@ export class SignUpComponent {
     }
   }
 
-  isFormValid(): boolean {
-    const inputs = [
-      'name',
-      'lastname',
-      'email',
-      'password',
-      'password2',
-      'username',
-      'rt1',
-      'rt2',
-      'rt3',
-      'rt4',
-    ];
-
-    const selects = ['select1', 'select2', 'select3', 'select4'];
-
-    // Verifica que todos los inputs de texto no estén vacíos
-    const areInputsValid = inputs.every((id) => {
-      const inputElement = document.getElementById(id) as HTMLInputElement;
-      return inputElement && inputElement.value.trim() !== '';
-    });
-
-    // Verifica que todos los selects tengan un valor seleccionado
-    // const areSelectsValid = selects.every((id) => {
-    //   const selectElement = document.getElementById(id) as HTMLSelectElement;
-    //   return selectElement && selectElement.value !== '';
-    // });
-
-    console.log(areInputsValid);
-
-    return areInputsValid;
+  changeName(target:any){
+    this.name = target.value;
   }
+  changeLastname(target:any){
+    this.lastname = target.value;
+  }
+  changeMail(target:any){
+    this.mail = target.value;
+  }
+  changeAvatar(target:any){
+    this.avatar = target.value;
+  }
+
+  changeP1(target:any){
+    this.p1 = target.value;
+  }
+  changeP2(target:any){
+    this.p2 = target.value;
+  }
+  changeP3(target:any){
+    this.p3 = target.value;
+  }
+  changeP4(target:any){
+    this.p4 = target.value;
+  }
+
+  changeR1(target:any){
+    this.r1 = target.value;
+  }changeR2(target:any){
+    this.r2 = target.value;
+  }changeR3(target:any){
+    this.r3 = target.value;
+  }changeR4(target:any){
+    this.r4 = target.value;
+  }
+
 
   submitRegister() {
     if (this.checkAll2()) {
-      if (this.password2 === this.password && this.password2 != '') {
         if (!localStorage.getItem('users')) {
-          const users = [{ user: this.username, password: this.password2 }];
+          const users = [{ user: this.username, password: this.password2, name: this.name, lastname: this.lastname, mail: this.mail, avatar: this.avatar, p1: this.p1, r1: this.r1, p2:this.p2,r2:this.r2,p3:this.p3,r3:this.r3,p4:this.p4,r4:this.r4}];
           localStorage.setItem('users', JSON.stringify(users));
         } else {
           const users = localStorage.getItem('users');
-          console.log(users && this.isFormValid(), ' wtf hermanoooo ');
-          if (users && this.isFormValid()) {
+          console.log(users && this.checkAll(), ' wtf hermanoooo ');
+          if (users && this.checkAll()) {
             console.log('Formulario válido');
             const usersArray = JSON.parse(users);
-            usersArray.push({ user: this.username, password: this.password2 });
+            usersArray.push({ user: this.username, password: this.password2, name: this.name, lastname: this.lastname, mail: this.mail, avatar: this.avatar, p1: this.p1, r1: this.r1, p2:this.p2,r2:this.r2,p3:this.p3,r3:this.r3,p4:this.p4,r4:this.r4 });
             localStorage.setItem('users', JSON.stringify(usersArray));
+            console.log(usersArray); //QUITAR
             this.router.navigate(['sign-in']);
           }
         }
-      }
+
     }else{
       alert('Completa todos los campos para continuar!')
     }
@@ -300,6 +317,7 @@ export class SignUpComponent {
       }
     }
   }
+
 
   setImage(target: any){
     const src = target.src;

@@ -9,6 +9,35 @@ import { Component } from '@angular/core';
 })
 export class InfoUserComponent {
 
+  username = '';
+  mail = '';
+  name = '';
+  lastname = '';
+  avatar='';
+
+  ngOnInit(){
+    this.setProfile()
+  }
+
+  setProfile(){ //ARREGLAR
+    /*if (!localStorage.getItem('users')) {
+      const users = [{ user: this.username, name: this.name, lastname: this.lastname, mail: this.mail, avatar: this.avatar}];
+      localStorage.setItem('users', JSON.stringify(users));
+    } else {
+      const users = localStorage.getItem('users');
+      if (users) {
+        const usersArray = JSON.parse(users);
+        const user = usersArray.find(
+          (user: { user: string }) => user.user === this.username
+        );
+        if (user) {
+          console.log('hola');
+
+        }
+      }
+    }*/
+  }
+
   changeInfo(){
     const contenedorParte1 = document.getElementById('parte1')
     const contenedorParte2 = document.getElementById('parte2')

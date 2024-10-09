@@ -33,12 +33,12 @@ export class SignInComponent {
   ngOnInit() {
     if (!localStorage.getItem('users')) {
       const users = [
-        { user: 'Javier', password: 'Javier123*' },
-        { user: 'Nelson', password: 'Nelson123*' },
-      ];
+        { user: 'Javier', password: 'Javier123*'},
+        { user: 'Nelson', password: 'Nelson123*', name: 'Nelson Yair', lastname: 'Diaz', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'1', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },
+        { user: 'Ana', password: 'Ana1234*', name: 'Ana', lastname: 'Smith', mail: 'ana.smith@example.com', avatar: '1', p1: '', r1: '', p2: '', r2: '', p3: '', r3: '', p4: '', r4: '' },];
       localStorage.setItem('users', JSON.stringify(users));
     }
-    // localStorage.setItem('users', '');
+   //localStorage.setItem('users', '');
   }
 
   changeUsername(target: any) {
@@ -64,7 +64,11 @@ export class SignInComponent {
             // this.userService.setIdUser(user.user);
             console.log('User:', this.userService.getIdUser());
             this.navigateTo('match-management-view');
+          }else{
+            alert('Contraseña incorrecta'); //CAMBIAR POR USUARIO O CONTRASEÑA INCORRECTOS
           }
+        }else{
+          alert('Usuario incorrecto'); //CAMBIAR POR USUARIO O CONTRASEÑA INCORRECTOS
         }
       }
     }
