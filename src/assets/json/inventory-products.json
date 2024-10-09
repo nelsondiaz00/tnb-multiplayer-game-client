@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "66f88c6f11e7a70302c44ccd",
+    "props": {
+      "heroSerial": "66f88ce65033b7f4bab66a45",
+      "heroType": "Guerrero",
+      "subHeroType": "Tanque",
+      "requiredLevel": 2,
+      "productDescription": "",
+      "dropChance": 0,
+      "powerCost": 2,
+      "cooldownTurns": -1,
+      "effects": [
+        {
+          "value": "2",
+          "attribute": "Attack",
+          "type": 0,
+          "turns": 0,
+          "operator": "+",
+          "heroType": "Guerrero",
+          "heroSubtype": "Tanque",
+          "maxValue": 2
+        }
+      ],
+      "conditions": []
+    },
+    "_domainEvents": [],
+    "_name": "Golpe con escudo"
+  }
+]
