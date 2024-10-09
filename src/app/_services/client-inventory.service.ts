@@ -35,9 +35,11 @@ export class ClientInventoryService {
   async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
     let player: AbstractPlayer = NullPlayer.create();
 
+    const id = '67061760b6520aa3bf635210';
+
     const response = await axios.post(
       'http://localhost:1803/player/getPlayer',
-      { id: '6705c5f5863d2272993b2b6b' }
+      { id }
     );
 
     if (response.data) {
@@ -58,7 +60,7 @@ export class ClientInventoryService {
       );
 
       player = Player.create(
-        playerData.id,
+        id,
         playerData.props.name,
         playerData.props.level,
         inventory,
