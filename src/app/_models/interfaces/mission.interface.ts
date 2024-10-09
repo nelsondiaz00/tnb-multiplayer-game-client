@@ -1,6 +1,6 @@
-import { IHero } from "../interfaces/hero.interfaces.js";
-import { ITeam } from "../interfaces/team.interface.js";
-import { IProduct } from "../interfaces/product.interfaces.js";
+import { IHero } from '../interfaces/hero.interfaces.js';
+import { ITeam } from '../interfaces/team.interface.js';
+import { IProduct } from '../interfaces/product.interfaces.js';
 
 export interface IMission {
   missionId: string;
@@ -9,6 +9,7 @@ export interface IMission {
   enemyCount: number;
   reward: number;
   time: number;
+  chronometer: number;
   active: boolean;
   execute: (
     team: ITeam,

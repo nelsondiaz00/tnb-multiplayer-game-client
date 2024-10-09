@@ -15,9 +15,26 @@ export class HabilityService {
   getHabilities(): Observable<IProduct[]> {
     const products: IProduct[] =
       this.userService.getHeroSelected()?.products || [];
-    const habilities: IProduct[] = products.filter(
+    let habilities: IProduct[] = products.filter(
       (product) => product.productType === 'hability'
     );
+    habilities = habilities.map((hability) => {
+      hability.imagePath = this.getImagePath(hability.productName);
+      return hability;
+    });
+    console.log(habilities);
     return of(habilities);
+  }
+
+  getImagePath(name: string): string {
+    name = name.trimEnd();
+    const newName = name
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ñ/g, 'n')
+      .replace(/\s+/g, '-')
+      .toLowerCase();
+    // console.log(`assets/game-images/${type}/${newName}.png`);
+    return `${newName}.png`;
   }
 }

@@ -37,7 +37,7 @@ export class ClientInventoryService {
 
     const response = await axios.post(
       'http://localhost:1803/player/getPlayer',
-      { id: '6702193f00d446eb9b5e359f' }
+      { id: '6705c5f5863d2272993b2b6b' }
     );
 
     if (response.data) {
@@ -74,7 +74,7 @@ export class ClientInventoryService {
   }
 
   getHeroeActual(): AbstractHero {
-    return this.heroeActual
+    return this.heroeActual;
   }
 
   setActualHeroIndex(index: number): void {

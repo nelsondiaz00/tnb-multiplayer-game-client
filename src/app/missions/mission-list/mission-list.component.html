@@ -1,28 +1,44 @@
+<ng-container *ngFor="let rewardInfo of rewardInfos; let i = index">
+  <app-reward-modal
+    *ngIf="showRewardModals[i]"
+    [rewards]="rewardInfo.rewards"
+    [mission]="rewardInfo.mission"
+    [showModal]="showRewardModals[i]"
+    (closeModalEvent)="handleCloseModal(i)"
+  >
+  </app-reward-modal>
+</ng-container>
 <main>
   <section class="lobby-selection">
-    <h2>Tablón de misiones</h2>
+    <div class="header-mission">
+      <select [(ngModel)]="selectedMission" (change)="onMissionSelect()">
+        <option *ngFor="let mission of missions" [ngValue]="mission">
+          {{ mission.name }}
+        </option>
+      </select>
+      <h2>Tablón de misiones</h2>
+    </div>
     <div class="game-room-container">
       <div id="game-room-list" class="game-room-list">
-        <ng-container *ngIf="missions.length > 0; else noMatches">
-          <div *ngFor="let mission of missions" class="game-room-item">
+        <ng-container *ngIf="selectedMission; else noMatches">
+          <div class="game-room-item">
             <div class="indicators-container">
-              <span class="indicators">Estado:</span>
-              {{ mission.active ? "En progreso" : "Inactiva" }}
+              <span class="indicators">Estado:</span
+              >{{ selectedMission.active ? "En progreso" : "Inactiva" }} <br />
               <span class="indicators">Progreso:</span>
-              {{ "Sin iniciar" }}
+              {{ selectedMission.active ? remainingTime : "Sin empezar" }}
             </div>
-            <button class="buttom-item" (click)="startMission(mission)">
-              <span style="color: #ff009d">Nombre:</span> {{ mission.name }}
+            <button class="buttom-item" (click)="startMission(selectedMission)">
+              <span style="color: #ff009d">Nombre:</span>
+              {{ selectedMission.name }}<br />
               <span style="color: #ff009d">Descripción:</span>
-              {{ mission.description }}
+              {{ selectedMission.description }} <br />
               <span style="color: #ff009d">Dificultad:</span>
-              {{ mission.enemyCount }}
+              {{ selectedMission.enemyCount }} <br />
               <span style="color: #ff009d">Recompensa:</span>
-              {{ mission.reward }}
+              {{ selectedMission.reward }} créditos <br />
               <span style="color: #ff009d">Tiempo requerido:</span>
-              {{ mission.time }} <span style="color: #ff009d">Estado:</span>
-              {{ mission.active }}
-              <span style="color: #ff009d">{{ "(Abierta)" }}</span>
+              {{ selectedMission.time }} <br />
             </button>
           </div>
         </ng-container>
