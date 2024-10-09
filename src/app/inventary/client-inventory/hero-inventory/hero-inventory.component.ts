@@ -3,6 +3,7 @@ import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductConditionComponent } from '../../product-condition/product-condition.component';
 import { ClientInventoryService } from '../../../_services/client-inventory.service';
 import { CommonModule } from '@angular/common';
+import axios from 'axios';
 @Component({
   selector: 'app-hero-inventory',
   standalone: true,
@@ -39,5 +40,17 @@ export class HeroInventoryComponent {
           0
         : 0);
     return Math.ceil(totalItems / this.itemsPerPage);
+  }
+
+  async updatePlayer(): Promise<void> {
+    const player = this.inventoryService.getPlayer();
+    const response = await axios.post(
+      'http://localhost:1803/player/update',
+      { player }
+    );
+
+    if (response && response.data) {
+      console.log('actualizado', response.data);
+    }
   }
 }

@@ -34,7 +34,7 @@
   padding: 20px 20px 0px 20px;
 }
 
-.top-buttons button {
+.save, .top-buttons button {
   background-color: #e856c3;
   border: 3.5px solid #0a0614;
   font-size: 10px;

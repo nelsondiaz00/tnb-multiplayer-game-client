@@ -163,15 +163,19 @@ export class ProductListComponent {
   private isItemEquiped(item: any): boolean {
     const type = this.getItemType(item);
     let equiped = false;
+    let index
     switch (type) {
       case 'armors':
-        equiped = this.inventoryService.getHeroeActual().props.inventory?.props.armors.includes(item) === true;
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.armors.findIndex(a => a._id === item._id);
+        equiped = index !== -1;
         break;
       case 'items':
-        equiped = this.inventoryService.getHeroeActual().props.inventory?.props.items.includes(item) === true;
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.items.findIndex(i => i._id === item._id);
+        equiped = index !== -1;
         break;
       case 'weapons':
-        equiped = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.includes(item) === true;
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.findIndex(w => w._id === item._id);
+        equiped = index !== -1;
         break;
       default:
         console.log('Unknown type card clicked', item);
@@ -197,6 +201,8 @@ export class ProductListComponent {
 
       //pequena traduccion si el atributo es distinto a los que se trabaja
       if (keyString === 'life') keyString = 'blood'
+      if (keyString === 'live') keyString = 'blood'
+      if (keyString === 'power') keyString = 'mana'
 
       // Si incluye attack o damage se trabaja como atributo especial
       if (keyString.includes("attack") || keyString.includes("damage")) {
@@ -310,21 +316,27 @@ export class ProductListComponent {
     let index
     switch (type) {
       case 'armors':
-        index = this.inventoryService.getHeroeActual().props.inventory?.props.armors.indexOf(item);
-        if (index && (index !== -1)) {
-          this.inventoryService.getHeroeActual().props.inventory?.props.armors.splice(index, 1);
+        while (index !== -1) {
+          index = this.inventoryService.getHeroeActual().props.inventory?.props.armors.findIndex(i => i._id === item._id);
+          if (index !== undefined && (index !== -1)) {
+            this.inventoryService.getHeroeActual().props.inventory?.props.armors.splice(index, 1);
+          }
         }
         break;
       case 'items':
-        index = this.inventoryService.getHeroeActual().props.inventory?.props.items.indexOf(item);
-        if (index && (index !== -1)) {
-          this.inventoryService.getHeroeActual().props.inventory?.props.items.splice(index, 1);
+        while (index !== -1) {
+          index = this.inventoryService.getHeroeActual().props.inventory?.props.items.findIndex(i => i._id === item._id);
+          if (index !== undefined && (index !== -1)) {
+            this.inventoryService.getHeroeActual().props.inventory?.props.items.splice(index, 1);
+          }
         }
         break;
       case 'weapons':
-        index = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.indexOf(item);
-        if (index && (index !== -1)) {
-          this.inventoryService.getHeroeActual().props.inventory?.props.weapons.splice(index, 1);
+        while (index !== -1) {
+          index = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.findIndex(i => i._id === item._id);
+          if (index !== undefined && (index !== -1)) {
+            this.inventoryService.getHeroeActual().props.inventory?.props.weapons.splice(index, 1);
+          }
         }
         break;
       default:
