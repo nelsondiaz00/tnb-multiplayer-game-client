@@ -33,11 +33,12 @@ export class SignInComponent {
   ngOnInit() {
     if (!localStorage.getItem('users')) {
       const users = [
-        { user: 'Javier', password: 'Javier123*', name: 'Nelson Yair', lastname: 'Diaz', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'1', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },
-        { user: 'Nelson', password: 'Nelson123*', name: 'Nelson Yair', lastname: 'Diaz', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'1', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },];
+        { user: 'Javier', password: 'Javier123*', name: 'Lenin Javier', lastname: 'Serrano Gil', mail: 'lenin.serrano@upb.edu.co',avatar:'/assets/sign-in-images/images/pic2.png', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },
+        { user: 'Nelson', password: 'Nelson123*', name: 'Nelson Yair', lastname: 'Diaz Gomez', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'/assets/sign-in-images/images/pic2.png', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },];
       localStorage.setItem('users', JSON.stringify(users));
     }
-        // localStorage.setItem('users', '');
+       // localStorage.setItem('users', '');
+
   }
 
   changeUsername(target: any) {
@@ -58,18 +59,33 @@ export class SignInComponent {
         );
         if (user) {
           if (user.password === this.password) {
-            const user = { user: this.username, password: this.password };
+            //const user = { user: this.username, password: this.password };
             localStorage.setItem('loggedUser', JSON.stringify(user));
             // this.userService.setIdUser(user.user);
             console.log('User:', this.userService.getIdUser());
             this.navigateTo('match-management-view');
           }else{
-            alert('Contraseña incorrecta'); //CAMBIAR POR USUARIO O CONTRASEÑA INCORRECTOS
+            this.popUp();
+            setTimeout(() => {
+              this.popUp();
+            },2000)
+
           }
         }else{
-          alert('Usuario incorrecto'); //CAMBIAR POR USUARIO O CONTRASEÑA INCORRECTOS
+          this.popUp();
+          setTimeout(() => {
+            this.popUp();
+          },2000)
         }
       }
+    }
+  }
+
+  popUp() {
+    var popup = document.getElementById("myPopup");
+    if(popup){
+      popup.classList.toggle("show");
+      popup.textContent = 'Usuario o contraseña incorrectos :c'
     }
   }
 

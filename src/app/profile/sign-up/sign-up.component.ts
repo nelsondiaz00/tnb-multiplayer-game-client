@@ -20,23 +20,22 @@ export class SignUpComponent {
   mail = '';
   name = '';
   lastname = '';
-  avatar='';
-  p1='';
-  p2='';
-  p3='';
-  p4='';
-  r1='';
-  r2='';
-  r3='';
-  r4='';
-
+  avatar = '';
+  p1 = '';
+  p2 = '';
+  p3 = '';
+  p4 = '';
+  r1 = '';
+  r2 = '';
+  r3 = '';
+  r4 = '';
 
   navigateTo(route: string) {
     this.router.navigate([route]);
   }
 
   toPage2() {
-    if(this.checkAll()){
+    if (this.checkAll()) {
       const p1 = document.getElementById('pagina1') as HTMLDivElement;
       p1?.classList.add('pagenumber2');
       p1?.classList.remove('pagenumber');
@@ -48,8 +47,11 @@ export class SignUpComponent {
       const page2 = document.getElementById('parte2') as HTMLDivElement;
       page1.classList.add('oculto');
       page2.classList.remove('oculto');
-    }else{
-      alert('Completa todos los campos para continuar!')
+    } else {
+      this.popUp1();
+      setTimeout(() => {
+        this.popUp1();
+      }, 2000);
     }
   }
 
@@ -81,63 +83,98 @@ export class SignUpComponent {
     }
   }
 
-  changeName(target:any){
+  changeName(target: any) {
     this.name = target.value;
   }
-  changeLastname(target:any){
+  changeLastname(target: any) {
     this.lastname = target.value;
   }
-  changeMail(target:any){
+  changeMail(target: any) {
     this.mail = target.value;
   }
-  changeAvatar(target:any){
+  changeAvatar(target: any) {
     this.avatar = target.value;
   }
 
-  changeP1(target:any){
+  changeP1(target: any) {
     this.p1 = target.value;
   }
-  changeP2(target:any){
+  changeP2(target: any) {
     this.p2 = target.value;
   }
-  changeP3(target:any){
+  changeP3(target: any) {
     this.p3 = target.value;
   }
-  changeP4(target:any){
+  changeP4(target: any) {
     this.p4 = target.value;
   }
 
-  changeR1(target:any){
+  changeR1(target: any) {
     this.r1 = target.value;
-  }changeR2(target:any){
+  }
+  changeR2(target: any) {
     this.r2 = target.value;
-  }changeR3(target:any){
+  }
+  changeR3(target: any) {
     this.r3 = target.value;
-  }changeR4(target:any){
+  }
+  changeR4(target: any) {
     this.r4 = target.value;
   }
 
-
   submitRegister() {
     if (this.checkAll2()) {
-        if (!localStorage.getItem('users')) {
-          const users = [{ user: this.username, password: this.password2, name: this.name, lastname: this.lastname, mail: this.mail, avatar: this.avatar, p1: this.p1, r1: this.r1, p2:this.p2,r2:this.r2,p3:this.p3,r3:this.r3,p4:this.p4,r4:this.r4}];
-          localStorage.setItem('users', JSON.stringify(users));
-        } else {
-          const users = localStorage.getItem('users');
-          console.log(users && this.checkAll(), ' wtf hermanoooo ');
-          if (users && this.checkAll()) {
-            console.log('Formulario válido');
-            const usersArray = JSON.parse(users);
-            usersArray.push({ user: this.username, password: this.password2, name: this.name, lastname: this.lastname, mail: this.mail, avatar: this.avatar, p1: this.p1, r1: this.r1, p2:this.p2,r2:this.r2,p3:this.p3,r3:this.r3,p4:this.p4,r4:this.r4 });
-            localStorage.setItem('users', JSON.stringify(usersArray));
-            console.log(usersArray); //QUITAR
-            this.router.navigate(['sign-in']);
-          }
+      if (!localStorage.getItem('users')) {
+        const users = [
+          {
+            user: this.username,
+            password: this.password2,
+            name: this.name,
+            lastname: this.lastname,
+            mail: this.mail,
+            avatar: this.avatar,
+            p1: this.p1,
+            r1: this.r1,
+            p2: this.p2,
+            r2: this.r2,
+            p3: this.p3,
+            r3: this.r3,
+            p4: this.p4,
+            r4: this.r4,
+          },
+        ];
+        localStorage.setItem('users', JSON.stringify(users));
+      } else {
+        const users = localStorage.getItem('users');
+        console.log(users && this.checkAll(), ' wtf hermanoooo ');
+        if (users && this.checkAll()) {
+          console.log('Formulario válido');
+          const usersArray = JSON.parse(users);
+          usersArray.push({
+            user: this.username,
+            password: this.password2,
+            name: this.name,
+            lastname: this.lastname,
+            mail: this.mail,
+            avatar: this.avatar,
+            p1: this.p1,
+            r1: this.r1,
+            p2: this.p2,
+            r2: this.r2,
+            p3: this.p3,
+            r3: this.r3,
+            p4: this.p4,
+            r4: this.r4,
+          });
+          localStorage.setItem('users', JSON.stringify(usersArray));
+          this.router.navigate(['sign-in']);
         }
-
-    }else{
-      alert('Completa todos los campos para continuar!')
+      }
+    } else {
+      this.popUp8();
+      setTimeout(() => {
+        this.popUp8();
+      }, 3000);
     }
   }
 
@@ -176,6 +213,10 @@ export class SignUpComponent {
           validNameIcon.classList.add('invalid');
           validNameIcon.classList.remove('valid');
           validNameIcon.classList.remove('empty');
+          this.popUp2();
+          setTimeout(() => {
+            this.popUp2();
+          }, 2000);
         }
       }
     }
@@ -199,6 +240,10 @@ export class SignUpComponent {
           validNameIcon.classList.add('invalid');
           validNameIcon.classList.remove('valid');
           validNameIcon.classList.remove('empty');
+          this.popUp3();
+          setTimeout(() => {
+            this.popUp3();
+          }, 2000);
         }
       }
     }
@@ -224,6 +269,10 @@ export class SignUpComponent {
           validEmailIcon.classList.add('invalid');
           validEmailIcon.classList.remove('valid');
           validEmailIcon.classList.remove('empty');
+          this.popUp4();
+          setTimeout(() => {
+            this.popUp4();
+          }, 2000);
         }
       }
     }
@@ -256,6 +305,10 @@ export class SignUpComponent {
           validPassIcon.classList.add('invalid');
           validPassIcon.classList.remove('valid');
           validPassIcon.classList.remove('empty');
+          this.popUp5();
+          setTimeout(() => {
+            this.popUp5();
+          }, 2000);
         }
       }
     }
@@ -279,6 +332,10 @@ export class SignUpComponent {
           validPassMatchIcon.classList.add('invalid');
           validPassMatchIcon.classList.remove('valid');
           validPassMatchIcon.classList.remove('empty');
+          this.popUp6();
+          setTimeout(() => {
+            this.popUp6();
+          }, 2000);
         }
       }
     }
@@ -290,6 +347,7 @@ export class SignUpComponent {
     const isInvalid = prohibitedNames.some((word) =>
       usernameValue.includes(word)
     );
+    const isUsed = this.usedUsername(target.value)
 
     if (target.value === '') {
       if (validUsernameIcon != null) {
@@ -300,10 +358,14 @@ export class SignUpComponent {
     } else {
       if (validUsernameIcon != null) {
         if (/^[a-zA-Z0-9]+$/.test(target.value)) {
-          if (isInvalid) {
+          if (isInvalid||isUsed) {
             validUsernameIcon.classList.add('invalid');
             validUsernameIcon.classList.remove('valid');
             validUsernameIcon.classList.remove('empty');
+            this.popUp7();
+            setTimeout(() => {
+              this.popUp7();
+            }, 2000);
           } else {
             validUsernameIcon.classList.add('valid');
             validUsernameIcon.classList.remove('invalid');
@@ -313,28 +375,44 @@ export class SignUpComponent {
           validUsernameIcon.classList.add('invalid');
           validUsernameIcon.classList.remove('valid');
           validUsernameIcon.classList.remove('empty');
+          this.popUp7();
+          setTimeout(() => {
+            this.popUp7();
+          }, 2000);
         }
       }
     }
   }
 
+  usedUsername(username : string){
+    const users = localStorage.getItem('users');
+    if (users) {
+      const usersArray = JSON.parse(users);
+      const user = usersArray.find((user: any) => user.user === username);
+      if (user) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-  setImage(target: any){
+  setImage(target: any) {
     const src = target.src;
     const pp = document.getElementById('pp') as HTMLImageElement;
     pp.src = src;
+    this.avatar = src;
   }
 
-  checkAll(){
-      const parte1 = document.getElementById('parte1');
-      const validIcons = parte1?.querySelectorAll('.valid');
-      return validIcons?.length === 6
+  checkAll() {
+    const parte1 = document.getElementById('parte1');
+    const validIcons = parte1?.querySelectorAll('.valid');
+    return validIcons?.length === 6;
   }
 
-  checkAll2(){
+  checkAll2() {
     const parte2 = document.getElementById('parte2');
     const validIcons = parte2?.querySelectorAll('.valid');
-    return validIcons?.length === 4
+    return validIcons?.length === 4;
   }
 
   validater1(target: any) {
@@ -405,5 +483,68 @@ export class SignUpComponent {
     }
   }
 
+  popUp1() {
+    var popup = document.getElementById('myPopup');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Debes llenar todos los campos :c';
+    }
+  }
 
+  popUp2() {
+    var popup = document.getElementById('myPopup2');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Solo letras!';
+    }
+  }
+
+  popUp3() {
+    var popup = document.getElementById('myPopup3');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Solo letras!';
+    }
+  }
+
+  popUp4() {
+    var popup = document.getElementById('myPopup4');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Email inválido!';
+    }
+  }
+
+  popUp5() {
+    var popup = document.getElementById('myPopup5');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent =
+        'Debe tener min. 8 characteres y debe contener 1 número, 1 caractér especial y 1 mayúscula!';
+    }
+  }
+
+  popUp6() {
+    var popup = document.getElementById('myPopup6');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Las contraseñas NO coinciden!';
+    }
+  }
+
+  popUp7() {
+    var popup = document.getElementById('myPopup7');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Reconsideralo >:c';
+    }
+  }
+
+  popUp8(){
+    var popup = document.getElementById('myPopup8');
+    if (popup) {
+      popup.classList.toggle('show');
+      popup.textContent = 'Debes llenar todos los campos :c';
+    }
+  }
 }

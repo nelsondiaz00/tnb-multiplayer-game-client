@@ -21,7 +21,8 @@
                   (change)="changeName($event.target)"
                   (input)="validateName($event.target)"
                 />
-                <span id="name-valid-icon" class="validity-icon empty"></span>
+                  <span id="name-valid-icon" class="validity-icon empty"></span>
+                  <span class="popuptext2" id="myPopup2"></span>
               </div>
               <div class="cont">
                 <label class="form_label">Apellidos</label>
@@ -32,10 +33,8 @@
                   (change)="changeLastname($event.target)"
                   (input)="validateLastname($event.target)"
                 />
-                <span
-                  id="lastname-valid-icon"
-                  class="validity-icon empty"
-                ></span>
+                <span id="lastname-valid-icon" class="validity-icon empty"></span>
+                <span class="popuptext2" id="myPopup3"></span>
               </div>
               <div class="cont">
                 <label class="form_label">Email</label>
@@ -47,6 +46,7 @@
                   (input)="validateEmail($event.target)"
                 />
                 <span id="email-valid-icon" class="validity-icon empty"></span>
+                <span class="popuptext2" id="myPopup4"></span>
               </div>
             </div>
             <div class="form1">
@@ -62,15 +62,9 @@
                   (change)="changePassword($event.target)"
                   (input)="validatePassword($event.target)"
                 />
-                <i
-                  class="toggle-password off"
-                  id="toggle-icon"
-                  (click)="toggleIcon(CONTRA)"
-                ></i>
-                <span
-                  id="password-valid-icon"
-                  class="validity-icon empty"
-                ></span>
+                <i class="toggle-password off" id="toggle-icon" (click)="toggleIcon(CONTRA)"></i>
+                <span id="password-valid-icon"class="validity-icon empty"></span>
+                <span class="popuptext2" id="myPopup5"></span>
               </div>
               <div class="cont">
                 <label class="form_label">Contraseña (Otra vez)</label>
@@ -81,10 +75,8 @@
                   (change)="changePassword2($event.target)"
                   (input)="validatePasswordsMatch($event.target)"
                 />
-                <span
-                  id="password2-valid-icon"
-                  class="validity-icon empty"
-                ></span>
+                <span id="password2-valid-icon"class="validity-icon empty"></span>
+                <span class="popuptext2" id="myPopup6"></span>
               </div>
               <div class="cont">
                 <label class="form_label">Yo soy... (Nombre de usuario)</label>
@@ -94,10 +86,8 @@
                   (change)="changeUsername($event.target)"
                   (input)="validateUsername($event.target)"
                 />
-                <span
-                  id="username-valid-icon"
-                  class="validity-icon empty"
-                ></span>
+                <span id="username-valid-icon"class="validity-icon empty"></span>
+                <span class="popuptext2" id="myPopup7"></span>
               </div>
             </div>
           </div>
@@ -179,13 +169,15 @@
               </div>
             </div>
           </div>
-        <div class="div-boton">
+        <div class="div-boton popup">
           <button id="boton-registro" class="button" (click)="submitRegister()">A Jugar!</button>
+          <span class="popuptext3" id="myPopup8"></span>
         </div>
       </div>
-      <div class="pagination">
+      <div class="pagination popup">
         <a id="pagina1" class="pagenumber" (click)="toPage1()">1</a>
         <a id="pagina2" class="pagenumber2" (click)="toPage2()">2</a>
+        <span class="popuptext" id="myPopup"></span>
       </div>
     </div>
     </div>

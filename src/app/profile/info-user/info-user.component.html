@@ -1,36 +1,75 @@
 <div class="main">
   <div class="cont">
-    <label class="username">username</label>
+    <label class="username" id="username">username</label>
     <div class="cont2">
       <div class="contImg">
-        <img id="pp" class="profilepic" src="/assets/sign-in-images/images/pic1.png" />
+        <img
+          id="pp"
+          class="profilepic"
+          src="/assets/sign-in-images/images/pic1.png"
+        />
       </div>
       <div id="contInfo" class="contInfo">
         <div id="parte1" class="contInfo">
-          <label class="text" value="juan"></label>
-          <label class="text">Lastname</label>
-          <label class="text">namelastname&#64;mail.com</label>
+          <label class="text" id="name">Name</label>
+          <label class="text" id="lastname">Lastname</label>
+          <label class="text" id="mail">namelastname&#64;mail.com</label>
           <div class="ppOptions">
-            <img class="img1" src="/assets/sign-in-images/images/pic2.png" (click)="setImage($event.target)"/>
-            <img class="img2" src="/assets/sign-in-images/images/pic1.png" (click)="setImage($event.target)"/>
-            <img class="img3" src="/assets/sign-in-images/images/pic3.png" (click)="setImage($event.target)"/>
+            <img
+              class="img1"
+              src="/assets/sign-in-images/images/pic2.png"
+              (click)="setImage($event.target)"
+            />
+            <img
+              class="img2"
+              src="/assets/sign-in-images/images/pic1.png"
+              (click)="setImage($event.target)"
+            />
+            <img
+              class="img3"
+              src="/assets/sign-in-images/images/pic3.png"
+              (click)="setImage($event.target)"
+            />
           </div>
           <label class="recuperar">¿Quieres cambiar tu contraseña?</label>
-          <button id="editarInfo" (click)="changeInfo()">Editar Información Personal</button>
+          <button id="editarInfo" (click)="changeInfo()">
+            Editar Información Personal
+          </button>
         </div>
 
         <!-- ☻ EDITAR INFORMACION ☻ -->
         <div id="parte2" class="contInfo parte2 oculto">
           <label for="name" class="text">Name:</label>
-          <input type="text" id="name" name="name" class="form" />
+          <input
+            type="text"
+            id="nameInput"
+            name="name"
+            class="form"
+            (input)="changeName()"
+          />
           <label for="lastname" class="text">Lastname:</label>
-          <input type="text" id="lastname" name="lastname" class="form"/>
+          <input
+            type="text"
+            id="lastnameInput"
+            name="lastname"
+            class="form"
+            (input)="changeLastname()"
+          />
           <label for="email" class="text">Email:</label>
-          <input type="email" id="email" name="email" class="form"/>
+          <input
+            type="email"
+            id="mailInput"
+            name="email"
+            class="form"
+            (input)="changeMail()"
+          />
           <label class="recuperar">¿Quieres cambiar tu contraseña?</label>
-          <button type="submit" id="guardarInfo" (click)="saveInfo()">Guardar Información Personal</button>
+          <button type="submit" id="guardarInfo" (click)="saveInfo()">
+            Guardar Información Personal
+          </button>
         </div>
       </div>
     </div>
+    <button href="#index" class="boton3" (click)="emitLanding()">← Cerrar Sesión</button>
   </div>
 </div>
