@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { IHero } from '../_models/interfaces/hero.interfaces';
 import { Injectable } from '@angular/core';
+import { IAttribute } from '../_models/interfaces/attribute.interfaces';
+import { attributeName } from '../_models/types/attribute.type';
 
 const API_CHAT_BOT_URL = 'http://127.0.0.1:5002/prompt';
 const API_HEROES_URL = 'http://localhost:1803/player/getPlayerHeroes';
@@ -32,7 +34,7 @@ export default class httpService {
     try {
       const response = await axios.post(
         API_HEROES_URL,
-        JSON.stringify({ id: '6702193f00d446eb9b5e359f' }),
+        JSON.stringify({ id: '6705c5f5863d2272993b2b6b' }),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -40,8 +42,73 @@ export default class httpService {
         }
       );
       const data: any = response.data;
-      console.log(data, '°!!!');
-      return data.data;
+      const modifiedHeroes = data.data.map((hero: IHero) => {
+        const attributesArray = Object.values(hero.attributes);
+        const modifiedAttributes = attributesArray.map(
+          (attribute: IAttribute) => {
+            if (attribute.name === 'power') {
+              attribute.valueConstant = attribute.value;
+            }
+            return attribute;
+          }
+        );
+
+        hero.attributes = modifiedAttributes.reduce((acc, attr) => {
+          acc[attr.name] = attr;
+          return acc;
+        }, {} as { [key: string]: IAttribute });
+
+        const modifiedProduct = hero.products.map((product) => {
+          product.effects = product.effects.map((effect) => {
+            effect.attribute.name =
+              effect.attribute.name.toLowerCase() as attributeName;
+            effect.attribute.value = 0;
+            effect.attribute.valueMax = 0;
+            effect.attribute.valueMin = 0;
+            effect.attribute.valueConstant = 0;
+            effect.value = parseInt(effect.value.toString());
+            return effect;
+          });
+          return product;
+        });
+        hero.products = modifiedProduct;
+        return hero;
+      });
+      console.log(modifiedHeroes);
+
+      return modifiedHeroes;
+    } catch (error: any) {
+      console.error('Error fetching inventory response:', error.message);
+      console.error(
+        'Error details:',
+        error.response?.data || 'No additional error information'
+      );
+      throw error;
+    }
+  }
+
+  public async getHeroesFromJson(): Promise<IHero[]> {
+    try {
+      // const response = await axios.post(
+      //   API_HEROES_URL,
+      //   JSON.stringify({ id: '6705c5f5863d2272993b2b6b' }),
+      //   {
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //   }
+      // );
+      // const data: any = response.data;
+      // console.log(data, '°!!!');
+      const response = await fetch('./assets/json/input-weapon.json');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data: IHero[] = [];
+      data.push(await response.json());
+      console.log(data);
+      return data;
+      //  ('./assets/json/input-weapon.json');
     } catch (error: any) {
       console.error('Error fetching inventory response:', error.message);
       console.error(

@@ -108,8 +108,9 @@ export class HeroResultComponent {
 
   getEquipedArmorImage( armorType: string ): string {
     let armorName = ""
-    this.inventoryService.getHeroeActual().props.inventory?.props.armors.forEach(armor => {
-      if (armor.type === armorType) {
+    this.inventoryService.getHeroeActual().props.inventory?.props.armors.forEach(a => {
+      const armor = this.inventoryService.getPlayer()?.props.inventory.props.armors.find(ar => ar._id === a._id);
+      if (armor !== undefined && armor.type === armorType) {
         armorName = armor.props.name;
       }
     })

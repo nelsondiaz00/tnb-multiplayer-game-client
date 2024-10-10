@@ -24,7 +24,7 @@ export class ClientInventoryService {
     const playerObservable = await this.getPlayerFromApi();
     playerObservable.subscribe((player) => {
       this.playerSubject.next(player);
-      console.log(player);
+      // console.log(player);
     });
   }
 
@@ -35,9 +35,11 @@ export class ClientInventoryService {
   async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
     let player: AbstractPlayer = NullPlayer.create();
 
+    const id = '67061760b6520aa3bf635210';
+
     const response = await axios.post(
       'http://localhost:1803/player/getPlayer',
-      { id: '67061760b6520aa3bf635210' }
+      { id }
     );
 
     if (response.data) {
@@ -58,7 +60,7 @@ export class ClientInventoryService {
       );
 
       player = Player.create(
-        playerData.id,
+        id,
         playerData.props.name,
         playerData.props.level,
         inventory,
@@ -74,7 +76,7 @@ export class ClientInventoryService {
   }
 
   getHeroeActual(): AbstractHero {
-    return this.heroeActual
+    return this.heroeActual;
   }
 
   setActualHeroIndex(index: number): void {

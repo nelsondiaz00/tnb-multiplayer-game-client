@@ -6,6 +6,8 @@ import { UserService } from './user.service';
 import { teamSide } from '../_models/types/team.type';
 import { environment } from '../../environments/environment';
 import { IHero } from '../_models/interfaces/hero.interfaces';
+import { IMission } from '../_models/interfaces/mission.interface';
+import { IProduct } from '../_models/interfaces/product.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,9 @@ export class MissionService {
   public activeMissions$: Observable<any>;
   public missionPort$: Observable<any>;
   public endMatch$: Observable<any>;
+  public missionAlert$: Observable<string>;
+  public updatedMission$: Observable<IMission>;
+  public missionReward$: Observable<any>;
   private HOST = environment.MISSION_HOST;
   private PORT = environment.MISSION_PORT;
 
@@ -31,6 +36,15 @@ export class MissionService {
     );
     this.missionPort$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'missionPort'))
+    );
+    this.missionAlert$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'missionAlert'))
+    );
+    this.updatedMission$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<IMission>(socket, 'updatedMission'))
+    );
+    this.missionReward$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'missionReward'))
     );
   }
 
@@ -100,5 +114,10 @@ export class MissionService {
   public getActiveMissions(): void {
     console.log('obtener misiones!!');
     this.socket$.getValue().emit('getActiveMissions');
+  }
+
+  public getMission(idMission: string): void {
+    // console.log('obtener misiones!!');
+    this.socket$.getValue().emit('getMission', idMission);
   }
 }

@@ -13,7 +13,7 @@ import { UserService } from '../../_services/user.service';
 })
 export class SelectHeroComponent implements OnInit {
   heroList: IHero[] = [];
-  currentHeroSelected: IHero = this.heroList[0];
+  currentHeroSelected: IHero | null = null;
 
   constructor(
     private httpService: httpService,
@@ -39,45 +39,6 @@ export class SelectHeroComponent implements OnInit {
     }
     return './assets/game-images/heroes/ice.wizard.png';
   }
-
-  // readonly heroes = [
-  //   {
-  //     type: 'wizard',
-  //     subtype: 'fire',
-  //     image: './assets/game-images/heroes/fire.wizard.png',
-  //     owned: true,
-  //   },
-  //   {
-  //     type: 'wizard',
-  //     subtype: 'ice',
-  //     image: './assets/game-images/heroes/ice.wizard.png',
-  //     owned: true,
-  //   },
-  //   {
-  //     type: 'rogue',
-  //     subtype: 'machete',
-  //     image: './assets/game-images/heroes/machete.rogue.png',
-  //     owned: true,
-  //   },
-  //   {
-  //     type: 'rogue',
-  //     subtype: 'poison',
-  //     image: './assets/game-images/heroes/poison.rogue.png',
-  //     owned: false,
-  //   },
-  //   {
-  //     type: 'warrior',
-  //     subtype: 'tank',
-  //     image: './assets/game-images/heroes/tank.warrior.png',
-  //     owned: false,
-  //   },
-  //   {
-  //     type: 'warrior',
-  //     subtype: 'weapon',
-  //     image: './assets/game-images/heroes/weapon.warrior.png',
-  //     owned: false,
-  //   },
-  // ];
 
   currentHeroIndex: number = 0;
 

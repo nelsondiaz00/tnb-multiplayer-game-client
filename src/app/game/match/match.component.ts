@@ -24,7 +24,6 @@ export class MatchComponent {
     size: 0,
     owner: '',
   };
-  // sec of turn time left
   counter: number = 180;
   intervalId: any;
   private isFirstTeamAssigned = false;

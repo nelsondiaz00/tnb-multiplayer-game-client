@@ -34,7 +34,7 @@
   padding: 20px 20px 0px 20px;
 }
 
-.top-buttons button {
+.save, .top-buttons button {
   background-color: #e856c3;
   border: 3.5px solid #0a0614;
   font-size: 10px;
@@ -96,6 +96,78 @@
   .pagination a {
     margin: 0 5px; /* Ajusta el margen entre los botones */
   }
+
+  span {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    opacity: 0;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #000;
+    font-size: 0.6em;
+    line-height: 1.6;
+    text-align: left;
+    white-space: nowrap;
+    transform: translate(-50%, 1em);
+    transition: all 0.15s ease-in-out;
+  }
+
+  span::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 0.5em solid transparent;
+    border-top-color: #000;
+    transform: translate(-50%, 0);
+  }
+  
+  .popup {
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .show {
+    visibility: visible !important;
+  }
+
 }
 
 /* Estilos para resoluciones menores a 1366x768 */
