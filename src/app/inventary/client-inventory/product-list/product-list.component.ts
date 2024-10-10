@@ -15,7 +15,7 @@ import SpecialAttribute, {
   SpecialAttributeProps,
 } from '../../../_models/domain-inventory/hero/valueObjects/Attribute';
 import { Hero } from '../../../_models/domain-inventory/hero/Hero';
-import { evaluate, re } from 'mathjs';
+import { e, evaluate, re } from 'mathjs';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -37,7 +37,7 @@ export class ProductListComponent {
   heroesSubscription: Subscription = new Subscription();
   heroes: AbstractHero[] = [];
 
-  constructor(private inventoryService: ClientInventoryService) {}
+  constructor(private inventoryService: ClientInventoryService) { }
 
   async ngOnInit(): Promise<void> {
     this.heroesSubscription = this.inventoryService.heroes$.subscribe(
@@ -52,7 +52,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.armors.length; i++) {
           let armor: AbstractArmor = player.inventory.armors[i];
           armor = (
-            (await axios.get((this.inventoryService.getInventoryDomain()+`/armor/${armor._id}`)))
+            (await axios.get((this.inventoryService.getInventoryDomain() + `/armor/${armor._id}`)))
               .data as { data: AbstractArmor }
           ).data;
           player.inventory.armors[i] = armor;
@@ -62,7 +62,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.items.length; i++) {
           let item: AbstractItem = player.inventory.items[i];
           item = (
-            (await axios.get((this.inventoryService.getInventoryDomain()+`/item/${item._id}`)))
+            (await axios.get((this.inventoryService.getInventoryDomain() + `/item/${item._id}`)))
               .data as { data: AbstractItem }
           ).data;
           player.inventory.items[i] = item;
@@ -72,7 +72,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.weapons.length; i++) {
           let weapon: AbstractWeapon = player.inventory.weapons[i];
           weapon = (
-            (await axios.get((this.inventoryService.getInventoryDomain()+`/weapon/${weapon._id}`)))
+            (await axios.get((this.inventoryService.getInventoryDomain() + `/weapon/${weapon._id}`)))
               .data as { data: AbstractWeapon }
           ).data;
           player.inventory.weapons[i] = weapon;
@@ -134,10 +134,14 @@ export class ProductListComponent {
   }
 
   cardClick(item: any): void {
+
+    this.guardado = []
+    this.alreadySelectedIds = []
+
     let equipable = true;
     let effectList = item.props.effectList;
 
-    const isItemEquiped = this.isItemEquiped(item);
+    const isItemEquiped = this.isItemEquipedForClick(item);
     if (isItemEquiped) {
       effectList = this.revertEffectsOperator(effectList);
       this.unequipItemsOfHeroInventory(item);
@@ -160,15 +164,52 @@ export class ProductListComponent {
     }
   }
 
+  guardado: any = []
   private selectEquipedItems(pagItems: any): any {
-    for (let i = 0; i < pagItems.length; i++) {
-      const item = pagItems[i];
-      pagItems[i].equiped = this.isItemEquiped(item);
+    if(this.guardado.length === 0){
+      for (let i = 0; i < pagItems.length; i++) {
+        const item = pagItems[i];
+        pagItems[i].equiped = this.isItemEquiped(item);
+      }
+      this.guardado = pagItems
+      return pagItems;
+    }else{
+      return this.guardado;
     }
-    return pagItems;
   }
 
+  alreadySelectedIds: string[] = []
   private isItemEquiped(item: any): boolean {
+    if (this.alreadySelectedIds.includes(item._id)) {
+      return false
+    }
+    const type = this.getItemType(item);
+    let equiped = false;
+    let index
+    switch (type) {
+      case 'armors':
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.armors.findIndex(a => a._id === item._id);
+        equiped = index !== -1;
+        break;
+      case 'items':
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.items.findIndex(i => i._id === item._id);
+        equiped = index !== -1;
+        break;
+      case 'weapons':
+        index = this.inventoryService.getHeroeActual().props.inventory?.props.weapons.findIndex(w => w._id === item._id);
+        equiped = index !== -1;
+        break;
+      default:
+        // console.log('Unknown type card clicked', item);
+        break;
+    }
+    if (equiped) {
+      this.alreadySelectedIds.push(item._id)
+    }
+    return equiped;
+  }
+
+  private isItemEquipedForClick(item: any): boolean {
     const type = this.getItemType(item);
     let equiped = false;
     let index
@@ -370,7 +411,7 @@ export class ProductListComponent {
         }
         break;
       default:
-       // console.log('Unknown type card clicked', item);
+        // console.log('Unknown type card clicked', item);
         break;
     }
   }
