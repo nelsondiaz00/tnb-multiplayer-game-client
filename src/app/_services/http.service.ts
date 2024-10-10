@@ -33,7 +33,7 @@ export default class httpService {
     try {
       const response = await axios.post(
         API_HEROES_URL,
-        JSON.stringify({ id: '6707579d1575d1f2dd78b72f' }),
+        JSON.stringify({ id: '6707f0398f88af5104f30f1c' }),
         {
           headers: {
             'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export class ClientInventoryViewComponent {
   ngOnInit() {
     this.inventoryService.setPlayer();
     setTimeout(() => {
-      // console.log(this.inventoryService.getPlayer());
+      console.log(this.inventoryService.getPlayer());
     }, 3000);
     // console.log(this.inventoryService.getPlayer());
   }
