@@ -49,7 +49,7 @@ export class HeroInventoryComponent {
       this.togglePopup()
     },1000)
     const response = await axios.post(
-      'http://localhost:1803/player/update',
+      (this.inventoryService.getInventoryDomain()+'/player/update'),
       { player }
     );
     

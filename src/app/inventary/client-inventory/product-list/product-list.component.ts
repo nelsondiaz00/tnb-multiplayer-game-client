@@ -3,7 +3,6 @@ import { ClientInventoryService } from '../../../_services/client-inventory.serv
 import { AbstractItem } from '../../../_models/domain-inventory/element/item/AbstractItem';
 import AbstractArmor from '../../../_models/domain-inventory/element/armor/AbstractArmor';
 import { AbstractWeapon } from '../../../_models/domain-inventory/element/weapon/AbstractWeapon';
-import { AbstractPlayer } from '../../../_models/domain-inventory/player/AbstractPlayer';
 import { CommonModule } from '@angular/common';
 import { AbstractSkill } from '../../../_models/domain-inventory/skill/AbstractSkill';
 import axios from 'axios';
@@ -53,7 +52,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.armors.length; i++) {
           let armor: AbstractArmor = player.inventory.armors[i];
           armor = (
-            (await axios.get(`http://localhost:1803/armor/${armor._id}`))
+            (await axios.get((this.inventoryService.getInventoryDomain()+`/armor/${armor._id}`)))
               .data as { data: AbstractArmor }
           ).data;
           player.inventory.armors[i] = armor;
@@ -63,7 +62,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.items.length; i++) {
           let item: AbstractItem = player.inventory.items[i];
           item = (
-            (await axios.get(`http://localhost:1803/item/${item._id}`))
+            (await axios.get((this.inventoryService.getInventoryDomain()+`/item/${item._id}`)))
               .data as { data: AbstractItem }
           ).data;
           player.inventory.items[i] = item;
@@ -73,7 +72,7 @@ export class ProductListComponent {
         for (let i = 0; i < player.inventory.weapons.length; i++) {
           let weapon: AbstractWeapon = player.inventory.weapons[i];
           weapon = (
-            (await axios.get(`http://localhost:1803/weapon/${weapon._id}`))
+            (await axios.get((this.inventoryService.getInventoryDomain()+`/weapon/${weapon._id}`)))
               .data as { data: AbstractWeapon }
           ).data;
           player.inventory.weapons[i] = weapon;

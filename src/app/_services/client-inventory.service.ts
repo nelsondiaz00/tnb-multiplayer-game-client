@@ -38,7 +38,7 @@ export class ClientInventoryService {
     const id = '670753e786546359df4e7d6a';
 
     const response = await axios.post(
-      'http://localhost:1803/player/getPlayer',
+      (this.getInventoryDomain()+'/player/getPlayer'),
       { id }
     );
 
@@ -93,5 +93,9 @@ export class ClientInventoryService {
 
   getHeroes(): Observable<AbstractHero[]> {
     return this.heroes$;
+  }
+
+  getInventoryDomain(): string{
+    return 'http://localhost:1803'
   }
 }

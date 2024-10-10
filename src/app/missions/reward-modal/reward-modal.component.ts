@@ -72,7 +72,7 @@ export class RewardModalComponent {
 
   async updatePlayer(): Promise<void> {
     const player = this.inventoryService.getPlayer();
-    const response = await axios.post('http://localhost:1803/player/update', {
+    const response = await axios.post((this.inventoryService.getInventoryDomain()+'/player/update'), {
       player,
     });
 
