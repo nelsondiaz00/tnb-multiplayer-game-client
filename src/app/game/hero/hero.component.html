@@ -48,7 +48,7 @@
   {{
     (hero.idUser.includes("_")
       ? "IA (bot)"
-      : hero.nameUser === userService.getIdUser()
+      : hero.idUser === userService.getIdUser()
       ? hero.nameUser + "(you)"
       : hero.nameUser) +
       (hero.nameUser === userService.getOwnerIdUser() ? "(dueño de sala)" : "")

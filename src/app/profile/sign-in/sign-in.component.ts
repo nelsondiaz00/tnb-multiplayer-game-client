@@ -33,8 +33,24 @@ export class SignInComponent {
   ngOnInit() {
     if (!localStorage.getItem('users')) {
       const users = [
-        { user: 'Javier', password: 'Javier123*', name: 'Lenin Javier', lastname: 'Serrano Gil', mail: 'lenin.serrano@upb.edu.co',avatar:'/assets/sign-in-images/images/pic2.png', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },
-        { user: 'Nelson', password: 'Nelson123*', name: 'Nelson Yair', lastname: 'Diaz Gomez', mail: 'nelson.diaz.2022@upb.edu.co',avatar:'/assets/sign-in-images/images/pic2.png', p1: '',r1: '', p2:'',r2:'',p3:'',r3:'',p4:'',r4:'' },];
+        { user: 'JavierElPro', password: 'Javier123*', name: 'Lenin Javier', 
+          lastname: 'Serrano Gil', mail: 'lenin.serrano@upb.edu.co',
+          avatar:'/assets/sign-in-images/images/pic2.png', 
+          p1: '¿Cuál es tu deporte favorito?',r1: 'Fútbol', 
+          p2:'¿De quién fue tu primer concierto?',r2:'Nirvana',
+          p3:'¿En qué mes te casaste?',r3:'Abril',
+          p4:'¿En qué año nació su madre?',r4:'1983',
+          idplayer: '670807117b04dcfb04ade3fa'
+        },
+        { user: 'NelsonPro', password: 'Nelson123*', name: 'Nelson Yair', 
+          lastname: 'Diaz Gomez', mail: 'nelson.diaz.2022@upb.edu.co',
+          avatar:'/assets/sign-in-images/images/pic2.png', 
+          p1: '¿Cuál es tu deporte favorito?',r1: 'Fútbol', 
+          p2:'¿De quién fue tu primer concierto?',r2:'Nirvana',
+          p3:'¿En qué mes te casaste?',r3:'Abril',
+          p4:'¿En qué año nació su madre?',r4:'1983',
+          idplayer: '67080e692c67251cfdc43f10'
+        },];
       localStorage.setItem('users', JSON.stringify(users));
     }
        // localStorage.setItem('users', '');
