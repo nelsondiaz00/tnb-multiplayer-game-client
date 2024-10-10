@@ -8,6 +8,7 @@ import { UserService } from './user.service';
 import { teamSide } from '../_models/types/team.type';
 import { environment } from '../../environments/environment';
 import { IHero } from '../_models/interfaces/hero.interfaces';
+import { BetWinners } from '../_models/interfaces/bet.winners';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +24,13 @@ export class WebSocketService {
   public amountPlayers$: Observable<any>;
   public lastAttackName$: Observable<string>;
   public failedReason$: Observable<string>;
+  public betWinners$: Observable<BetWinners>;
+  public creditsSignal$: Observable<any>;
   private HOST = environment.host;
   private PORT = environment.port;
 
   constructor(private userService: UserService) {
-    console.log(environment.production, ' !!!!!!!!!!!!!');
+  //   console.log(environment.production, ' !!!!!!!!!!!!!');
     const initialSocket = io(`http://${this.HOST}:${this.PORT}`);
     this.socket$ = new BehaviorSubject<Socket>(initialSocket);
 
@@ -58,6 +61,13 @@ export class WebSocketService {
     this.failedReason$ = this.socket$.pipe(
       switchMap((socket) => fromEvent<any>(socket, 'failedReason'))
     );
+    this.betWinners$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'betWinners'))
+    );
+
+    this.creditsSignal$ = this.socket$.pipe(
+      switchMap((socket) => fromEvent<any>(socket, 'creditsSignal'))
+    );
   }
   // private initMatch() {
   //   this.socket$.getValue().on('connect', () => {
@@ -69,7 +79,7 @@ export class WebSocketService {
     // this.connectToSocket('3000');
     // this.connectNewSocket();
     this.socket$.getValue().emit('createMatch', dataMatch);
-    console.log('Match created!');
+    // console.log('Match created!');
   }
 
   // private connectNewSocket() {
@@ -87,7 +97,7 @@ export class WebSocketService {
       const url = `http://${this.HOST}:${port}`;
       const newSocket = io(url);
       this.socket$.next(newSocket);
-      console.log('Connected to match socket on url ' + url + '!');
+      // console.log('Connected to match socket on url ' + url + '!');
     }
   }
 
@@ -96,7 +106,7 @@ export class WebSocketService {
       const url = `http://${this.HOST}:${this.PORT}`;
       const newSocket = io(url);
       this.socket$.next(newSocket);
-      console.log('Connected to match socket on url ' + url + '!');
+      // console.log('Connected to match socket on url ' + url + '!');
     }
   }
 
@@ -116,10 +126,10 @@ export class WebSocketService {
         alive: heroSelected.alive,
         teamSide: teamSide,
       };
-      console.log(hero, ' hero');
+      // console.log(hero, ' hero');
       this.socket$.getValue().emit('bindInfo', hero);
     }
-    console.log('???');
+    //onsole.log('???');
   }
 
   public getMatch(): void {
@@ -139,7 +149,7 @@ export class WebSocketService {
     productId: string,
     victimId: string
   ): void {
-    console.log(perpetratorId, ' - ', productId, ' - ', victimId);
+    // console.log(perpetratorId, ' - ', productId, ' - ', victimId);
     this.socket$
       .getValue()
       .emit('useHability', perpetratorId, productId, victimId);

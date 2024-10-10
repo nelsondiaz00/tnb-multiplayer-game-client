@@ -37,17 +37,16 @@ export class HeroComponent implements OnChanges {
       if (turnInfo.idUser.includes('_')) {
         this.userService.setCurrentNameUser('IA');
       } else {
-        this.userService.setCurrentNameUser(this.hero.nameUser);
+        if (this.hero.idUser === this.userService.getIdUser()) {
+          this.userService.setCurrentNameUser(this.hero.nameUser);
+        }
       }
+     // console.log(this.hero);
       this.resetTargeted();
     });
     this.webSocketService.lastAttackName$.subscribe((lastAttackName: any) => {
       this.perpetratorId = lastAttackName.perpetratorId;
       this.victimId = lastAttackName.victimId;
-      console.log(
-        this.hero.idUser,
-        ' PRUEBA PES!! ' + this.userService.getIdUser()
-      );
       if (
         this.perpetratorId &&
         this.userService.getCurrentIdUser() !== this.userService.getIdUser()
@@ -81,7 +80,7 @@ export class HeroComponent implements OnChanges {
         const currentBlood = currentHero.attributes['blood'].value;
         this.healthDifference = previousBlood - currentBlood;
         this.healthDifference = parseFloat(this.healthDifference.toFixed(1));
-        console.log(this.healthDifference, ' diferencia de vida');
+        // console.log(this.healthDifference, ' diferencia de vida');
         this.triggerHeroBeatenAnimation();
 
         setTimeout(() => {

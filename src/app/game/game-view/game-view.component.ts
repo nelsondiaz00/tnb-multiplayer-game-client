@@ -38,10 +38,14 @@ export class GameViewComponent implements OnInit {
   @Output() matchEnded = new EventEmitter<void>();
 
   ngOnInit(): void {
-    console.log('está acá primero bro');
+    // console.log('está acá primero bro');
     this.webSocketService.newUser$.subscribe((matchReceived: IMatch) => {
       this.userService.setOwnerIdUser(matchReceived.owner);
-      console.log('está acá primero bro');
+      // console.log('está acá primero bro');
+    });
+    this.webSocketService.creditsSignal$.subscribe((winners: any) => {
+      console.log('está acá primero bro ', winners);
+      // this.userService.setWinners(winners);
     });
   }
   onMatchEnded() {

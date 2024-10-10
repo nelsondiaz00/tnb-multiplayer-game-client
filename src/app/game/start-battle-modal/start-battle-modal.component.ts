@@ -23,7 +23,7 @@ export class StartBattleModalComponent {
   }
 
   startBattle() {
-    console.log('Battle started');
+   //  console.log('Battle started');
     this.emitterService.startBattle();
     this.webSocketService.startBattle();
     this.isVisible = false;

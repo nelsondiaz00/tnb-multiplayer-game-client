@@ -19,27 +19,19 @@ export class HeroResultComponent {
   heroesSubscription: Subscription = new Subscription();
   heroes: AbstractHero[] = [];
 
-  constructor(private inventoryService: ClientInventoryService) { }
+  constructor(private inventoryService: ClientInventoryService) {}
 
   async ngOnInit(): Promise<void> {
-    this.heroesSubscription = this.inventoryService.heroes$.subscribe(heroes => {
-      if (heroes.length > 0) {
-        this.heroes = heroes
-        this.updateCurrentHero();
+    this.heroesSubscription = this.inventoryService.heroes$.subscribe(
+      (heroes) => {
+        if (heroes.length > 0) {
+          this.heroes = heroes;
+          this.updateCurrentHero();
+        }
       }
-    });
+    );
     this.inventoryService.player$.subscribe(async (player) => {
       if (player) {
-        // for (let i = 0; i < player.heroList.length; i++) {
-        //   let hero: AbstractHero = player.heroList[i];
-
-        //   hero = (
-        //     (await axios.get((this.inventoryService.getInventoryDomain()+`/hero/${hero._id}`)))
-        //       .data as { data: AbstractHero }
-        //   ).data;
-
-        //   player.heroList[i] = hero;
-        // }
         this.inventoryService.setHeroes(player.heroList);
         this.actualHero = this.heroes[0];
         this.inventoryService.setHeroeActual(this.actualHero);
@@ -102,22 +94,25 @@ export class HeroResultComponent {
       .replace(/ñ/g, 'n')
       .replace(/\s+/g, '-')
       .toLowerCase();
-    console.log(`assets/game-images/${type}/${newName}.png`);
+    // console.log(`assets/game-images/${type}/${newName}.png`);
     return `assets/game-images/${type}/${newName}.png`;
   }
 
-  getEquipedArmorImage( armorType: string ): string {
-    let armorName = ""
-    this.inventoryService.getHeroeActual().props.inventory?.props.armors.forEach(a => {
-      const armor = this.inventoryService.getPlayer()?.props.inventory.props.armors.find(ar => ar._id === a._id);
-      if (armor !== undefined && armor.type === armorType) {
-        armorName = armor.props.name;
-      }
-    })
-    if(armorName === ""){
-      return ""
+  getEquipedArmorImage(armorType: string): string {
+    let armorName = '';
+    this.inventoryService
+      .getHeroeActual()
+      .props.inventory?.props.armors.forEach((a) => {
+        const armor = this.inventoryService
+          .getPlayer()
+          ?.props.inventory.props.armors.find((ar) => ar._id === a._id);
+        if (armor !== undefined && armor.type === armorType) {
+          armorName = armor.props.name;
+        }
+      });
+    if (armorName === '') {
+      return '';
     }
-    return `url(${this.getImagePath( armorName, 'armors')})`
+    return `url(${this.getImagePath(armorName, 'armors')})`;
   }
-
 }

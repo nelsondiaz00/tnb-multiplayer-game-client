@@ -16,7 +16,7 @@ export class HeroInventoryComponent {
   currentPage: number = 1;
   itemsPerPage: number = 12;
 
-  constructor(private inventoryService: ClientInventoryService) { }
+  constructor(private inventoryService: ClientInventoryService) {}
 
   setFilter(filter: string): void {
     this.filter = filter;
@@ -37,35 +37,35 @@ export class HeroInventoryComponent {
         : 0) +
       (this.filter === 'all' || this.filter === 'weapons'
         ? this.inventoryService.getPlayer()?.props.inventory.weapons?.length ??
-        0
+          0
         : 0);
     return Math.ceil(totalItems / this.itemsPerPage);
   }
 
   async updatePlayer(): Promise<void> {
     const player = this.inventoryService.getPlayer();
-    this.togglePopup()
+    this.togglePopup();
     setTimeout(() => {
-      this.togglePopup()
-    },1000)
+      this.togglePopup();
+    }, 1000);
     const response = await axios.post(
-      (this.inventoryService.getInventoryDomain()+'/player/update'),
+      this.inventoryService.getInventoryDomain() + '/player/update',
       { player }
     );
-    
+
     if (response && response.data) {
-      console.log('actualizado', response.data);
+      //  console.log('actualizado', response.data);
     }
   }
 
   togglePopup() {
-    let popup = document.getElementById("myPopup");
+    let popup = document.getElementById('myPopup');
     if (popup) {
-      popup.classList.toggle("show");
-      if(popup.textContent===''){
+      popup.classList.toggle('show');
+      if (popup.textContent === '') {
         popup.textContent = 'Jugador actualizado';
-      }else{
-        popup.textContent = ''
+      } else {
+        popup.textContent = '';
       }
     }
   }

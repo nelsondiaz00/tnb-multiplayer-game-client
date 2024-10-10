@@ -24,7 +24,7 @@ export class TeamComponent {
         this.players.push(null);
       }
     } else {
-      console.log('No team received');
+      // console.log('No team received');
     }
   }
   trackByHeroId(index: number, player: IHero | null): string | number {

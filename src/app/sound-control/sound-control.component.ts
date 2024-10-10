@@ -89,7 +89,7 @@ export class SoundControlComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private setAudioSource(url: string) {
     let audioSource = '';
-    console.log(url);
+    // console.log(url);
     switch (url) {
       case '/game-view':
         audioSource = 'assets/sounds/game-view-general-sound.mp3';

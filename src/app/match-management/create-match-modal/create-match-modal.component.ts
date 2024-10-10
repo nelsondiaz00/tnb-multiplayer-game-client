@@ -12,6 +12,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class CreateMatchModalComponent {
   @ViewChild(AlertComponent) alertComponent?: AlertComponent;
   password?: string;
+  isBetDisabled: boolean = false;
 
   constructor(
     private dialogRef: MatDialogRef<CreateMatchModalComponent>,
@@ -25,6 +26,7 @@ export class CreateMatchModalComponent {
     const betOption = document.querySelector(
       'input[name="bet-option"]:checked'
     ) as HTMLInputElement;
+    const betInput = document.getElementById('bet') as HTMLInputElement;
 
     if (!gameMode || !betOption) {
       this.showAlert(
@@ -36,11 +38,18 @@ export class CreateMatchModalComponent {
     const gameConfig = {
       id: this.generateRandomId(),
       mode: gameMode ? gameMode.value : '0',
-      bet: betOption ? betOption.value : null,
+      bet: betInput.value === '' ? '0' : betInput.value,
     };
-    console.log(gameConfig, ' game config');
+    // console.log(gameConfig, ' game config');
+
+    //const betValue = betInput ? parseInt(betInput.value) : 0;
+    this.createMatch(
+      parseInt(gameConfig.mode),
+      parseInt(gameConfig.mode),
+      parseInt(gameConfig.bet)
+    );
     this.closeModal();
-    this.createMatch(parseInt(gameConfig.mode), parseInt(gameConfig.mode));
+    // this.createMatch(parseInt(gameConfig.mode), parseInt(gameConfig.mode),);
   }
 
   showAlert(message: string) {
@@ -50,6 +59,11 @@ export class CreateMatchModalComponent {
     }
   }
 
+  onBetOptionChange() {
+    const betNoOption = document.getElementById('bet-no') as HTMLInputElement;
+    this.isBetDisabled = betNoOption.checked;
+  }
+
   generateRandomId() {
     return Math.random().toString(36).substr(2, 9);
   }
@@ -57,10 +71,11 @@ export class CreateMatchModalComponent {
     this.dialogRef.close();
   }
 
-  private createMatch(amountRed: number, amountBlue: number) {
+  private createMatch(amountRed: number, amountBlue: number, bet?: number) {
     const dataMatch = {
       amountRed: amountRed,
       amountBlue: amountBlue,
+      amountBet: bet,
     };
     this.webSocketService.createMatchSocket(dataMatch);
   }

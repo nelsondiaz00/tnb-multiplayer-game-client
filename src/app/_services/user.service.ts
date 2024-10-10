@@ -50,7 +50,7 @@ export class UserService {
   }
 
   setCurrentIdUser(id: string): void {
-    console.log('setCurrentIdUser!!: ', id);
+    // console.log('setCurrentIdUser!!: ', id);
     this.currentIdUser = id;
   }
   getCurrentIdUser(): string | null {

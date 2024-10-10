@@ -22,7 +22,7 @@ export class HabilityService {
       hability.imagePath = this.getImagePath(hability.productName);
       return hability;
     });
-    console.log(habilities);
+    // console.log(habilities);
     return of(habilities);
   }
 

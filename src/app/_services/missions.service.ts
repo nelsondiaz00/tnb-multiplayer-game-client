@@ -24,7 +24,7 @@ export class MissionService {
   private PORT = environment.MISSION_PORT;
 
   constructor(private userService: UserService) {
-    console.log(`http://${this.HOST}:${this.PORT}`);
+    // console.log(`http://${this.HOST}:${this.PORT}`);
     const initialSocket = io(`http://${this.HOST}:${this.PORT}`);
     this.socket$ = new BehaviorSubject<Socket>(initialSocket);
 
@@ -50,7 +50,7 @@ export class MissionService {
 
   public startMissionModule(dataMission: any): void {
     this.socket$.getValue().emit('initMissionModule', dataMission);
-    console.log('Mission module started!');
+    // console.log('Mission module started!');
   }
 
   public connectToSocket(port: string): void {
@@ -58,7 +58,7 @@ export class MissionService {
       const url = `http://${this.HOST}:${port}`;
       const newSocket = io(url);
       this.socket$.next(newSocket);
-      console.log('Connected to mission socket on url ' + url + '!');
+      // console.log('Connected to mission socket on url ' + url + '!');
     }
   }
 
@@ -67,7 +67,7 @@ export class MissionService {
       const url = `http://${this.HOST}:${this.PORT}`;
       const newSocket = io(url);
       this.socket$.next(newSocket);
-      console.log('Connected to mission main socket on url ' + url + '!');
+      // console.log('Connected to mission main socket on url ' + url + '!');
     }
   }
 
@@ -112,7 +112,7 @@ export class MissionService {
   }
 
   public getActiveMissions(): void {
-    console.log('obtener misiones!!');
+    // console.log('obtener misiones!!');
     this.socket$.getValue().emit('getActiveMissions');
   }
 

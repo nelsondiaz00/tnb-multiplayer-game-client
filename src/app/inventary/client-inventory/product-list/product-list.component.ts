@@ -186,7 +186,7 @@ export class ProductListComponent {
         equiped = index !== -1;
         break;
       default:
-        console.log('Unknown type card clicked', item);
+        // console.log('Unknown type card clicked', item);
         break;
     }
     return equiped;
@@ -335,7 +335,7 @@ export class ProductListComponent {
           .props.inventory?.props.weapons.push(item);
         break;
       default:
-        console.log('Unknown type card clicked', item);
+        // console.log('Unknown type card clicked', item);
         break;
     }
     return equipable;
@@ -370,7 +370,7 @@ export class ProductListComponent {
         }
         break;
       default:
-        console.log('Unknown type card clicked', item);
+       // console.log('Unknown type card clicked', item);
         break;
     }
   }

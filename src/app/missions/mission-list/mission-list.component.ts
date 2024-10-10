@@ -29,7 +29,7 @@ export class MissionListComponent {
       this.missions = missionList;
       this.selectedMission = this.missions[0] || null;
       this.updateRemainingTime();
-      console.log('Misiones actualizadas:', missionList);
+      // console.log('Misiones actualizadas:', missionList);
     });
 
     this.missionService.updatedMission$.subscribe((newMission: IMission) => {
@@ -43,7 +43,7 @@ export class MissionListComponent {
       } else {
         this.selectedMission = null;
       }
-      console.log('new mission: ', newMission);
+      // console.log('new mission: ', newMission);
       if (foundMission?.missionId === this.selectedMission?.missionId) {
         this.updateRemainingTime();
       }
@@ -53,21 +53,21 @@ export class MissionListComponent {
       const { reward, mission } = rewardInfo;
       this.rewardInfos.push({ rewards: reward, mission });
       this.showRewardModals.push(true);
-      console.log('llegaron recompensas');
+     // console.log('llegaron recompensas');
     });
 
-    console.log('Mission list component initialized!');
+    // console.log('Mission list component initialized!');
   }
 
   onMissionSelect(): void {
-    console.log('Mission selected!');
+    //console.log('Mission selected!');
     if (this.selectedMission) {
       this.missionService.getMission(this.selectedMission.missionId);
     }
   }
 
   startMission(mission: IMission) {
-    console.log('Starting mission: ', mission);
+   // console.log('Starting mission: ', mission);
     this.missionService.startMission(mission.missionId);
   }
 
