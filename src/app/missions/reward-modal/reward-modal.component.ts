@@ -49,6 +49,10 @@ export class RewardModalComponent {
     }
     const inventory = player?.props.inventory;
 
+    if (this.rewards) {
+      console.log(await this.mapReward(this.rewards));
+      console.log(inventory, ' inventory');
+    }
     if (heroActual && inventory) {
       if (this.rewards) {
         const newRewards = await this.mapReward(this.rewards);
@@ -82,13 +86,28 @@ export class RewardModalComponent {
       .get<any>('./assets/json/inventory-products.json')
       .toPromise();
 
+    // console.log(templateItem);
+    console.log(reward[1].productName);
+    console.log(templateItem[1].props.name);
+    const templateHability = templateItem.slice(1, templateItem.length);
+    const index = templateHability.findIndex(
+      (item: AbstractArmor) =>
+        item.props.name.toLowerCase() === reward[1].productName.toLowerCase()
+    );
+
+    console.log(index);
+
     const armor: AbstractArmor = {
-      ...templateItem,
+      ...templateHability[index],
     };
 
-    const skill = JSON.parse(JSON.stringify(templateItem));
-    skill[0]._id = reward[1].productName;
+    if (reward[0]) {
+      const skill = JSON.parse(JSON.stringify(templateItem));
+      skill[0]._id = reward[0].productName;
 
-    return [armor, skill[0]];
+      return [skill[0], armor];
+    }
+
+    return [null, armor];
   }
 }

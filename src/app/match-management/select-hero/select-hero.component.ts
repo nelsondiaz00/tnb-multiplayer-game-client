@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import httpService from '../../_services/http.service';
 import { IHero } from '../../_models/interfaces/hero.interfaces';
 import { UserService } from '../../_services/user.service';
+import { ClientInventoryService } from '../../_services/client-inventory.service';
 
 @Component({
   selector: 'app-select-hero',
@@ -17,14 +18,17 @@ export class SelectHeroComponent implements OnInit {
 
   constructor(
     private httpService: httpService,
-    private userService: UserService
+    private userService: UserService,
+    private inventoryService: ClientInventoryService
   ) {}
   ngOnInit() {
     this.httpService.getHeroesFromPlayer().then((heroes) => {
       this.heroList = heroes;
+      console.log(this.heroList);
       this.currentHeroSelected = this.heroList[0];
       this.userService.setHeroSelected(this.heroList[0]);
     });
+    this.inventoryService.setPlayer();
   }
 
   getHeroImageUrl(): string {

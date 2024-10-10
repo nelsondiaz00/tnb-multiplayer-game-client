@@ -35,7 +35,7 @@ export class ClientInventoryService {
   async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
     let player: AbstractPlayer = NullPlayer.create();
 
-    const id = '67061760b6520aa3bf635210';
+    const id = '670753e786546359df4e7d6a';
 
     const response = await axios.post(
       (this.getInventoryDomain()+'/player/getPlayer'),
