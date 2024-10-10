@@ -73,8 +73,8 @@ export class AttributeComponent implements OnInit {
       }
 
       this.attributes = heroAttributes;
-      console.log(this.attributes, ' attributes');
-      console.log('------------------------------------');
+      // console.log(this.attributes, ' attributes');
+      // console.log('------------------------------------');
     });
   }
 

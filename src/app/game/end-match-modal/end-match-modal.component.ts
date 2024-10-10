@@ -15,6 +15,7 @@ export class EndMatchModalComponent {
   ngOnInit(): void {
     this.webSocketService.endMatch$.subscribe(() => {
       this.isVisible = true;
+      console.log('Match ended');
     });
   }
 

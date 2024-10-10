@@ -24,7 +24,6 @@ export class ClientInventoryService {
     const playerObservable = await this.getPlayerFromApi();
     playerObservable.subscribe((player) => {
       this.playerSubject.next(player);
-      // console.log(player);
     });
   }
 
@@ -35,10 +34,10 @@ export class ClientInventoryService {
   async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
     let player: AbstractPlayer = NullPlayer.create();
 
-    const id = '670753e786546359df4e7d6a';
+    const id = '6707579d1575d1f2dd78b72f';
 
     const response = await axios.post(
-      (this.getInventoryDomain()+'/player/getPlayer'),
+      this.getInventoryDomain() + '/player/getPlayer',
       { id }
     );
 
@@ -95,7 +94,8 @@ export class ClientInventoryService {
     return this.heroes$;
   }
 
-  getInventoryDomain(): string{
-    return 'http://localhost:1803'
+  getInventoryDomain(): string {
+   // return 'http://198.211.102.243:1802';
+    return 'http://localhost:1803';
   }
 }

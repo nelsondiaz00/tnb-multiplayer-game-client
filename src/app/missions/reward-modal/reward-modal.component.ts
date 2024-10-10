@@ -50,8 +50,8 @@ export class RewardModalComponent {
     const inventory = player?.props.inventory;
 
     if (this.rewards) {
-      console.log(await this.mapReward(this.rewards));
-      console.log(inventory, ' inventory');
+     // console.log(await this.mapReward(this.rewards));
+     // console.log(inventory, ' inventory');
     }
     if (heroActual && inventory) {
       if (this.rewards) {
@@ -77,7 +77,7 @@ export class RewardModalComponent {
     });
 
     if (response && response.data) {
-      console.log('actualizado', response.data);
+    //  console.log('actualizado', response.data);
     }
   }
 
@@ -87,15 +87,15 @@ export class RewardModalComponent {
       .toPromise();
 
     // console.log(templateItem);
-    console.log(reward[1].productName);
-    console.log(templateItem[1].props.name);
+  //  console.log(reward[1].productName);
+   // console.log(templateItem[1].props.name);
     const templateHability = templateItem.slice(1, templateItem.length);
     const index = templateHability.findIndex(
       (item: AbstractArmor) =>
         item.props.name.toLowerCase() === reward[1].productName.toLowerCase()
     );
 
-    console.log(index);
+    // console.log(index);
 
     const armor: AbstractArmor = {
       ...templateHability[index],

@@ -167,6 +167,6 @@ export class ProductCreationComponent {
   }
 
   handleSubmmit() {
-    console.log('Product', this.product);
+    // console.log('Product', this.product);
   }
 }

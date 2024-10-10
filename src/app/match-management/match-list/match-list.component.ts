@@ -53,25 +53,27 @@ export class MatchListComponent implements OnInit, OnChanges {
   }
 
   refreshMatchList(): void {
-    console.log('refreshing match list');
+    // console.log('refreshing match list');
     this.webSocketService.getMatchList();
   }
 
   onMatchClick(match: any): void {
-    console.log('wtf hermanito wtf - ', match.port);
+    // console.log('wtf hermanito wtf - ', match.port);
     //this.webSocketService.connectToSocket(match.port);
 
     this.webSocketService.amountPlayers$.subscribe((usersAmount) => {
-      console.log(
-        'SISODSIDOSIDS, ' +
-          usersAmount +
-          ' -- ' +
-          match.amountBlue +
-          match.amountRed
-      );
+      // console.log(
+      //   'SISODSIDOSIDS, ' +
+      //     usersAmount +
+      //     ' -- ' +
+      //     match.amountBlue +
+      //     match.amountRed
+      // );
+      //console.log('SISODSIDOSIDS, ' + usersAmount);
+      // console.log(usersAmount);
       if (
         usersAmount !== undefined &&
-        usersAmount < match.amountBlue + match.amountRed
+        usersAmount.playersAmount < match.amountBlue + match.amountRed
       ) {
         // console.log('SISODSIDOSIDS, ' + usersAmount);
         this.matchSelected.emit(match);

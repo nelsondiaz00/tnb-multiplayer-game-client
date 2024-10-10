@@ -24,7 +24,7 @@ export class SelectHeroComponent implements OnInit {
   ngOnInit() {
     this.httpService.getHeroesFromPlayer().then((heroes) => {
       this.heroList = heroes;
-      console.log(this.heroList);
+     // console.log(this.heroList);
       this.currentHeroSelected = this.heroList[0];
       this.userService.setHeroSelected(this.heroList[0]);
     });

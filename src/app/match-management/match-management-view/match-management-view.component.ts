@@ -36,7 +36,7 @@ export class MatchManagementViewComponent {
   selectedMatchConfig: any;
 
   onMatchSelected(match: any): void {
-    console.log('entró a conexión nueva de socket!');
+   // console.log('entró a conexión nueva de socket!');
     this.webSocketService.connectToSocket(match.port);
     this.selectedMatchConfig = match;
     this.router.navigate(['game-view'], {

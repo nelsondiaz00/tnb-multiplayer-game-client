@@ -35,7 +35,7 @@ export class MatchComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.matchConfig, ' esto desde match');
+    // console.log(this.matchConfig, ' esto desde match');
 
     this.webSocketService.newUser$.subscribe((matchReceived: IMatch) => {
       this.match = this.matchService.reconstructMatch(matchReceived);
@@ -44,10 +44,11 @@ export class MatchComponent {
     this.webSocketService.turnInfo$.subscribe((turnInfo) => {
       this.startCounter();
       this.userService.setCurrentIdUser(turnInfo.idUser);
+      
     });
 
     this.webSocketService.actualMatch$.subscribe((matchReceived: IMatch) => {
-      console.log(matchReceived);
+      // console.log(matchReceived);
       this.match = this.matchService.reconstructMatch(matchReceived);
     });
   }

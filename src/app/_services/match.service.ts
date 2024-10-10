@@ -23,7 +23,6 @@ export class MatchService {
     );
 
     const teams: Map<teamSide, ITeam> = new Map<teamSide, ITeam>(teamsEntries);
-    // console.log(data, ' data!!!');
     return {
       idMatch: data.idMatch,
       size: data.size,

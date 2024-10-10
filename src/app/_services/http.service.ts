@@ -19,7 +19,6 @@ export async function getChatbotResponse(message: string): Promise<string> {
       }
     );
     const data: any = response.data;
-    console.log(data, ' °!!!');
     return data.message;
   } catch (error) {
     console.error('Error fetching chatbot response:', error);
@@ -34,7 +33,7 @@ export default class httpService {
     try {
       const response = await axios.post(
         API_HEROES_URL,
-        JSON.stringify({ id: '670753e786546359df4e7d6a' }),
+        JSON.stringify({ id: '6707579d1575d1f2dd78b72f' }),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -74,7 +73,6 @@ export default class httpService {
         hero.products = modifiedProduct;
         return hero;
       });
-      console.log(modifiedHeroes);
 
       return modifiedHeroes;
     } catch (error: any) {
@@ -106,7 +104,6 @@ export default class httpService {
       }
       const data: IHero[] = [];
       data.push(await response.json());
-      console.log(data);
       return data;
       //  ('./assets/json/input-weapon.json');
     } catch (error: any) {
