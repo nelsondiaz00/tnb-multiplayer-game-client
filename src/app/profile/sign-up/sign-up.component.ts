@@ -142,6 +142,7 @@ export class SignUpComponent {
             r3: this.r3,
             p4: this.p4,
             r4: this.r4,
+            idplayer: '670807117b04dcfb04ade3fa'
           },
         ];
         localStorage.setItem('users', JSON.stringify(users));
@@ -166,6 +167,7 @@ export class SignUpComponent {
             r3: this.r3,
             p4: this.p4,
             r4: this.r4,
+            idplayer: '670807117b04dcfb04ade3fa'
           });
           localStorage.setItem('users', JSON.stringify(usersArray));
           this.router.navigate(['sign-in']);

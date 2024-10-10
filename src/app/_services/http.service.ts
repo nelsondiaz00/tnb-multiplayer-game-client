@@ -31,9 +31,18 @@ export async function getChatbotResponse(message: string): Promise<string> {
 export default class httpService {
   public async getHeroesFromPlayer(): Promise<IHero[]> {
     try {
+      let id = '670807117b04dcfb04ade3fa';
+      const userJson = localStorage.getItem('loggedUser');
+      if(userJson){
+        const user = JSON.parse(userJson)
+        if(user){
+          id = user.idplayer
+        }
+
+      }
       const response = await axios.post(
         API_HEROES_URL,
-        JSON.stringify({ id: '670807117b04dcfb04ade3fa' }),
+        JSON.stringify({ id }),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -41,7 +50,7 @@ export default class httpService {
         }
       );
       const data: any = response.data;
-      const modifiedHeroes = data.data.map((hero: IHero) => {
+      let modifiedHeroes = data.data.map((hero: IHero) => {
         const attributesArray = Object.values(hero.attributes);
         const modifiedAttributes = attributesArray.map(
           (attribute: IAttribute) => {
@@ -70,10 +79,22 @@ export default class httpService {
           });
           return product;
         });
+        
+
+        
         hero.products = modifiedProduct;
         return hero;
       });
+        if(userJson){
+          const user = JSON.parse(userJson)
+          if(user){
+            modifiedHeroes = modifiedHeroes.map((hero: IHero) => {
+              hero.nameUser = user.user;
+              return hero;
+            });
+          }
 
+        }
       return modifiedHeroes;
     } catch (error: any) {
       console.error('Error fetching inventory response:', error.message);

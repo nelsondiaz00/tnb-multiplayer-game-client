@@ -34,7 +34,15 @@ export class ClientInventoryService {
   async getPlayerFromApi(): Promise<Observable<AbstractPlayer>> {
     let player: AbstractPlayer = NullPlayer.create();
 
-    const id = '670807117b04dcfb04ade3fa';
+    let id = '670807117b04dcfb04ade3fa';
+
+    const userJson = localStorage.getItem('loggedUser');
+    if(userJson){
+      const user = JSON.parse(userJson)
+      if(user){
+        id = user.idplayer
+      }
+    }
 
     const response = await axios.post(
       this.getInventoryDomain() + '/player/getPlayer',

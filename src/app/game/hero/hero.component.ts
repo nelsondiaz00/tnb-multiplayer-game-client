@@ -34,11 +34,27 @@ export class HeroComponent implements OnChanges {
   ngOnInit(): void {
     this.webSocketService.turnInfo$.subscribe((turnInfo) => {
       this.userService.setHeroComponent(this);
+      this.hero.idUser;
       if (turnInfo.idUser.includes('_')) {
         this.userService.setCurrentNameUser('IA');
+        console.log('IA');
       } else {
+        console.log(this.hero.idUser);
+        console.log(this.userService.getIdUser());      
         if (this.hero.idUser === this.userService.getIdUser()) {
-          this.userService.setCurrentNameUser(this.hero.nameUser);
+          const userJson = localStorage.getItem('loggedUser');
+          console.log(userJson);
+          //this.userService.getCurrentNameUser()
+          if(userJson){
+            const user = JSON.parse(userJson)
+            if(user){
+              console.log(user.user);
+              this.hero.nameUser = user.user;
+              this.userService.setCurrentNameUser(user.user);
+            }
+          }else{
+            this.userService.setCurrentNameUser(this.hero.nameUser);
+          }
         }
       }
      // console.log(this.hero);
