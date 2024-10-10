@@ -42,14 +42,15 @@
           </div>
         </div>
       </div>
-
       <a class="link" id="forgot">Olvidé mi contraseña :C</a>
+      <div class="popup">
       <button id="next" class="boton" (click)="login()">Iniciar Sesion</button>
+        <span class="popuptext" id="myPopup"></span>
+      </div>
     </div>
     <div class="cont1">
-      <button href="#registro" class="boton2" (click)="emitRegistro()">
-        Crear Cuenta
-      </button>
+      <button href="#registro" class="boton2" (click)="emitRegistro()" >Crear Cuenta</button>
+
     </div>
   </div>
   <div class="inicio" id="page2">

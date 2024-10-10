@@ -28,6 +28,10 @@ h1 {
   align-self: center;
 }
 
+h1:hover{
+  cursor: pointer;
+}
+
 nav ul {
   list-style: none;
   display: flex;

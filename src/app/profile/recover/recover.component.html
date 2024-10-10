@@ -1,0 +1,61 @@
+<div class="main">
+  <div class="cont">
+    <div class="cont1">
+      <button href="#" (click)="emitProfile()" class="boton3">← Atrás</button>
+      <label class="title" id="recover">Cambiar Contraseña</label>
+    </div>
+  <div class="cont2">
+    <form class="form" id="parte1" action="">
+      <br />
+      <label for="question1" class="form_label" id="p1">Pregunta 1:</label>
+      <br />
+      <input type="text" id="r1" name="question1"/>
+      <br /><br />
+
+      <label for="question2" class="form_label" id="p2">Pregunta 2:</label>
+      <br />
+      <input type="text" id="r2" name="question2"/>
+      <br /><br />
+
+      <label for="question3" class="form_label" id="p3">Pregunta 3:</label>
+      <br />
+      <input type="text" id="r3" name="question3" />
+      <br /><br />
+
+      <label for="question4" class="form_label" id="p4">Pregunta 4:</label>
+      <br />
+      <input type="text" id="r4" name="question4"/>
+      <br /><br /><br />
+      <div style="position: relative;">
+        <button type="button" (click)="sendCode()">
+          Enviar código
+        </button>
+        <span class="popuptext" id="myPopup"></span>
+        <br /><br />
+      </div>
+
+
+      <div id="parte2" class="oculto">
+        <label for="code" class="form_label">Ingresar código:</label>
+        <br /><br />
+        <input type="text" id="code" name="code"/>
+        <br /><br /><br />
+        <div style="position: relative;">
+          <button  type="button" (click)="verifyCode()">Recuperar cuenta</button>
+          <span class="popuptext" id="myPopup2"></span>
+        </div>
+      </div>
+    </form>
+    <form class="form oculto" id="parte3" action="">
+      <label class="form_label">Nueva Contraseña</label>
+      <br /><br />
+      <input type="password" name="newPassword" id="newPassword"/>
+      <br /> <br /><br />
+      <div style="position: relative;">
+        <button  type="button" (click)="validatePassword()">Guardar</button>
+        <span class="popuptext2" id="myPopup3"></span>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
