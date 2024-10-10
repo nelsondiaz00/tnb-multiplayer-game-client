@@ -109,6 +109,24 @@ button:hover {
   cursor: pointer;
 }
 
+.boton3 {
+  width: fit-content;
+  height: auto;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+  box-shadow: none;
+}
+
+.boton3:hover {
+  text-decoration: underline;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .text {
   align-self: stretch;
   color: #2c6f7f;
@@ -163,3 +181,5 @@ img{
 #guardarInfo{
   margin-top: 5%;
 }
+
+

@@ -1,6 +1,6 @@
 <div class="main-container" *ngIf="showHeader">
   <header class="header-main">
-    <h1>The Nexus Battles III</h1>
+    <h1 (click)="navigateTo('landing')">The Nexus Battles III</h1>
     <nav>
       <ul>
         <li (click)="navigateTo('match-management-view')">

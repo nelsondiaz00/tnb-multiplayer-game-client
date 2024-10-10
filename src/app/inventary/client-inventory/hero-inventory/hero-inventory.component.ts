@@ -44,10 +44,10 @@ export class HeroInventoryComponent {
 
   async updatePlayer(): Promise<void> {
     const player = this.inventoryService.getPlayer();
-    this.togglePopup();
+    this.popUp()
     setTimeout(() => {
-      this.togglePopup();
-    }, 1000);
+      this.popUp()
+    },1000)
     const response = await axios.post(
       this.inventoryService.getInventoryDomain() + '/player/update',
       { player }
@@ -58,15 +58,11 @@ export class HeroInventoryComponent {
     }
   }
 
-  togglePopup() {
-    let popup = document.getElementById('myPopup');
-    if (popup) {
-      popup.classList.toggle('show');
-      if (popup.textContent === '') {
-        popup.textContent = 'Jugador actualizado';
-      } else {
-        popup.textContent = '';
-      }
+  popUp() {
+    var popup = document.getElementById("myPopup");
+    if(popup){
+      popup.classList.toggle("show");
+      popup.textContent = 'Equipamiento de héroe actualizado!'
     }
   }
 }

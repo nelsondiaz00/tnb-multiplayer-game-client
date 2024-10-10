@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/assets/game-images/background/missions-background.jpg");
+  background-image: url("/assets/game-images/background/missions-background.png");
+  background-size: contain;
   background-size: 100% 100%;
-  background-repeat: no-repeat;
   background-position: center;
 }

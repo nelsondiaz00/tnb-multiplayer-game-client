@@ -8,6 +8,7 @@ import { HeroInventoryComponent } from './inventary/client-inventory/hero-invent
 import { LandingComponent } from './landing/landing.component';
 import { ClientInventoryViewComponent } from './inventary/client-inventory/client-inventory-view/client-inventory-view.component';
 import { MissionsViewComponent } from './missions/missions-view/missions-view.component';
+import { RecoverComponent } from './profile/recover/recover.component';
 
 export const routes: Routes = [
   { path: 'match-management-view', component: MatchManagementViewComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'hero-inventory', component: ClientInventoryViewComponent },
   { path: 'missions', component: MissionsViewComponent },
   { path: 'landing', component: LandingComponent },
+  { path: 'recover', component: RecoverComponent},
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];
 export class AppRoutingModule {}
