@@ -34,7 +34,7 @@ export class HeroResultComponent {
         //   let hero: AbstractHero = player.heroList[i];
 
         //   hero = (
-        //     (await axios.get(`http://localhost:1803/hero/${hero._id}`))
+        //     (await axios.get((this.inventoryService.getInventoryDomain()+`/hero/${hero._id}`)))
         //       .data as { data: AbstractHero }
         //   ).data;
 
