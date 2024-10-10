@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { IAttribute } from '../_models/interfaces/attribute.interfaces';
 import { attributeName } from '../_models/types/attribute.type';
 
-const API_CHAT_BOT_URL = 'http://127.0.0.1:5002/prompt';
-const API_HEROES_URL = 'http://localhost:1803/player/getPlayerHeroes';
+const API_CHAT_BOT_URL = 'http://165.22.5.225:5002/prompt';
+const API_HEROES_URL = 'http://198.211.102.243:1802/player/getPlayerHeroes';
 
 export async function getChatbotResponse(message: string): Promise<string> {
   try {
@@ -33,7 +33,7 @@ export default class httpService {
     try {
       const response = await axios.post(
         API_HEROES_URL,
-        JSON.stringify({ id: '6707579d1575d1f2dd78b72f' }),
+        JSON.stringify({ id: '6707f0398f88af5104f30f1c' }),
         {
           headers: {
             'Content-Type': 'application/json',

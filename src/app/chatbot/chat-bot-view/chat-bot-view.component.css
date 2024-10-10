@@ -60,8 +60,8 @@
   /* max-width: 800px; */
   margin: 0 auto;
   color: #eae0f1;
-  height: auto;
-  width: auto;
+  height: 500px;
+  width: 400px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -74,6 +74,16 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+}
+
+#chat-container {
+  border: 1px solid #5b2a86;
+  background-color: #3b005e;
+  height: 300px; /* Cambiar a un height fijo */
+  overflow-y: auto; /* Cambiar a auto para mostrar scrollbar solo cuando sea necesario */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .activate-button {
@@ -116,16 +126,6 @@ h1 {
   font-size: 30px;
   margin: 0px;
   padding: 20px;
-}
-
-#chat-container {
-  border: 1px solid #5b2a86;
-  background-color: #3b005e;
-  min-height: 300px;
-  overflow-y: scroll;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #chat-container p {

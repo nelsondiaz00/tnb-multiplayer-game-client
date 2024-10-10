@@ -26,12 +26,13 @@ export class WebSocketService {
   public failedReason$: Observable<string>;
   public betWinners$: Observable<BetWinners>;
   public creditsSignal$: Observable<any>;
-  private HOST = environment.host;
-  private PORT = environment.port;
+  private HOST = environment.MULTIPLAYER_HOST;
+  private PORT = environment.MULTIPLAYER_PORT;
 
   constructor(private userService: UserService) {
-  //   console.log(environment.production, ' !!!!!!!!!!!!!');
+    //   console.log(environment.production, ' !!!!!!!!!!!!!');
     const initialSocket = io(`http://${this.HOST}:${this.PORT}`);
+    console.log(`http://${this.HOST}:${this.PORT}`);
     this.socket$ = new BehaviorSubject<Socket>(initialSocket);
 
     this.newUser$ = this.socket$.pipe(

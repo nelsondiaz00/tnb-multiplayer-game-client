@@ -50,8 +50,8 @@ export class RewardModalComponent {
     const inventory = player?.props.inventory;
 
     if (this.rewards) {
-     // console.log(await this.mapReward(this.rewards));
-     // console.log(inventory, ' inventory');
+      // console.log(await this.mapReward(this.rewards));
+      // console.log(inventory, ' inventory');
     }
     if (heroActual && inventory) {
       if (this.rewards) {
@@ -72,12 +72,15 @@ export class RewardModalComponent {
 
   async updatePlayer(): Promise<void> {
     const player = this.inventoryService.getPlayer();
-    const response = await axios.post((this.inventoryService.getInventoryDomain()+'/player/update'), {
-      player,
-    });
+    const response = await axios.post(
+      this.inventoryService.getInventoryDomain() + '/player/update',
+      {
+        player,
+      }
+    );
 
     if (response && response.data) {
-    //  console.log('actualizado', response.data);
+      //  console.log('actualizado', response.data);
     }
   }
 
@@ -87,8 +90,8 @@ export class RewardModalComponent {
       .toPromise();
 
     // console.log(templateItem);
-  //  console.log(reward[1].productName);
-   // console.log(templateItem[1].props.name);
+    //  console.log(reward[1].productName);
+    // console.log(templateItem[1].props.name);
     const templateHability = templateItem.slice(1, templateItem.length);
     const index = templateHability.findIndex(
       (item: AbstractArmor) =>
@@ -105,9 +108,13 @@ export class RewardModalComponent {
       const skill = JSON.parse(JSON.stringify(templateItem));
       skill[0]._id = reward[0].productName;
 
+      if (index === -1) {
+        return [skill[0], null];
+      }
+
       return [skill[0], armor];
     }
 
-    return [null, armor];
+    return [null, null];
   }
 }
