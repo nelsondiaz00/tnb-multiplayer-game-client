@@ -25,8 +25,9 @@ export class MatchManagementViewComponent {
   @Output() showHeader = new EventEmitter<boolean>();
   constructor(
     private webSocketService: WebSocketService,
-    private router: Router
+    private router: Router,
   ) {}
+
 
   navigateTo(route: string) {
     this.router.navigate([route]);
@@ -42,5 +43,4 @@ export class MatchManagementViewComponent {
       state: { matchConfig: this.selectedMatchConfig },
     });
   }
-
 }

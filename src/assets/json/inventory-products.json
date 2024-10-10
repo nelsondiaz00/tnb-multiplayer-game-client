@@ -26,5 +26,192 @@
     },
     "_domainEvents": [],
     "_name": "Golpe con escudo"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd0",
+    "props": {
+      "name": "Túnica arcana",
+      "status": "active",
+      "effectList": [],
+      "drop": 3,
+      "heroType": "Mago",
+      "subheroType": "Fuego",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Pecho"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd4",
+    "props": {
+      "name": "Mano del desterrado",
+      "status": "active",
+      "effectList": [],
+      "drop": 4,
+      "heroType": "Pícaro",
+      "subheroType": "Veneno",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Guantes"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd3",
+    "props": {
+      "name": "Corona de Hielo",
+      "status": "active",
+      "effectList": [],
+      "drop": 5,
+      "heroType": "Mago",
+      "subheroType": "Hielo",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Casco"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd1",
+    "props": {
+      "name": "Caída de fuego",
+      "status": "active",
+      "effectList": [],
+      "drop": 3,
+      "heroType": "Mago",
+      "subheroType": "Fuego",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Pantalón"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd6",
+    "props": {
+      "name": "Pie de Atleta",
+      "status": "active",
+      "effectList": [],
+      "drop": 1,
+      "heroType": "Pícaro",
+      "subheroType": "Machete",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Zapatos"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cce",
+    "props": {
+      "name": "Puño Lúcido",
+      "status": "active",
+      "effectList": [],
+      "drop": 5,
+      "heroType": "Guerrero",
+      "subheroType": "Armas",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Guantes"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44ccf",
+    "props": {
+      "name": "Puños en llamas",
+      "status": "active",
+      "effectList": [],
+      "drop": 2,
+      "heroType": "Guerrero",
+      "subheroType": "Armas",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Brazaletes"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44ccd",
+    "props": {
+      "name": "Magma Ardiente",
+      "status": "active",
+      "effectList": [],
+      "drop": 5,
+      "heroType": "Guerrero",
+      "subheroType": "Tanque",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Casco"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd5",
+    "props": {
+      "name": "Atadura carmesí",
+      "status": "active",
+      "effectList": [],
+      "drop": 4,
+      "heroType": "Pícaro",
+      "subheroType": "Veneno",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Pecho"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd2",
+    "props": {
+      "name": "Ventisca",
+      "status": "active",
+      "effectList": [],
+      "drop": 3,
+      "heroType": "Mago",
+      "subheroType": "Hielo",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Pecho"
+  },
+  {
+    "_id": "66f88c6f11e7a70302c44cd7",
+    "props": {
+      "name": "Sangre Cruel",
+      "status": "active",
+      "effectList": [],
+      "drop": 1,
+      "heroType": "Pícaro",
+      "subheroType": "Machete",
+      "cost": 0,
+      "heroLevel": 1,
+      "powerCost": 0,
+      "coolDownTurns": 0,
+      "conditions": []
+    },
+    "type": "Brazaletes"
   }
 ]

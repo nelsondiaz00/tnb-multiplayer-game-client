@@ -11,8 +11,17 @@ export class UserService {
   private teamSide: string | null = null;
   private targetEnemy: string | null = null;
   private currentIdUser: string | null = null;
+  private currentNameUser: string | null = null;
   private heroComponent: HeroComponent | null = null;
   private ownerIdUser: string | null = null;
+
+  setCurrentNameUser(name: string): void {
+    this.currentNameUser = name;
+  }
+
+  getCurrentNameUser(): string | null {
+    return this.currentNameUser;
+  }
 
   setHeroSelected(hero: IHero): void {
     this.heroSelected = hero;
