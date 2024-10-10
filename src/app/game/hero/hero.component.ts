@@ -32,8 +32,13 @@ export class HeroComponent implements OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.webSocketService.turnInfo$.subscribe(() => {
+    this.webSocketService.turnInfo$.subscribe((turnInfo) => {
       this.userService.setHeroComponent(this);
+      if (turnInfo.idUser.includes('_')) {
+        this.userService.setCurrentNameUser('IA');
+      } else {
+        this.userService.setCurrentNameUser(this.hero.nameUser);
+      }
       this.resetTargeted();
     });
     this.webSocketService.lastAttackName$.subscribe((lastAttackName: any) => {
@@ -47,7 +52,7 @@ export class HeroComponent implements OnChanges {
         this.perpetratorId &&
         this.userService.getCurrentIdUser() !== this.userService.getIdUser()
       ) {
-        console.log('entró o qué???');
+        // console.log('entró o qué???');
         this.triggerUseHabilityAnimation();
       }
     });
@@ -204,15 +209,13 @@ export class HeroComponent implements OnChanges {
   }
 
   getHealthBarClass(): string {
-    const idUser = this.userService.getIdUser();
-    const userTeamSide = this.userService.getTeamSide();
-
-    if (this.hero.idUser === idUser) {
-      return 'green';
-    } else if (this.teamside === userTeamSide) {
-      return 'blue';
+    const healthPercentage = this.getHealthPercentage();
+    if (healthPercentage > 60) {
+      return 'health-bar-green';
+    } else if (healthPercentage > 40) {
+      return 'health-bar-yellow';
     } else {
-      return 'red';
+      return 'health-bar-red';
     }
   }
 

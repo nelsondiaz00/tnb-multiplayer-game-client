@@ -203,6 +203,18 @@ h1 {
   font-size: clamp(0.1rem, 1vw, 1.6rem);
 }
 
+.health-bar-green {
+  background-color: green;
+}
+
+.health-bar-yellow {
+  background-color: yellow;
+}
+
+.health-bar-red {
+  background-color: red;
+}
+
 .health-difference-white {
   color: rgb(255, 255, 255);
   font-size: clamp(0.1rem, 1vw, 1.6rem);
