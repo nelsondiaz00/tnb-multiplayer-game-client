@@ -24,7 +24,10 @@ export class InfoUserComponent {
   avatar = '';
   password2 = '';
 
+  emitRecover(){
+    this.navigateTo('recover');
 
+  }
 
   emitLanding() {
     this.navigateTo('landing');
@@ -141,9 +144,8 @@ export class InfoUserComponent {
           usersArray[i].mail = this.mail;
           usersArray[i].name = this.name;
           usersArray[i].lastname = this.lastname;
+          localStorage.setItem('loggedUser', JSON.stringify(usersArray[i]));
         }
-
-        localStorage.setItem('loggedUser', JSON.stringify(usersArray[i]));
       }
 
       // Guardar el array actualizado en localStorage
@@ -170,6 +172,10 @@ export class InfoUserComponent {
         if (pp) pp.src = user2.avatar;
       }
     }
+  }
+
+  recover(){
+
   }
 
   setImage(target: any) {

@@ -1,0 +1,136 @@
+
+:host {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}
+
+.main {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 3% 10% 10% 10%;
+  background-image: url("/assets/game-images/background/fondo-registro.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 12px;
+}
+
+.title {
+  align-self: stretch;
+  text-align: right;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  word-wrap: normal;
+  text-shadow: #4518a6 2px 2px 0px;
+}
+
+.cont {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  display: flex;
+  box-sizing: border-box;
+  width: fit-content;
+}
+
+.cont2 {
+  align-self: stretch;
+  width: 100%;
+  padding: 5%;
+  background-color: white;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  gap: 40px;
+  display: inline-flex;
+  font-family: 'Cascadia Code', Courier, monospace;
+
+}
+
+form{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+button {
+  width: 60%;
+  height: auto;
+  padding: 2% 10% 2% 10%;
+  margin: 0% 0% 0% 20%;
+  background: #e856c3;
+  border: 0px solid;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  justify-self: center;
+  gap: 5px;
+  display: flex;
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+button:hover {
+  background: #fa9fe3;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+input {
+  width: 98%;
+  padding: 1%;
+  background: #bbd7f8;
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px #2f1575 solid;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.form_label {
+  font-size: large;
+  color: #2f1575;
+  text-align: left;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.cont1 {
+  width: 150%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.boton3 {
+  width: fit-content;
+  margin: 0;
+  height: auto;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-family: 'Cascadia Code', Courier, monospace;
+  box-shadow: none;
+}
+
+.boton3:hover {
+  text-decoration: underline;
+  background-color: transparent;
+  box-shadow: none;
+}

@@ -99,6 +99,7 @@ export class SignUpComponent {
   changeP1(target: any) {
     this.p1 = target.value;
   }
+
   changeP2(target: any) {
     this.p2 = target.value;
   }
@@ -412,6 +413,10 @@ export class SignUpComponent {
   checkAll2() {
     const parte2 = document.getElementById('parte2');
     const validIcons = parte2?.querySelectorAll('.valid');
+    const selects  =  document.querySelectorAll('select');
+    if (Array.from(selects).some(select => select.value === '')) {
+      return false;
+    }
     return validIcons?.length === 4;
   }
 

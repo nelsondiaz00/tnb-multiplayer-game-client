@@ -31,7 +31,7 @@
               (click)="setImage($event.target)"
             />
           </div>
-          <label class="recuperar">¿Quieres cambiar tu contraseña?</label>
+          <label class="recuperar" (click)="emitRecover()">¿Quieres cambiar tu contraseña?</label>
           <button id="editarInfo" (click)="changeInfo()">
             Editar Información Personal
           </button>
@@ -63,7 +63,7 @@
             class="form"
             (input)="changeMail()"
           />
-          <label class="recuperar">¿Quieres cambiar tu contraseña?</label>
+          <label class="recuperar" (click)="emitRecover()">¿Quieres cambiar tu contraseña?</label>
           <button type="submit" id="guardarInfo" (click)="saveInfo()">
             Guardar Información Personal
           </button>

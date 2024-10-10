@@ -1,0 +1,45 @@
+<div class="main">
+  <div class="cont">
+    <div class="cont1">
+      <button (click)="navigateTo('profile')" class="boton3">← Atrás</button>
+      <label class="title" id="recover">Cambiar Contraseña</label>
+    </div>
+  <div class="cont2">
+    <form action="#" method="post" class="form">
+      <br />
+      <label for="question1" class="form_label" id="p1">Pregunta 1:</label>
+      <br /><br />
+      <input type="text" id="question1" name="question1" required />
+      <br /><br />
+
+      <label for="question2" class="form_label" id="p2">Pregunta 2:</label>
+      <br /><br />
+      <input type="text" id="question2" name="question2" required />
+      <br /><br />
+
+      <label for="question3" class="form_label" id="p3">Pregunta 3:</label>
+      <br /><br />
+      <input type="text" id="question3" name="question3" required />
+      <br /><br />
+
+      <label for="question4" class="form_label" id="p4">Pregunta 4:</label>
+      <br /><br />
+      <input type="text" id="question4" name="question4" required />
+      <br /><br />
+
+      <button type="button" (click)="sendCode()">
+        Enviar código
+      </button>
+      <br /><br />
+
+      <section class="code-section">
+        <label for="code" class="form_label">Ingresar código:</label>
+        <br /><br />
+        <input type="text" id="code" name="code" required />
+        <br /><br />
+        <button type="submit" (click)="verifyCode()">Recuperar cuenta</button>
+      </section>
+    </form>
+  </div>
+  </div>
+</div>
