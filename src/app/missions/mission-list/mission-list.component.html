@@ -23,10 +23,23 @@
         <ng-container *ngIf="selectedMission; else noMatches">
           <div class="game-room-item">
             <div class="indicators-container">
-              <span class="indicators">Estado:</span
-              >{{ selectedMission.active ? "En progreso" : "Inactiva" }} <br />
+              <span class="indicators">Estado:</span>
+              {{
+                selectedMission.chronometer === -1
+                  ? "Calma..."
+                  : selectedMission.active
+                  ? "En progreso"
+                  : "Inactiva"
+              }}
+              <br />
               <span class="indicators">Progreso:</span>
-              {{ selectedMission.active ? remainingTime : "Sin empezar" }}
+              {{
+                selectedMission.chronometer === -1
+                  ? "Cargando..."
+                  : selectedMission.active
+                  ? remainingTime
+                  : "Sin empezar"
+              }}
             </div>
             <button class="buttom-item" (click)="startMission(selectedMission)">
               <span style="color: #ff009d">Nombre:</span>

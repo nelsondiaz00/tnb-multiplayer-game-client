@@ -95,7 +95,7 @@ export class ClientInventoryService {
   }
 
   getInventoryDomain(): string {
-   // return 'http://198.211.102.243:1802';
-    return 'http://localhost:1803';
+    return 'http://198.211.102.243:1802';
+    // return 'http://localhost:1803';
   }
 }

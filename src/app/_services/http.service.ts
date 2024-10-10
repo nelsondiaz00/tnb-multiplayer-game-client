@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { IAttribute } from '../_models/interfaces/attribute.interfaces';
 import { attributeName } from '../_models/types/attribute.type';
 
-const API_CHAT_BOT_URL = 'http://127.0.0.1:5002/prompt';
-const API_HEROES_URL = 'http://localhost:1803/player/getPlayerHeroes';
+const API_CHAT_BOT_URL = 'http://165.22.5.225:5002/prompt';
+const API_HEROES_URL = 'http://198.211.102.243:1802/player/getPlayerHeroes';
 
 export async function getChatbotResponse(message: string): Promise<string> {
   try {
